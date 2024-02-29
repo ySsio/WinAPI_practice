@@ -67,7 +67,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // @ 실행된 프로세
     MSG msg;
 
     // @ timer로 매 시간마다 메시지 발생시킨다.
-    SetTimer(g_hWnd, 10, 0, nullptr); // uElapse -> 1000ms = 1초
+    //SetTimer(g_hWnd, 10, 0, nullptr); // uElapse -> 1000ms = 1초
     // @ 커널 오브젝트이므로 제거해줘야 함. KillTimer();
 
     // 기본 메시지 루프입니다:
@@ -103,7 +103,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // @ 실행된 프로세
 
     // @ 메시지 꺼내와서 처리하라고 하면 그 메시지 발생한 해당 윈도우의 프로시저로 들어갈 거임.
 
-    KillTimer(g_hWnd, 10);
+    //KillTimer(g_hWnd, 10);
 
     return (int) msg.wParam;
 }
