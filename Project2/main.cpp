@@ -3,6 +3,7 @@
 
 #include "framework.h"
 #include "Project2.h"
+#include "CCore.h"
 
 #define MAX_LOADSTRING 100
 
@@ -79,15 +80,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // @ 실행된 프로세
     // 인자 하나 더 받음. 확인한 메세지가 있을 경우 메세지 큐에서 그 메세지를 제거할지 여부.
     // 메세지가 있으면 true 없으면 false 반환. 그러므로 while 문의 조건으로 사용하기엔 부적합. (메세지 있으면 프로그램 종료되니까)
 
-    DWORD dwPrevCount = GetTickCount();
-    DWORD dwAccCount = 0;
-
     while (true)
     {   
         // 메세지가 있으면
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            int iTime = GetTickCount();
 
             // 받아온 메세지가 WM_QUIT일 때 while문 break 후 프로그램 종료
             if (msg.message == WM_QUIT)
@@ -99,33 +96,17 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // @ 실행된 프로세
                 DispatchMessage(&msg);
             }
 
-            dwAccCount += (GetTickCount() - iTime);
         }
         // 메세지가 없으면
         else
         { 
-            DWORD dwCurCount = GetTickCount();
-            if (dwPrevCount - dwCurCount > 1000)
-            {
-                double fRatio = (double)dwAccCount / 1000;
-
-                wchar_t szBuff[50] = {};
-                swprintf_s(szBuff, L"비율 : %f", fRatio);
-
-                SetWindowText(g_hWnd, szBuff);
-
-                dwPrevCount = dwCurCount;
-                dwAccCount = 0;
-            }
+            
 
             // Game 코드 수행
             // 디자인 패턴 (설계 유형)
             // 싱글톤
         }
     }
-
-    int a = 0;
-
 
 
 
