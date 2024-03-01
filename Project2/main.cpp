@@ -66,44 +66,68 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // @ 실행된 프로세
 
     MSG msg;
 
-    // @ timer로 매 시간마다 메시지 발생시킨다.
-    //SetTimer(g_hWnd, 10, 0, nullptr); // uElapse -> 1000ms = 1초
-    // @ 커널 오브젝트이므로 제거해줘야 함. KillTimer();
 
     // 기본 메시지 루프입니다:
-    // @ 무한 반복문.
-    // @ 해당 window가 종료된다고 판단되면 while문을 빠져나와서 프로세스를 중단시키는 구조. 즉, process != window. 프로세스 안에서 윈도우를 만들고,
-    // @ 윈도우가 꺼지면 프로세스를 종료하는 로직을 구현해서 맞물리게 해 놓았을 뿐이다.
 
 
-    // @ GetMessage() : 프로그램 프로세스에 메시지 큐라는 것이 있음. 현재 포커싱 된 윈도우 프로세스에 메시지가 전달되어서 이벤트 수행한다..? 잘 이해 안댐
-    // @ 메시지 큐에서 메시지를 꺼내서 msg 변수에 넣음. 레퍼런스 타입으로 받아서 멤버 건드림.
-    // @ 중요한 특징 - 메세지 큐에서 메세지 확인될 때까지 대기. 메세지 없으면 리턴하지 않는 함수.
-    // @ 그럼 GetMessage()가 true/false 반환하는 건 메세지의 종류에 의존적이겠지?
-    // @ 확인해본 메세지의 메세지 타입이 msg.message == WM_QUIT 인 경우 false를 반환. => while 문 종료 => 프로세스 종료
-    // @ 프로그램 끄고 싶을 때, window 다 종료하는 등 마무리 작업을 위한 메세지가 발생한 후에 가장 마지막에 메세지 타입이 WM_QUIT인 메세지가 발생.
+    // GetMessage
+    // 메세지 큐에서 메세지 확인 될 때까지 대기
+    // msg.message == WM_QUIT인 경우 false를 반환 -> 프로그램 종료.
+    
+    // PeekMessage
+    // 메세지 큐에 메세지가 없어도 대기하지 않고 그냥 반환되는 함수 <-> GetMessage()
+    // 인자 하나 더 받음. 확인한 메세지가 있을 경우 메세지 큐에서 그 메세지를 제거할지 여부.
+    // 메세지가 있으면 true 없으면 false 반환. 그러므로 while 문의 조건으로 사용하기엔 부적합. (메세지 있으면 프로그램 종료되니까)
 
-    while (GetMessage(&msg, nullptr, 0, 0))  
+    DWORD dwPrevCount = GetTickCount();
+    DWORD dwAccCount = 0;
+
+    while (true)
     {   
-        // @ 테이블에 등록되어 있는 단축키 입력이 발생했는지를 계속 검사.
-        // @ msg.hwnd = 메시지 핸들, 메시지가 발생한 윈도우, 즉 포커싱된 윈도우를 말하는 듯.
-        // @ 하나의 프로세스 안에서 여러 윈도우를 만들 수 있는데, 구체적으로 어떤 윈도우인지 알 수 있음.
-        // @ 그 메시지 처리하는 건 각 윈도우에 딸려있는 함수가 처리함. 프로시저 함수 = 처리기 함수. 각 윈도우는 이벤트 발생햇을 때 처리하는 함수 (프로시저)를 같이 들고 있음.
-        // @ wcex.lpfnWndProc (함수 포인터 변수) .. 프로시저
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        // 메세지가 있으면
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            int iTime = GetTickCount();
+
+            // 받아온 메세지가 WM_QUIT일 때 while문 break 후 프로그램 종료
+            if (msg.message == WM_QUIT)
+                break;
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+
+            dwAccCount += (GetTickCount() - iTime);
+        }
+        // 메세지가 없으면
+        else
+        { 
+            DWORD dwCurCount = GetTickCount();
+            if (dwPrevCount - dwCurCount > 1000)
+            {
+                double fRatio = (double)dwAccCount / 1000;
+
+                wchar_t szBuff[50] = {};
+                swprintf_s(szBuff, L"비율 : %f", fRatio);
+
+                SetWindowText(g_hWnd, szBuff);
+
+                dwPrevCount = dwCurCount;
+                dwAccCount = 0;
+            }
+
+            // Game 코드 수행
+            // 디자인 패턴 (설계 유형)
+            // 싱글톤
         }
     }
 
-    // @ 프로그램이 메세지 반응형태로 구성됨. 프로그램이 동작하려면 반드시 메세지가 있어야 하고, 그걸 처리하는 형태로 프로그램이 동작함.
-    // @ 메세지가 없으면 하염없이 메세지 큐를 바라보고 있을 것.
-    // @ => 게임을 만들기에는 부적합한 방식임.
+    int a = 0;
 
-    // @ 메시지 꺼내와서 처리하라고 하면 그 메시지 발생한 해당 윈도우의 프로시저로 들어갈 거임.
 
-    //KillTimer(g_hWnd, 10);
+
 
     return (int) msg.wParam;
 }
