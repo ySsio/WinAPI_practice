@@ -74,14 +74,16 @@ class CCore
 private:
 	HWND	m_hWnd;			// 메인 윈도우 핸들
 	POINT	m_ptResolution; // 메인 윈도우 해상도
+	HDC		m_hDC;			// 메인 윈도우에 그릴 DC
 
 public :
 	int init(HWND _hWnd, POINT _ptResolution);
 	void progress();
 
 private :
-	CCore();		// # 생성자 소멸자도 Static? 생략되어 있는 건가
-	~CCore();
+	void update();
+	void render();
+
 };
 
 // 매니저 같은 애들을 싱글톤 패턴으로 자주 구현할 예정임. => 매크로 함수로 만들어 두자.
