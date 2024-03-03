@@ -17,6 +17,9 @@ CCore::CCore()
 	: m_hWnd(0)
 	, m_ptResolution{}
 	, m_hDC(0)
+	, m_hBit(0)
+	, m_memDC(0)
+
 {
 
 }
@@ -25,6 +28,10 @@ CCore::~CCore()
 {
 	// DC를 메모리에서 해제.
 	ReleaseDC(m_hWnd, m_hDC);
+
+	// 사본 DC를 삭제. 메인 윈도우 DC와 다르게 DeleteDC를 사용해야 한대.
+	DeleteDC(m_memDC);
+	DeleteObject(m_hBit);
 }
 
 int CCore::init(HWND _hWnd, POINT _ptResolution)
@@ -50,6 +57,17 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 
 
 
+	// 이중 버퍼링 용도의 비트맵과 DC 생성
+	m_hBit = CreateCompatibleBitmap(m_hDC, m_ptResolution.x, m_ptResolution.y);
+	m_memDC = CreateCompatibleDC(m_hDC);
+
+	// 이렇게 각각 만들어줘도 서로 연관 없음. DC를 Bitmap에 연결해줘야 함. => SelectObject() 
+	// => 원래 비트맵이 반환됨. DC 생성할 때 기본적으로 목적지가 필요하므로 1비트 짜리 bitmap이 등록되어 있음. 이걸 반환받아서 지워줌.
+	HBITMAP hOldBit = (HBITMAP)SelectObject(m_memDC, m_hBit);
+	DeleteObject(hOldBit);
+
+
+
 	// Manager 초기화
 	CTimeMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
@@ -65,19 +83,8 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 
 void CCore::progress()
 {
-	static int callcount = 0;
-	++callcount;
-
-	static int iprevcount = GetTickCount();
-
-	int icurcount = GetTickCount();
-	if (icurcount - iprevcount > 1000)
-	{
-		iprevcount = icurcount;
-		callcount = 0;
-	}
-		
-
+	// Manager update
+	CTimeMgr::GetInst()->update();
 
 	update();
 
@@ -101,13 +108,13 @@ void CCore::update()
 	Vec2 vPos = g_obj.GetPos();
 	
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-		vPos.x -= 0.01f;
+		vPos.x -= 400.f * fDT;
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-		vPos.x += 0.01f;
+		vPos.x += 400.f * fDT;
 	if (GetAsyncKeyState(VK_UP) & 0x8000)
-		vPos.y -= 0.01f;
+		vPos.y -= 400.f * fDT;
 	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
-		vPos.y += 0.01f;
+		vPos.y += 400.f * fDT;
 
 	g_obj.SetPos(vPos);
 
@@ -115,13 +122,21 @@ void CCore::update()
 
 void CCore::render()
 {
+	// 화면 청소
+	Rectangle(m_memDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
+
+	// 그리기
 	Vec2 vPos = g_obj.GetPos();
 	Vec2 vScale = g_obj.GetScale();
 
-	// 그리기
-	Rectangle (m_hDC
+	Rectangle (m_memDC
 		, vPos.x - vScale.x / 2
 		, vPos.y - vScale.y / 2
 		, vPos.x + vScale.x / 2
 		, vPos.y + vScale.y / 2 );
+
+	// 비트맵에서 윈도울 복사 (BitBlt = Bit-Block transfer).. 프레임 ㅈㄴ드랍됐음..!!
+	// 엄청난 반복처리 (단순작업이지만) .. CPU 혹사
+	// => 그래픽카드. Direct X는 그래픽카드를 다루는 함수 사용.
+	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memDC, 0, 0, SRCCOPY);
 }
