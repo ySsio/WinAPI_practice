@@ -78,7 +78,7 @@ private:
 
 	// 이중 버퍼링 - 사본용 DC
 	HBITMAP m_hBit;
-	HDC		m_memDC;
+	HDC		m_memDC;		// 사본 비트맵에 그릴 DC
 
 public :
 	int init(HWND _hWnd, POINT _ptResolution);
@@ -90,6 +90,7 @@ private :
 
 public:
 	HWND GetMainHwnd() { return m_hWnd; }
+	POINT GetResolution() { return m_ptResolution; }
 
 };
 

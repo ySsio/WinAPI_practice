@@ -3,8 +3,8 @@
 #include "CObject.h"
 #include "CTimeMgr.h"
 #include "CKeyMgr.h"
+#include "CSceneMgr.h"
 
-CObject g_obj;
 
 // 구현 1.
 // 클래스에서 선언한 정적 멤버는 밖에서 반드시 초기화 해줘야 한다. 안하면 링크에러 남
@@ -71,10 +71,9 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	// Manager 초기화
 	CTimeMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
+	CSceneMgr::GetInst()->init();
 
 
-	g_obj.SetPos(Vec2{ m_ptResolution.x / 2, m_ptResolution.y / 2 });
-	g_obj.SetScale(Vec2{ 100, 100 });
 	
 	return S_OK;
 }
@@ -85,11 +84,22 @@ void CCore::progress()
 {
 	// Manager update
 	CTimeMgr::GetInst()->update();
-
-	update();
-
-	render();
+	CKeyMgr::GetInst()->update();
+	CSceneMgr::GetInst()->update();
 	
+	// =========
+	// Rendering
+	// =========
+	
+	// 화면 청소
+	Rectangle(m_memDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
+
+	CSceneMgr::GetInst()->render(m_memDC);
+
+	// 비트맵에서 윈도울 복사 (BitBlt = Bit-Block transfer).. 프레임 ㅈㄴ드랍됐음..!!
+	// 엄청난 반복처리 (단순작업이지만) .. CPU 혹사
+	// => 그래픽카드. Direct X는 그래픽카드를 다루는 함수 사용.
+	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memDC, 0, 0, SRCCOPY);
 }
 
 void CCore::update()
@@ -105,38 +115,18 @@ void CCore::update()
 	// => 시간 동기화. 컴퓨터가 아무리 빨리 연산해도 현실 시간과 매칭이 되어야 한다. 한 프레임마다 움직이는 값이 고정 값이면 안 됨.
 	// 컴퓨터 속도에 따라 가변적으로 1초를 맞춰야 함. (컴퓨터가 좋으면 업데이트마다 조금 움직이고 안좋으면 업데이트마다 많이 움직이게)
 
-	Vec2 vPos = g_obj.GetPos();
-	
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-		vPos.x -= 400.f * fDT;
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-		vPos.x += 400.f * fDT;
-	if (GetAsyncKeyState(VK_UP) & 0x8000)
-		vPos.y -= 400.f * fDT;
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
-		vPos.y += 400.f * fDT;
 
-	g_obj.SetPos(vPos);
+	// 이렇게 구현하면 1프레임에 동시에 여러 일들을 작업하는데, 작업 중간에 키 상태가 바뀌어버리면 1프레임 안에서 다른 키에 대한 동작을 수행하는 경우가 발생할 수 있음.
+	// KeyMgr => 1. 프레임 동기화. 한 프레임에서 발생한 일들은 동일한 키 입력에 대해 발생해야 한다.
+	//			 2. 윈도우 정의로는 눌려있는 상태만 확인할 수 있는데, 실제로는 키다운, 키업, 키홀드 등의 동작을 구분해서 감지할 필요성 존재.
+	//if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+	//	vPos.x -= 400.f * fDT;
+	// # 근데 찾아 보니까 0, 0x8000, 1, 0x8001로 NONE, TAP, AWAY, HOLD 처럼 구분하는거 같은데 아닌가?
 
 }
 
 void CCore::render()
 {
-	// 화면 청소
-	Rectangle(m_memDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
-
-	// 그리기
-	Vec2 vPos = g_obj.GetPos();
-	Vec2 vScale = g_obj.GetScale();
-
-	Rectangle (m_memDC
-		, vPos.x - vScale.x / 2
-		, vPos.y - vScale.y / 2
-		, vPos.x + vScale.x / 2
-		, vPos.y + vScale.y / 2 );
-
-	// 비트맵에서 윈도울 복사 (BitBlt = Bit-Block transfer).. 프레임 ㅈㄴ드랍됐음..!!
-	// 엄청난 반복처리 (단순작업이지만) .. CPU 혹사
-	// => 그래픽카드. Direct X는 그래픽카드를 다루는 함수 사용.
-	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memDC, 0, 0, SRCCOPY);
+	
+	
 }

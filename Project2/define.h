@@ -21,3 +21,27 @@
 
 #define fDT CTimeMgr::GetInst()->GetfDT()
 #define DT CTimeMgr::GetInst()->GetDT()
+
+// Scene에 존재하는 Object의 종류
+enum class GROUP_TYPE
+{
+	DEFAULT,
+	PLAYER,
+	MISSILE,
+	MONSTER,
+
+	END = 32,
+};
+
+
+// Scene의 종류
+enum class SCENE_TYPE
+{
+	TOOL,		// 게임 만들 때 필요한 것을 조작할 수 있는 씬
+	START,
+
+	STAGE_01,
+	STAGE_02,
+
+	END,
+};

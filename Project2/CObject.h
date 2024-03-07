@@ -1,6 +1,6 @@
 #pragma once
 
-// 물체
+// 물체, 추상클래스
 class CObject
 {
 private:
@@ -14,9 +14,12 @@ public:
 	Vec2 GetPos() { return m_vPos; }
 	Vec2 GetScale() { return m_vScale; }
 
+	virtual void update() = 0;		// pure virtual function
+	virtual void render(HDC _dc);
+
 public:
 	CObject();
-	~CObject();
+	virtual ~CObject();
 
 
 };
