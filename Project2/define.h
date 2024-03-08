@@ -22,6 +22,13 @@
 #define fDT CTimeMgr::GetInst()->GetfDT()
 #define DT CTimeMgr::GetInst()->GetDT()
 
+#define KEY_CHECK(key, state) CKeyMgr::GetInst()->GetKeyState(KEY::key) == KEY_STATE::state
+#define KEY_HOLD(key) KEY_CHECK(key,HOLD)
+#define KEY_TAP(key) KEY_CHECK(key,TAP)
+#define KEY_AWAY(key) KEY_CHECK(key,AWAY)
+#define KEY_NONE(key) KEY_CHECK(key,NONE)
+
+
 // Scene에 존재하는 Object의 종류
 enum class GROUP_TYPE
 {

@@ -24,7 +24,7 @@ public :
 	virtual void Enter() = 0;	// 진입
 	virtual void Exit() = 0;	// 탈출
 
-protected:
+public:
 	// 클래스 함수 헤더에 구현하면 자동으로 inline 처리. 함수 호출 비용 x 해당 스택에서 처리함.
 	void AddObject(CObject* _pObj, GROUP_TYPE _etype)
 	{
