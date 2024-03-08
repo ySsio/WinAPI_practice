@@ -59,6 +59,7 @@ void CMonster::CreateMissile()
 	pMissile->SetScale(Vec2(20.f, 20.f));
 	pMissile->SetDir(false);
 	pMissile->SetCenter(GetPos());
+	pMissile->SetTarget(target);
 
 	CSceneMgr::GetInst()->GetCurScene()->AddObject(pMissile, GROUP_TYPE::DEFAULT);
 

@@ -23,7 +23,7 @@ void CScene_Start::Enter()
 
 	// Monster Object Ãß°¡
 	
-	int iMonCount = 10;
+	int iMonCount = 2;
 	float fMoveDist = 25.f;
 	float fObjScale = 50.f;
 
@@ -38,6 +38,7 @@ void CScene_Start::Enter()
 		pMonsterObj->SetScale(Vec2(fObjScale, fObjScale));
 		pMonsterObj->SetMoveDistance(fMoveDist);
 		pMonsterObj->SetCenterPos(pMonsterObj->GetPos());
+		pMonsterObj->SetTarget(pObj);
 		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 	}
 }
