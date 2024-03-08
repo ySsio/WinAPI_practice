@@ -10,6 +10,7 @@ private:
     float   m_fSpeed;
     float   m_fMaxDistance;
     int     m_iDir;     // 1 (우측), -1(좌측)
+    float   m_fAttackFrequency;  // 공격 주기 (미사일발사주기)
 
 public:
     float GetSpeed() { return m_fSpeed; }
@@ -24,6 +25,9 @@ public:
 public:
     CMonster();
     ~CMonster();
+
+public:
+    void CreateMissile();
 
 };
 

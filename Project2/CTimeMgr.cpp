@@ -53,3 +53,4 @@ void CTimeMgr::update()
 		SetWindowText(CCore::GetInst()->GetMainHwnd(), szBuffer);
 	}
 }
+

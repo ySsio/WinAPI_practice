@@ -4,7 +4,11 @@ class CMissile :
     public CObject
 {
 private:
-    float     m_fDir; // 미사일 발사 위 아래 방향
+    float   m_fDir; // 미사일 발사 위 아래 방향
+    Vec2    m_vCenterPos;
+    float   m_fDist;
+    float   m_fSpeed;
+    int     i_Dir;
 
 public:
     void SetDir(bool _bUp)
@@ -15,6 +19,7 @@ public:
             m_fDir = 1.f;
     }
 
+    void SetCenter(Vec2 _pos) { m_vCenterPos = _pos; }
     
 
 public:
