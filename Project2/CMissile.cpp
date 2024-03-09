@@ -3,8 +3,10 @@
 #include "CTimeMgr.h"
 
 CMissile::CMissile()
-	: m_fDir(1.f)
+	: m_fTheta(0.f)
+	, m_vDir(Vec2{-1,7})
 {
+ 	m_vDir = m_vDir.Normalize();
 }
 
 CMissile::~CMissile()
@@ -15,7 +17,13 @@ void CMissile::update()
 {
 	Vec2 vPos = GetPos();
 
-	vPos.y += 600.f * fDT * m_fDir;
+	// 각 기준 계산
+	//vPos.x += 600.f * cosf(m_fTheta) * fDT;
+	//vPos.y += 600.f * sinf(m_fTheta) * fDT;
+
+	// 벡터 기준 계산
+	vPos.x += 600.f * m_vDir.x * fDT;
+	vPos.y -= 600.f * m_vDir.y * fDT;	// 윈도우 좌표계 y축이 반대니까 -
 
 	SetPos(vPos);
 }

@@ -1,5 +1,5 @@
 #pragma once
-
+#include <assert.h>
 
 struct Vec2
 {
@@ -12,6 +12,23 @@ public:
 	{
 		x = (float)_pt.x;
 		y = (float)_pt.y;
+	}
+
+public:
+	float Length()
+	{
+		return sqrt(x * x + y * y);
+	}
+
+	Vec2& Normalize()
+	{
+		float fLen = Length();
+
+		assert(fLen != 0.f);	// 0으로 나누는 상황 방지
+
+		x /= fLen;
+		y /= fLen;
+		return *this;
 	}
 
 public :

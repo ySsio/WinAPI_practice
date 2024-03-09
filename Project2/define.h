@@ -28,6 +28,7 @@
 #define KEY_AWAY(key) KEY_CHECK(key,AWAY)
 #define KEY_NONE(key) KEY_CHECK(key,NONE)
 
+#define PI 3.1415926535f
 
 // Scene에 존재하는 Object의 종류
 enum class GROUP_TYPE
