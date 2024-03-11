@@ -39,9 +39,14 @@ void CTimeMgr::update()
 
 	m_llPrevCount = m_llCurCount;
 
+	//render();
+
+}
+
+void CTimeMgr::render()
+{
 	++m_iCallCount;
 	m_dAcc += m_dDeltaTime;
-
 	if (m_dAcc >= 1.)
 	{
 		m_iFPS = m_iCallCount;

@@ -4,6 +4,7 @@
 #include "CTimeMgr.h"
 #include "CKeyMgr.h"
 #include "CSceneMgr.h"
+#include "CPathMgr.h"
 
 
 // 구현 1.
@@ -69,6 +70,7 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 
 
 	// Manager 초기화
+	CPathMgr::GetInst()->init();
 	CTimeMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
 	CSceneMgr::GetInst()->init();
@@ -100,6 +102,8 @@ void CCore::progress()
 	// 엄청난 반복처리 (단순작업이지만) .. CPU 혹사
 	// => 그래픽카드. Direct X는 그래픽카드를 다루는 함수 사용.
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memDC, 0, 0, SRCCOPY);
+
+	//CTimeMgr::GetInst()->render();
 }
 
 void CCore::update()
