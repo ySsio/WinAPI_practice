@@ -9,6 +9,25 @@
 #include "CSceneMgr.h"
 #include "CScene.h"
 
+#include "CPathMgr.h"
+#include "CTexture.h"
+
+#include "CResMgr.h"
+
+CPlayer::CPlayer()
+	: m_pTex(0)
+{
+	// Texture 로딩하기
+	m_pTex = CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp");
+
+	
+}
+
+CPlayer::~CPlayer()
+{
+	
+}
+
 
 void CPlayer::update()
 {
@@ -40,6 +59,34 @@ void CPlayer::update()
 
 }
 
+void CPlayer::render(HDC _dc)
+{
+	// width/ height은 당연히 양수니까 UINT였는데 좌표는 음수 될 수 있으니까 int로 변환
+	int iWidth = (int)m_pTex->Width();
+	int iHeight = (int)m_pTex->Height();
+
+	Vec2 vPos = GetPos();
+
+	//BitBlt(_dc
+	//	, (int)(vPos.x - (float)iWidth / 2)
+	//	, (int)(vPos.y - (float)iHeight / 2)
+	//	, iWidth, iHeight
+	//	, m_pTex->GetDC()
+	//	, 0, 0, SRCCOPY);
+
+	// 특정 조건은 투명처리해서 복사함. RGB(255,0,255) = magenta 색상
+	// 선언만 되어있음 (Windows.h 안에 wingdi.h에) 구현부분 없음.
+	// library를 참조해야 함. #pragma comment(lib, "Msimg32.lib")
+	TransparentBlt(_dc
+		, (int)(vPos.x - (float)iWidth / 2)
+		, (int)(vPos.y - (float)iHeight / 2)
+		, iWidth, iHeight
+		, m_pTex->GetDC()
+		, 0, 0, iWidth, iHeight
+		, RGB(255,0,255));
+}
+
+
 void CPlayer::CreateMissile()
 {
 	Vec2 vMissilePos = GetPos();
@@ -48,6 +95,7 @@ void CPlayer::CreateMissile()
 	CMissile* pMissile = new CMissile;
 	pMissile->SetPos(vMissilePos);
 	pMissile->SetScale(Vec2(20.f, 20.f));
+	pMissile->SetDir(Vec2(0.f, -1.f));
 
 	CSceneMgr::GetInst()->GetCurScene()->AddObject(pMissile,GROUP_TYPE::DEFAULT);
 }
