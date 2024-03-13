@@ -14,6 +14,16 @@ public:
 		y = (float)_pt.y;
 	}
 
+	void Rotate(float _rad)
+	{
+		float tempx = x;
+		float tempy = y;
+		float costheta = cos(_rad);
+		float sintheta = sin(_rad);
+		x = costheta * tempx - sintheta * tempy;
+		y = sintheta * tempx + costheta * tempy;
+	}
+
 public:
 	float Length()
 	{

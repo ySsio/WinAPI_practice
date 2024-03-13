@@ -1,15 +1,14 @@
 #pragma once
 #include "CObject.h"
 
-
 class CMonster :
     public CObject
 {
 private:
-    Vec2    m_vCenterPos;
-    float   m_fSpeed;
-    float   m_fMaxDistance;
-    int     m_iDir;     // 1 (辦難), -1(謝難)
+    Vec2        m_vCenterPos;
+    float       m_fSpeed;
+    float       m_fMaxDistance;
+    int         m_iDir;     // 1 (辦難), -1(謝難)
 
 public:
     float GetSpeed() { return m_fSpeed; }
@@ -20,6 +19,7 @@ public:
 
 public:
     void update() override;
+    void render(HDC _dc) override;
 
 public:
     CMonster();

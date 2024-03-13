@@ -15,10 +15,9 @@
 #include "CResMgr.h"
 
 CPlayer::CPlayer()
-	: m_pTex(0)
 {
 	// Texture 로딩하기
-	m_pTex = CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp");
+	SetTexture(CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp"));
 
 	
 }
@@ -62,8 +61,8 @@ void CPlayer::update()
 void CPlayer::render(HDC _dc)
 {
 	// width/ height은 당연히 양수니까 UINT였는데 좌표는 음수 될 수 있으니까 int로 변환
-	int iWidth = (int)m_pTex->Width();
-	int iHeight = (int)m_pTex->Height();
+	int iWidth = (int)GetTexture()->Width();
+	int iHeight = (int)GetTexture()->Height();
 
 	Vec2 vPos = GetPos();
 
@@ -81,7 +80,7 @@ void CPlayer::render(HDC _dc)
 		, (int)(vPos.x - (float)iWidth / 2)
 		, (int)(vPos.y - (float)iHeight / 2)
 		, iWidth, iHeight
-		, m_pTex->GetDC()
+		, GetTexture()->GetDC()
 		, 0, 0, iWidth, iHeight
 		, RGB(255,0,255));
 }
