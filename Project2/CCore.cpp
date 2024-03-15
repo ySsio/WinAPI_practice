@@ -20,7 +20,8 @@ CCore::CCore()
 	, m_hDC(0)
 	, m_hBit(0)
 	, m_memDC(0)
-
+	, m_arrBrush{}
+	, m_arrPen{}
 {
 
 }
@@ -33,6 +34,12 @@ CCore::~CCore()
 	// 사본 DC를 삭제. 메인 윈도우 DC와 다르게 DeleteDC를 사용해야 한대.
 	DeleteDC(m_memDC);
 	DeleteObject(m_hBit);
+
+	for (int i = 0; i < (UINT)PEN_TYPE::END; ++i)
+	{
+		DeleteObject(m_arrPen[i]);
+	}
+
 }
 
 int CCore::init(HWND _hWnd, POINT _ptResolution)
@@ -67,7 +74,8 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	HBITMAP hOldBit = (HBITMAP)SelectObject(m_memDC, m_hBit);
 	DeleteObject(hOldBit);
 
-
+	// 자주 사용하는 브러쉬 펜 생성
+	CreateBrushPen();
 
 	// Manager 초기화
 	CPathMgr::GetInst()->init();
@@ -76,7 +84,7 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	CSceneMgr::GetInst()->init();
 
 
-	
+
 	return S_OK;
 }
 
@@ -88,11 +96,11 @@ void CCore::progress()
 	CTimeMgr::GetInst()->update();
 	CKeyMgr::GetInst()->update();
 	CSceneMgr::GetInst()->update();
-	
+
 	// =========
 	// Rendering
 	// =========
-	
+
 	// 화면 청소
 	Rectangle(m_memDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
 
@@ -106,31 +114,39 @@ void CCore::progress()
 	//CTimeMgr::GetInst()->render();
 }
 
-void CCore::update()
+void CCore::CreateBrushPen()
 {
-	// 물체의 변경점을 체크.
-
-	// 비동기 키 입출력 함수
-	// 대신 창이 포커싱 되었는지 따질 수 없고 백그라운드에 있어도 항상 수행됨
-	// GetAsyncKeyState : 리턴값으로 키가 눌렸는지 뗐는지 이런 상태값을 비트표현으로 주는데, 키 눌린 상태를 확인하려면 0x8000 자리 확인하면 된대. 맨 앞자리?
-
-	// 컴퓨터 처리속도가 너무 빨라서 키 눌렸을 때 픽셀 단위로 조절하면 몇만 픽셀씩 막 움직임 한번에
-	// 그렇다고 단순히 실수로 변환해서 관리해도 컴퓨터 성능에 따라 이동이 달라질 수 있음. 
-	// => 시간 동기화. 컴퓨터가 아무리 빨리 연산해도 현실 시간과 매칭이 되어야 한다. 한 프레임마다 움직이는 값이 고정 값이면 안 됨.
-	// 컴퓨터 속도에 따라 가변적으로 1초를 맞춰야 함. (컴퓨터가 좋으면 업데이트마다 조금 움직이고 안좋으면 업데이트마다 많이 움직이게)
+	// GetStockObject() 윈도우도 똑같은 생각 자주 사용하는 브러쉬 펜 등록되어 잇음. => 이거로 얻어오면 따로 지워줄 필요 x
+	m_arrBrush[(UINT)BRUSH_TYPE::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
 
 
-	// 이렇게 구현하면 1프레임에 동시에 여러 일들을 작업하는데, 작업 중간에 키 상태가 바뀌어버리면 1프레임 안에서 다른 키에 대한 동작을 수행하는 경우가 발생할 수 있음.
-	// KeyMgr => 1. 프레임 동기화. 한 프레임에서 발생한 일들은 동일한 키 입력에 대해 발생해야 한다.
-	//			 2. 윈도우 정의로는 눌려있는 상태만 확인할 수 있는데, 실제로는 키다운, 키업, 키홀드 등의 동작을 구분해서 감지할 필요성 존재.
-	//if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-	//	vPos.x -= 400.f * fDT;
-	// # 근데 찾아 보니까 0, 0x8000, 1, 0x8001로 NONE, TAP, AWAY, HOLD 처럼 구분하는거 같은데 아닌가?
+	// PEN
+	// 얘네는 직접 만든거니까 해제해줘야함.
+	m_arrPen[(UINT)PEN_TYPE::RED] = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+	m_arrPen[(UINT)PEN_TYPE::GREEN] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
+	m_arrPen[(UINT)PEN_TYPE::BLUE] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
 
 }
 
-void CCore::render()
-{
-	
-	
-}
+//void CCore::update()
+//{
+//	// 물체의 변경점을 체크.
+//
+//	// 비동기 키 입출력 함수
+//	// 대신 창이 포커싱 되었는지 따질 수 없고 백그라운드에 있어도 항상 수행됨
+//	// GetAsyncKeyState : 리턴값으로 키가 눌렸는지 뗐는지 이런 상태값을 비트표현으로 주는데, 키 눌린 상태를 확인하려면 0x8000 자리 확인하면 된대. 맨 앞자리?
+//
+//	// 컴퓨터 처리속도가 너무 빨라서 키 눌렸을 때 픽셀 단위로 조절하면 몇만 픽셀씩 막 움직임 한번에
+//	// 그렇다고 단순히 실수로 변환해서 관리해도 컴퓨터 성능에 따라 이동이 달라질 수 있음. 
+//	// => 시간 동기화. 컴퓨터가 아무리 빨리 연산해도 현실 시간과 매칭이 되어야 한다. 한 프레임마다 움직이는 값이 고정 값이면 안 됨.
+//	// 컴퓨터 속도에 따라 가변적으로 1초를 맞춰야 함. (컴퓨터가 좋으면 업데이트마다 조금 움직이고 안좋으면 업데이트마다 많이 움직이게)
+//
+//
+//	// 이렇게 구현하면 1프레임에 동시에 여러 일들을 작업하는데, 작업 중간에 키 상태가 바뀌어버리면 1프레임 안에서 다른 키에 대한 동작을 수행하는 경우가 발생할 수 있음.
+//	// KeyMgr => 1. 프레임 동기화. 한 프레임에서 발생한 일들은 동일한 키 입력에 대해 발생해야 한다.
+//	//			 2. 윈도우 정의로는 눌려있는 상태만 확인할 수 있는데, 실제로는 키다운, 키업, 키홀드 등의 동작을 구분해서 감지할 필요성 존재.
+//	//if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+//	//	vPos.x -= 400.f * fDT;
+//	// # 근데 찾아 보니까 0, 0x8000, 1, 0x8001로 NONE, TAP, AWAY, HOLD 처럼 구분하는거 같은데 아닌가?
+//
+//}

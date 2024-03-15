@@ -26,7 +26,7 @@ void CPathMgr::init()
 	
 	// system 쪽 라이브러리 참조해서 상위폴더 함수 사용할 수 있지만 문자열로 다뤄보겠다
 	// 맨 뒤부터 차례대로 보다가 \\가 나오면 걔를 \0 널문자로 변경. 그 뒤를 다 제거할 필요 없음.
-	int iLen = wcslen(m_szContentPath);
+	int iLen = (int)wcslen(m_szContentPath);
 	for (int i = iLen-1; i >= 0; --i)
 	{
 		if (m_szContentPath[i] == '\\')

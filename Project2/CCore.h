@@ -80,19 +80,25 @@ private:
 	HBITMAP m_hBit;
 	HDC		m_memDC;		// 사본 비트맵에 그릴 DC
 
-public :
+
+	// 자주 사용하는 GDI Object (Graphic Device Interface object)
+	HBRUSH m_arrBrush[(UINT)BRUSH_TYPE::END];
+	HPEN m_arrPen[(UINT)PEN_TYPE::END];
+
+
+public:
 	int init(HWND _hWnd, POINT _ptResolution);
 	void progress();
 
-private :
-	void update();
-	void render();
+private:
+	void CreateBrushPen();
 
 public:
 	HWND GetMainHwnd() { return m_hWnd; }
 	HDC GetMainDC() { return m_hDC; }
 	POINT GetResolution() { return m_ptResolution; }
-
+	HBRUSH GetBrush(BRUSH_TYPE _eType) { return m_arrBrush[(UINT)_eType]; }
+	HPEN GetPen(PEN_TYPE _eType) { return m_arrPen[(UINT)_eType]; }
 };
 
 // 매니저 같은 애들을 싱글톤 패턴으로 자주 구현할 예정임. => 매크로 함수로 만들어 두자.

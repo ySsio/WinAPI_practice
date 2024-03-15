@@ -9,8 +9,14 @@ CMissile::CMissile()
 	, m_fRotateAngle(0.f)
 	, m_vDir(Vec2{0,-1}) 
 {
+	// 방향 정규화
  	m_vDir = m_vDir.Normalize();
+
+	// Texture 로딩하기
 	SetTexture(CResMgr::GetInst()->LoadTexture(L"BulletTex", L"texture\\Bullet.bmp"));
+
+	// 콜라이더 활성화 (오브젝트 생성)
+	CreateCollider();
 }
 
 CMissile::~CMissile()

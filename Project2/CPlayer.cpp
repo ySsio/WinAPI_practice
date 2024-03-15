@@ -13,13 +13,16 @@
 #include "CTexture.h"
 
 #include "CResMgr.h"
+#include "CCollider.h"
 
 CPlayer::CPlayer()
 {
 	// Texture 로딩하기
 	SetTexture(CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp"));
 
-	
+	// 콜라이더 활성화 (오브젝트 생성)
+	CreateCollider();
+	GetCollider()->SetScale(Vec2(100.f, 100.f));
 }
 
 CPlayer::~CPlayer()
@@ -83,6 +86,9 @@ void CPlayer::render(HDC _dc)
 		, GetTexture()->GetDC()
 		, 0, 0, iWidth, iHeight
 		, RGB(255,0,255));
+
+	// 컴포넌트 렌더
+	component_render(_dc);
 }
 
 

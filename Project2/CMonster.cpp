@@ -12,6 +12,9 @@ CMonster::CMonster()
 {
 	// Texture 로딩하기
 	SetTexture(CResMgr::GetInst()->LoadTexture(L"MonsterTex", L"texture\\Monster.bmp"));
+
+	// 콜라이더 활성화 (오브젝트 생성)
+	CreateCollider();
 }
 
 CMonster::~CMonster()

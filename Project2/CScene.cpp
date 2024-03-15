@@ -35,6 +35,18 @@ void CScene::update()
 	}
 }
 
+// 예를 들면, Collider가 오브젝트를 따라가는 작업.
+void CScene::finalupdate()
+{
+	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
+	{
+		for (size_t j = 0; j < m_arrObj[i].size(); ++j)
+		{
+			m_arrObj[i][j]->finalupdate();
+		}
+	}
+}
+
 void CScene::render(HDC _dc)
 {
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)

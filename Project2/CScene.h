@@ -17,6 +17,7 @@ public :
 	const wstring& GetName() { return m_strName; }
 
 	void update();
+	void finalupdate();		// 마무리 작업 업데이트.
 	void render(HDC _dc);
 
 	// 순수 가상함수 pure virtual function => 자식 클래스에서 구현 안하면 에러
