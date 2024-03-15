@@ -3,6 +3,7 @@
 #include "CTimeMgr.h"
 #include "CResMgr.h"
 #include "CTexture.h"
+#include "CCollider.h"
 
 CMonster::CMonster()
 	: m_vCenterPos(Vec2(0.f,0.f))
@@ -15,6 +16,8 @@ CMonster::CMonster()
 
 	// 콜라이더 활성화 (오브젝트 생성)
 	CreateCollider();
+	GetCollider()->SetOffsetPos(Vec2(-2.f,-10.f));
+	GetCollider()->SetScale(Vec2(40.f,30.f));
 }
 
 CMonster::~CMonster()
@@ -56,5 +59,7 @@ void CMonster::render(HDC _dc)
 		, GetTexture()->GetDC()
 		, 0, 0, iWidth, iHeight
 		, RGB(255, 0, 255));
+
+	component_render(_dc);
 
 }

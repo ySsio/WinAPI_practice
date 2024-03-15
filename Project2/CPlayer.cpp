@@ -22,7 +22,8 @@ CPlayer::CPlayer()
 
 	// 콜라이더 활성화 (오브젝트 생성)
 	CreateCollider();
-	GetCollider()->SetScale(Vec2(100.f, 100.f));
+	GetCollider()->SetOffsetPos(Vec2(0.f, 5.f));
+	GetCollider()->SetScale(Vec2(20.f, 40.f));
 }
 
 CPlayer::~CPlayer()

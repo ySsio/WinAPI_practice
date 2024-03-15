@@ -17,11 +17,14 @@ class CObject;
 class CCollider
 {
 private:
+	static UINT g_iNextID;
 	CObject*	m_pOwner;		// 다형성, 자기가 따라다닐 오브젝트를 받음. 쌍방연결. 
 								// 오브젝트의 CreateCollider에서 friend class니까 private 멤버인 이 변수에 접근해서 직접 오브젝트 자신의 포인터로 지정해줌.
 	Vec2		m_vOffsetPos;	// 오브젝트 위치로부터 상대적인 위치
 	Vec2		m_vFinalPos;	// 오브젝트 좌표 + offset으로 계산되는 최종 위치, finalupdate에서 업데이트할 위치
 	Vec2		m_vScale;		// 충돌체의 크기
+	UINT		m_iID;
+
 
 public:
 	void SetOffsetPos(Vec2 _vPos) { m_vOffsetPos = _vPos;}

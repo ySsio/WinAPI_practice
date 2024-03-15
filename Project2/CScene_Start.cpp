@@ -6,6 +6,7 @@
 #include "CCore.h"
 #include "CTexture.h"
 #include "CPathMgr.h"
+#include "CCollisionMgr.h"
 
 CScene_Start::CScene_Start()
 {
@@ -21,7 +22,7 @@ void CScene_Start::Enter()
 	CObject* pObj = new CPlayer;
 	pObj->SetPos(Vec2(640.f,384.f));
 	pObj->SetScale(Vec2(100.f,100.f));
-	AddObject(pObj, GROUP_TYPE::DEFAULT);
+	AddObject(pObj, GROUP_TYPE::PLAYER);
 
 	// Monster Object 추가
 	
@@ -42,8 +43,15 @@ void CScene_Start::Enter()
 		pMonsterObj->SetCenterPos(pMonsterObj->GetPos());
 		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 	}
+
+	// 충돌 지정 (Player과 Monster 그룹간에는 충돌이 발생한다고 지정)
+	// Player 그룹과 Monster 그룹 간의 충돌 체크 - Render 직전 finalupdate 이후 가장 마지막에 로직
+	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER);
+	
 }
 
 void CScene_Start::Exit()
 {
+	// 이번 씬에서 지정해뒀던 충돌 그룹을 모두 해제함.
+	CCollisionMgr::GetInst()->Reset();
 }

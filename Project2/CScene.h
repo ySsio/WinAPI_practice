@@ -9,11 +9,11 @@ class CScene
 private:
 	// 다양한 종류의 오브젝트를 최고 조상 CObject*로 받아서 컨트롤. 다형성. 자식클래스 포인터를 부모클래스 포인터 타입으로 받을 수 있음.
 	// 오브젝트 관리 벡터가 그룹마다 존재해야 함. 벡터타입을 받는 리스트를 선언, 크기는 그룹의 개수로 지정. 그룹은 pch.h에 정의되어 있음.
-	vector<CObject*>	m_arrObj[(UINT)GROUP_TYPE::END];
+	vector<CObject*>	m_arrObj[(UINT)GROUP_TYPE::END];	// 벡터 배열 선언 법. []를 사용해서 [] 안의 크기만큼 배열을 만들고, 각 배열 안에 벡터가 있음. 즉 벡터가 배열로 32개 있는 거임
 	wstring				m_strName;	// Scene 이름
 
-public :
-	void SetName(const wstring& _strName) { m_strName = _strName;}
+public:
+	void SetName(const wstring& _strName) { m_strName = _strName; }
 	const wstring& GetName() { return m_strName; }
 
 	void update();
@@ -32,6 +32,8 @@ public:
 		m_arrObj[(UINT)_etype].push_back(_pObj);
 		return;
 	}
+
+	const vector<CObject*>& GetGroupObject(GROUP_TYPE _etype) { return m_arrObj[(UINT)_etype]; }
 
 public:
 	CScene();
