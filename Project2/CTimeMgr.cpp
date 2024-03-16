@@ -39,7 +39,7 @@ void CTimeMgr::update()
 
 	m_llPrevCount = m_llCurCount;
 
-	//render();
+	render();
 
 }
 

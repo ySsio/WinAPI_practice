@@ -23,8 +23,8 @@ private:
 	Vec2		m_vOffsetPos;	// 오브젝트 위치로부터 상대적인 위치
 	Vec2		m_vFinalPos;	// 오브젝트 좌표 + offset으로 계산되는 최종 위치, finalupdate에서 업데이트할 위치
 	Vec2		m_vScale;		// 충돌체의 크기
-	UINT		m_iID;
-
+	UINT		m_iID;			// 충돌체의 고유한 ID 값
+	UINT		m_iCol;
 
 public:
 	void SetOffsetPos(Vec2 _vPos) { m_vOffsetPos = _vPos;}
@@ -33,12 +33,28 @@ public:
 	Vec2 GetOffsetPos() { return m_vOffsetPos; }
 	Vec2 GetScale() { return m_vScale; }
 
+	Vec2 GetFinalPos() { return m_vFinalPos; }
+
+	UINT GetID() { return m_iID; }
+
 public:
 	void finalupdate();
 	void render(HDC _dc);
 
+public:
+	// 충돌 시점 함수
+	void OnCollision(CCollider* _pOther);		// 충돌 중인 상태에서 호출
+	void OnCollisionEnter(CCollider* _pOther);	// 충돌 상태에 잔입
+	void OnCollisionExit(CCollider* _pOther);	// 충돌을 막 빠져나온 상태
+
+	CCollider& operator = (const CCollider& _origin) = delete; // 대입 연산자 사용 못하게 제한.
+
+public:
 	CCollider();
+	CCollider(const CCollider& _origin); // 복사생성자. m_pOwner나 m_iID같은 고유값은 복사되면 안되므로 직접 구현
 	~CCollider();
+
+	
 
 	friend class CObject;
 };

@@ -19,7 +19,7 @@ void CPathMgr::init()
 	// vs로 실행하는 경우 프로젝트 경로가 반환됨 .. 어떡하지?
 	// 작업디렉토리 설정
 	GetCurrentDirectory(255, m_szContentPath);	
-	SetWindowText(CCore::GetInst()->GetMainHwnd(), m_szContentPath);
+	//SetWindowText(CCore::GetInst()->GetMainHwnd(), m_szContentPath);
 
 	// 상위폴더\bin\content\
 	// # 이거 나중에 배포할 때도 그대로 두냐?

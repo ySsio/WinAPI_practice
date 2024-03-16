@@ -2,13 +2,31 @@
 
 class CCollider;
 
+// union : 가장 멤버 사이즈 기준으로 해석을 달리 하는 방식.
+// Test는 4byte 자료형. a로 보면 정수, f로 보면 실수로 해석.
+//union Test
+//{
+//	int a;
+//	float f;
+//};
+
+// 8BYTE, 좌측 4byte는 left collider ID, 우측 4byte는 right collider ID
+union COLLIDER_ID
+{
+	struct {
+		UINT Left_id;
+		UINT Right_id;
+	} DUMMYSTRUCTNAME;
+	ULONGLONG ID;
+};
+
 class CCollisionMgr
 {
 	SINGLETON(CCollisionMgr);
 
 private:
-	// 충돌체 간의 이전 프레임 충돌 정보
-	UINT	m_arrCheck[(UINT)GROUP_TYPE::END];	// 그룹 간의 충돌 체크 매트릭스
+	map<ULONGLONG, bool> m_mapColInfo;						// 충돌체 간의 이전 프레임 충돌 정보
+	UINT				m_arrCheck[(UINT)GROUP_TYPE::END];	// 그룹 간의 충돌 체크 매트릭스
 
 public:
 	void init();
