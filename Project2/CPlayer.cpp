@@ -17,6 +17,9 @@
 
 CPlayer::CPlayer()
 {
+	// 이름 설정
+	SetName(L"Player");
+
 	// Texture 로딩하기
 	SetTexture(CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp"));
 

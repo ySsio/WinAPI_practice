@@ -32,6 +32,37 @@ public:
 		return Vec2(x / _vOther.x, y / _vOther.y);
 	}
 
+	Vec2 operator * (int _iVal)
+	{
+		return Vec2(x * _iVal, y * _iVal);
+	}
+
+	Vec2 operator * (float _fVal)
+	{
+		return Vec2(x * _fVal, y * _fVal);
+	}
+
+	Vec2 operator / (int _iVal)
+	{
+		return Vec2(x / _iVal, y / _iVal);
+	}
+
+	Vec2 operator / (float _fVal)
+	{
+		return Vec2(x / _fVal, y / _fVal);
+	}
+
+	Vec2& operator+= (Vec2 _vOther)
+	{
+		*this = *this + _vOther;
+		return *this;
+	}
+
+	Vec2& operator-= (Vec2 _vOther)
+	{
+		*this = *this - _vOther;
+		return *this;
+	}
 
 	void Rotate(float _rad)
 	{
@@ -70,6 +101,7 @@ public :
 		: x(_x)
 		, y(_y)
 	{}
+
 
 	Vec2(int _x, int _y)
 		: x((float)_x)

@@ -7,10 +7,12 @@ class CCollider;
 class CObject
 {
 private:
-	Vec2	m_vPos;
-	Vec2	m_vScale;
+	wstring		m_strName;
 
-	CCollider* m_pCollider;
+	Vec2		m_vPos;
+	Vec2		m_vScale;
+
+	CCollider*	m_pCollider;
 
 private:
 	CTexture* m_pTex;
@@ -19,13 +21,20 @@ public:
 	void SetPos(Vec2 _vPos) { m_vPos = _vPos; }
 	void SetScale(Vec2 _vScale) { m_vScale = _vScale; }
 	void SetTexture(CTexture* _pTex) { m_pTex = _pTex; }
+	void SetName(const wstring& _strName) { m_strName = _strName; }
 
 	Vec2 GetPos() { return m_vPos; }
 	Vec2 GetScale() { return m_vScale; }
 	CTexture* GetTexture() { return m_pTex; }
+	const wstring& GetName() { return m_strName; }
 
 	void CreateCollider();
 	CCollider* GetCollider() { return m_pCollider; }
+
+	// 충돌 이벤트 함수. {}로 구현해둠. 
+	virtual void OnCollision(CCollider* _pOther) {}
+	virtual void OnCollisionEnter(CCollider* _pOther) {}
+	virtual void OnCollisionExit(CCollider* _pOther) {}
 
 	
 public:

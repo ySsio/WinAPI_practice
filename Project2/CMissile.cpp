@@ -3,12 +3,16 @@
 #include "CTimeMgr.h"
 #include "CResMgr.h"
 #include "CTexture.h"
+#include "CCollider.h"
 
 CMissile::CMissile()
 	: m_fTheta(0.f)
 	, m_fRotateAngle(0.f)
 	, m_vDir(Vec2{0,-1}) 
 {
+	// 이름 설정
+	SetName(L"Missile");
+
 	// 방향 정규화
  	m_vDir = m_vDir.Normalize();
 
@@ -17,6 +21,8 @@ CMissile::CMissile()
 
 	// 콜라이더 활성화 (오브젝트 생성)
 	CreateCollider();
+	GetCollider()->SetOffsetPos(Vec2(0.f, 0.f));
+	GetCollider()->SetScale(Vec2(20.f, 20.f));
 }
 
 CMissile::~CMissile()
@@ -80,4 +86,7 @@ void CMissile::render(HDC _dc)
 		, iWidth, iHeight
 		, NULL
 		, 0, 0);
+
+	// 컴포넌트 렌더
+	component_render(_dc);
 }

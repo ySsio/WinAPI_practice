@@ -40,13 +40,15 @@ void CScene_Start::Enter()
 		pMonsterObj->SetPos(Vec2(xvalue, 50.f));
 		pMonsterObj->SetScale(Vec2(fObjScale, fObjScale));
 		pMonsterObj->SetMoveDistance(fMoveDist);
-		pMonsterObj->SetCenterPos(pMonsterObj->GetPos());
+		pMonsterObj->SetCenterPos(Vec2(xvalue, 384.f));
+		pMonsterObj->SetTarget(pObj);
 		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 	}
 
 	// 충돌 지정 (Player과 Monster 그룹간에는 충돌이 발생한다고 지정)
 	// Player 그룹과 Monster 그룹 간의 충돌 체크 - Render 직전 finalupdate 이후 가장 마지막에 로직
 	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER);
+	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::DEFAULT, GROUP_TYPE::MONSTER);
 	
 }
 
