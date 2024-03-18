@@ -1,6 +1,8 @@
 #pragma once
 #include "CObject.h"
 
+
+
 class CMonster :
     public CObject
 {
@@ -11,6 +13,7 @@ private:
     float       m_fSpeed;
     float       m_fMaxDistance;
     int         m_iDir;     // 1 (¿ìÃø), -1(ÁÂÃø)
+    float m_time;
     
 
 public:
@@ -20,11 +23,14 @@ public:
     void SetCenterPos(Vec2 _vPos) { m_vCenterPos = _vPos; }
     void SetMoveDistance(float _fDist) { m_fMaxDistance = _fDist;  }
 
-
 	void SetTarget(CObject* _target) { m_target = _target; }
+
 public:
     void update() override;
     void render(HDC _dc) override;
+
+public:
+    void CreateMissile();
 
 public:
     void OnCollisionEnter(CCollider* _pOther) override;
@@ -34,4 +40,3 @@ public:
     ~CMonster();
 
 };
-

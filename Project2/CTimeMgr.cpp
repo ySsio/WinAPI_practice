@@ -36,7 +36,6 @@ void CTimeMgr::update()
 	// 이걸 초당 카운트 수로 나눠주면 프레임당 걸리는 시간 나오겠지. (1프레임 당 카운트 수 / 1초당 카운트 수 = 1프레임 당 초 수 = 1/FPS)
 	// update 호출이 매 프레임인 이유는 main에서 peekmessage 반복문 안에 CCore progress()를 실행하는데, progress() 안에서 CTimeMgr 싱글톤 객체의 update()를 호출하기 때문
 	m_dDeltaTime = (double)(m_llCurCount.QuadPart - m_llPrevCount.QuadPart) / (double)m_llFrequency.QuadPart;
-
 	m_llPrevCount = m_llCurCount;
 
 	render();

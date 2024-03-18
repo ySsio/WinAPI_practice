@@ -37,10 +37,10 @@ void CScene_Start::Enter()
 	{
 		pMonsterObj = new CMonster;
 		float xvalue = (fMoveDist + fObjScale / 2) + i * (vResolution.x - 2*(fMoveDist+fObjScale/2)) / (iMonCount-1);
-		pMonsterObj->SetPos(Vec2(xvalue, 50.f));
+		pMonsterObj->SetPos(Vec2(xvalue, -150.f));
 		pMonsterObj->SetScale(Vec2(fObjScale, fObjScale));
 		pMonsterObj->SetMoveDistance(fMoveDist);
-		pMonsterObj->SetCenterPos(Vec2(xvalue, 384.f));
+		pMonsterObj->SetCenterPos(Vec2(xvalue, 100.f));
 		pMonsterObj->SetTarget(pObj);
 		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 	}

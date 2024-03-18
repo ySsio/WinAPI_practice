@@ -2,16 +2,22 @@
 #include "CMonster.h"
 #include "CTimeMgr.h"
 #include "CResMgr.h"
+
 #include "CTexture.h"
 #include "CCollider.h"
+#include "CMissile.h"
+
+#include "CSceneMgr.h"
+#include "CScene.h"
 
 CMonster::CMonster()
-	: m_vSpeed(Vec2(0, 10))
+	: m_vSpeed(Vec2(0, 150))
 	, m_vCenterPos(Vec2(0.f, 0.f))
 	, m_target(0)
 	, m_fSpeed(100.f)
 	, m_fMaxDistance(50.f)
 	, m_iDir(1)
+	, m_time(1.f)
 {
 	// Texture 로딩하기
 	SetTexture(CResMgr::GetInst()->LoadTexture(L"MonsterTex", L"texture\\Monster.bmp"));
@@ -31,9 +37,10 @@ void CMonster::update()
 	Vec2 vChangePos = GetPos();
 	Vec2 vTargetPos = m_target->GetPos();
 
+
 	// ##########   처음에 날아와서 제자리 (CenterPos)에 위치   ########
 	float dist = (m_vCenterPos - vChangePos).Length();
-	if (m_vSpeed.Length()>0.1f)
+	if (dist>50)
 	{
 
 		Vec2 dir = (m_vCenterPos - vChangePos).Normalize();
@@ -42,22 +49,21 @@ void CMonster::update()
 		//Vec2 force = dir / dist / dist * 1000000;
 		//m_vSpeed += force * fDT;
 
-		Vec2 force = dir / dist / dist * 1000000;
-		m_vSpeed -= force * fDT;
+		m_vSpeed = dir * dist * dist / 100;
 
-		m_vSpeed += dir * dist * fDT ;
+		//m_vSpeed += dir * dist * fDT ;
 
 		vChangePos += m_vSpeed * fDT;
 	}
-
-	// ###############################################################
-
-
-
-	// 제자리에 위치 완료 했으면
-	if (false)
-	{
+	else {
+		// 제자리에 위치 완료 했으면
 		// #########   좌우 배회   #########
+		m_time -= fDT;
+		if (CMonster::m_time < 0)
+		{
+			CreateMissile();
+			CMonster::m_time = 1.f;
+		}
 
 		vChangePos.x += fDT * m_iDir * m_fSpeed;
 
@@ -72,9 +78,10 @@ void CMonster::update()
 		}
 	}
 
-	SetPos(vChangePos);
+	// ###############################################################
 
-	// ###################################
+
+	SetPos(vChangePos);
 }
 
 void CMonster::render(HDC _dc)
@@ -130,3 +137,15 @@ void CMonster::OnCollisionEnter(CCollider* _pOther)
 }
 
 
+void CMonster::CreateMissile()
+{
+	Vec2 vMissilePos = GetPos();
+	vMissilePos.y += GetScale().y / 2.f;
+
+	CMissile* pMissile = new CMissile;
+	pMissile->SetPos(vMissilePos);
+	pMissile->SetScale(Vec2(20.f, 20.f));
+	pMissile->SetDir(Vec2(0.f, 1.f));
+
+	CSceneMgr::GetInst()->GetCurScene()->AddObject(pMissile, GROUP_TYPE::DEFAULT);
+}

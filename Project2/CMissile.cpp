@@ -52,40 +52,40 @@ void CMissile::render(HDC _dc)
 
 	Vec2 vPos = GetPos();
 
-	//TransparentBlt(_dc
-	//	, (int)(vPos.x - (float)iWidth / 2)
-	//	, (int)(vPos.y - (float)iHeight / 2)
-	//	, iWidth, iHeight
-	//	, GetTexture()->GetDC()
-	//	, 0, 0, iWidth, iHeight
-	//	, RGB(255, 0, 255));
-
-	m_fRotateAngle = m_fRotateAngle + 4 * PI * fDT > 2 * PI ? m_fRotateAngle + 4 * PI * fDT - 2 * PI : m_fRotateAngle + 4 * PI * fDT;
-
-	Vec2 pp[3] = {};
-	pp[0] = Vec2{ -(float)iWidth / 2 ,-(float)iHeight / 2 };
-	pp[1] = Vec2{ (float)iWidth / 2 ,-(float)iHeight / 2 };
-	pp[2] = Vec2{ -(float)iWidth / 2 ,(float)iHeight / 2 };
-
-	pp[0].Rotate(m_fRotateAngle);
-	pp[1].Rotate(m_fRotateAngle);
-	pp[2].Rotate(m_fRotateAngle);
-
-	POINT ppp[3] = {};
-	
-	ppp[0] = POINT{ (int)(vPos.x + pp[0].x), (int)(vPos.y + pp[0].y) };
-	ppp[1] = POINT{ (int)(vPos.x + pp[1].x), (int)(vPos.y + pp[1].y) };
-	ppp[2] = POINT{ (int)(vPos.x + pp[2].x), (int)(vPos.y + pp[2].y) };
-
-
-	PlgBlt(_dc
-		, ppp
-		, GetTexture()->GetDC()
-		, 0
-		, 0
+	TransparentBlt(_dc
+		, (int)(vPos.x - (float)iWidth / 2)
+		, (int)(vPos.y - (float)iHeight / 2)
 		, iWidth, iHeight
-		, NULL
-		, 0, 0);
+		, GetTexture()->GetDC()
+		, 0, 0, iWidth, iHeight
+		, RGB(255, 0, 255));
+
+	//m_fRotateAngle = m_fRotateAngle + 4 * PI * fDT > 2 * PI ? m_fRotateAngle + 4 * PI * fDT - 2 * PI : m_fRotateAngle + 4 * PI * fDT;
+
+	//Vec2 pp[3] = {};
+	//pp[0] = Vec2{ -(float)iWidth / 2 ,-(float)iHeight / 2 };
+	//pp[1] = Vec2{ (float)iWidth / 2 ,-(float)iHeight / 2 };
+	//pp[2] = Vec2{ -(float)iWidth / 2 ,(float)iHeight / 2 };
+
+	//pp[0].Rotate(m_fRotateAngle);
+	//pp[1].Rotate(m_fRotateAngle);
+	//pp[2].Rotate(m_fRotateAngle);
+
+	//POINT ppp[3] = {};
+	//
+	//ppp[0] = POINT{ (int)(vPos.x + pp[0].x), (int)(vPos.y + pp[0].y) };
+	//ppp[1] = POINT{ (int)(vPos.x + pp[1].x), (int)(vPos.y + pp[1].y) };
+	//ppp[2] = POINT{ (int)(vPos.x + pp[2].x), (int)(vPos.y + pp[2].y) };
+
+
+	//PlgBlt(_dc
+	//	, ppp
+	//	, GetTexture()->GetDC()
+	//	, 0
+	//	, 0
+	//	, iWidth, iHeight
+	//	, NULL
+	//	, 0, 0);
 
 	// ÄÄÆ÷³ÍÆ® ·»´õ
 	component_render(_dc);
