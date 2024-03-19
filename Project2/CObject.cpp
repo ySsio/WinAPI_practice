@@ -10,6 +10,7 @@ CObject::CObject()
 	, m_vScale{}
 	, m_pTex(nullptr)
 	, m_pCollider(nullptr)
+	, m_bAlive(true)
 {
 }
 

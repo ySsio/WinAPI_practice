@@ -21,7 +21,6 @@ CMissile::CMissile()
 
 	// 콜라이더 활성화 (오브젝트 생성)
 	CreateCollider();
-	GetCollider()->SetOffsetPos(Vec2(0.f, 0.f));
 	GetCollider()->SetScale(Vec2(20.f, 20.f));
 }
 
@@ -89,4 +88,15 @@ void CMissile::render(HDC _dc)
 
 	// 컴포넌트 렌더
 	component_render(_dc);
+}
+
+void CMissile::OnCollisionEnter(CCollider* _pOther)
+{
+	CObject* pOtherObj = _pOther->GetObj();
+
+	// 이름으로 충돌한 오브젝트 구분한다고 가정
+	if (pOtherObj->GetName() == L"Monster")
+	{
+		DeleteObject(this);
+	}
 }

@@ -6,6 +6,7 @@
 #include "CSceneMgr.h"
 #include "CPathMgr.h"
 #include "CCollisionMgr.h"
+#include "CEventMgr.h"
 
 
 // 구현 1.
@@ -93,18 +94,20 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 
 void CCore::progress()
 {
-	// Manager update
+	// ====== Manager update =======
 	CTimeMgr::GetInst()->update();
 	CKeyMgr::GetInst()->update();
-
+	// =============================
+	
+	// ======= Scene Update ========
 	CSceneMgr::GetInst()->update();
+	// =============================
 
+	// ========= 충돌 체크 ==========
 	CCollisionMgr::GetInst()->update();
+	// =============================
 
-	// =========
-	// Rendering
-	// =========
-
+	// ========= Rendering =========
 	// 화면 청소
 	Rectangle(m_memDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
 
@@ -114,8 +117,16 @@ void CCore::progress()
 	// 엄청난 반복처리 (단순작업이지만) .. CPU 혹사
 	// => 그래픽카드. Direct X는 그래픽카드를 다루는 함수 사용.
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memDC, 0, 0, SRCCOPY);
+	// =============================
+
+
 
 	//CTimeMgr::GetInst()->render();
+	
+	// ======= 이벤트 지연처리 ======
+	// Event Mgr
+	// =============================
+	CEventMgr::GetInst()->update();
 }
 
 void CCore::CreateBrushPen()

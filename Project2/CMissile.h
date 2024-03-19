@@ -20,6 +20,9 @@ public:
     void render(HDC _dc) override;
 
 public:
+    void OnCollisionEnter(CCollider* _pOther) override;
+
+public:
     CMissile();
     ~CMissile();
 };

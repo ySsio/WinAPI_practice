@@ -30,6 +30,9 @@ void CScene::update()
 	{
 		for (size_t j = 0; j < m_arrObj[i].size(); ++j)
 		{
+			// 데드 상태인 오브젝트는 update 제외
+			if (m_arrObj[i][j]->IsDead()) continue;
+
 			m_arrObj[i][j]->update();
 		}
 	}
@@ -43,6 +46,7 @@ void CScene::finalupdate()
 		for (size_t j = 0; j < m_arrObj[i].size(); ++j)
 		{
 			m_arrObj[i][j]->finalupdate();
+			// + 데드 상태인 오브젝트를 벡터에서 빼줌
 		}
 	}
 }
@@ -51,9 +55,17 @@ void CScene::render(HDC _dc)
 {
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
-		for (size_t j = 0; j < m_arrObj[i].size(); ++j)
+		vector<CObject*>::iterator iter = m_arrObj[i].begin();
+		for (; iter != m_arrObj[i].end();)
 		{
-			m_arrObj[i][j]->render(_dc);
+			// 데드 상태인 오브젝트는 render 제외
+			if ((*iter)->IsDead())
+			{
+				iter = m_arrObj[i].erase(iter);
+				continue;
+			}
+			(*iter)->render(_dc);
+			++iter;
 		}
 	}
 }

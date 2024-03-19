@@ -73,7 +73,8 @@ void CCollisionMgr::CollisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 			if (vecLeft[i] == vecRight[j])
 				continue;
 
-
+			
+				
 
 			// 이전 충돌 정보를 collisionmgr에 저장할건데, 조합이 너무 많음.
 			// 탐색에 유리하고, key값으로 필요한 것만 저장할 수 있는 map을 활용 (사실 hash map을 사용하는게 better)
@@ -87,7 +88,7 @@ void CCollisionMgr::CollisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 
 			iter = m_mapColInfo.find(ID.ID);
 
-
+			
 			// 검색 실패. (충돌 정보 저장된 거 없음, 새로운 충돌)
 			if (iter == m_mapColInfo.end())
 			{
@@ -96,7 +97,7 @@ void CCollisionMgr::CollisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 			}
 
 			// 이제 충돌할 수 있는 조건 충족. 진짜로 충돌 상태에 대해서 검사.
-			if (IsCollision(pLeftCol, pRightCol))
+			if (IsCollision(pLeftCol, pRightCol) && !(vecLeft[i]->IsDead() || vecRight[j]->IsDead()))
 			{
 				// 현재 충돌 중
 

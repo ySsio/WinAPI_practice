@@ -15,6 +15,8 @@
 #include "CResMgr.h"
 #include "CCollider.h"
 
+#include "CEventMgr.h"
+
 CPlayer::CPlayer()
 {
 	// 이름 설정
@@ -103,8 +105,9 @@ void CPlayer::CreateMissile()
 
 	CMissile* pMissile = new CMissile;
 	pMissile->SetPos(vMissilePos);
+	pMissile->SetName(L"Missile_Player");
 	pMissile->SetScale(Vec2(20.f, 20.f));
 	pMissile->SetDir(Vec2(0.f, -1.f));
 
-	CSceneMgr::GetInst()->GetCurScene()->AddObject(pMissile,GROUP_TYPE::DEFAULT);
+	CreateObject(pMissile, GROUP_TYPE::PROJ_PLAYER);
 }

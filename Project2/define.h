@@ -35,12 +35,13 @@ enum class GROUP_TYPE
 {
 	DEFAULT,
 	PLAYER,
-	MISSILE,
 	MONSTER,
+	PROJ_PLAYER,
+	PROJ_MONSTER,
+	MISSILE,
 
 	END = 32,
 };
-
 
 // SceneÀÇ Á¾·ù
 enum class SCENE_TYPE

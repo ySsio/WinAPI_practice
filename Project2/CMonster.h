@@ -15,6 +15,7 @@ private:
     int         m_iDir;     // 1 (¿ìÃø), -1(ÁÂÃø)
     float m_time;
     
+    int         m_iHP;
 
 public:
     float GetSpeed() { return m_fSpeed; }
