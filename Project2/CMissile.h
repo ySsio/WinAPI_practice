@@ -19,6 +19,8 @@ public:
     void update() override;
     void render(HDC _dc) override;
 
+    CLONE(CMissile)
+
 public:
     void OnCollisionEnter(CCollider* _pOther) override;
 

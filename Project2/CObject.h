@@ -19,7 +19,7 @@ private:
 	bool		m_bSceneAlive;
 
 private:
-	CTexture* m_pTex;
+	CTexture*	m_pTex;
 
 public:
 	void SetPos(Vec2 _vPos) { m_vPos = _vPos; }
@@ -58,8 +58,13 @@ public:
 	virtual void render(HDC _dc);
 	void component_render(HDC _dc);		// render()을 자체적으로 오버라이드 해서 사용하는 경우 부모쪽의 함수 호출하면 원하지 않는 기능까지 사용하게 됨.
 										// 따라서 컴포넌트 렌더만 따로 구현
+
+	virtual CObject* Clone() = 0;		// pure virtual function, 자기 자신의 복제본을 리턴
+
+
 public:
 	CObject();
+	CObject(const CObject& _origin);	// 기본 복사생성자 호출 시 콜라이더 주소까지 복사하므로 문제. 직접 구현해준다.
 	virtual ~CObject();
 
 	friend class CEventMgr;

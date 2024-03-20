@@ -32,7 +32,7 @@ void CScene_Start::Enter()
 {
 	// 전 씬에서 살릴거 받아오기
 	CSceneMgr::GetInst()->LoadObject();
-	CSceneMgr::GetInst()->ClearObject();
+	//CSceneMgr::GetInst()->ClearObject();
 
 	// CObject 포인터로 CPlayer 객체 생성
 	
@@ -41,7 +41,10 @@ void CScene_Start::Enter()
 	pObj->SetScale(Vec2(100.f, 100.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 	SaveObject(pObj, GROUP_TYPE::PLAYER);
-	
+
+	CObject* pOtherPlayer = pObj->Clone();	// CPlayer로 다운캐스팅 해야 CPlayer의 복사생성자 호출 가능
+	pOtherPlayer->SetPos(Vec2(740.f, 384.f));
+	AddObject(pOtherPlayer, GROUP_TYPE::PLAYER);
 
 	// Monster Object 추가
 	

@@ -15,12 +15,24 @@ CObject::CObject()
 {
 }
 
+CObject::CObject(const CObject& _origin)
+	: m_strName(_origin.m_strName)
+	, m_vPos(_origin.m_vPos)
+	, m_vScale(_origin.m_vScale)
+	, m_pCollider(nullptr)
+	, m_bAlive(true)
+	, m_bSceneAlive(true)
+	, m_pTex(_origin.m_pTex)
+{
+	m_pCollider = new CCollider(*_origin.m_pCollider); // 콜라이더 복사생성자 ㄷ
+	m_pCollider->m_pOwner = this;
+}
+
 CObject::~CObject()
 {
 	if (m_pCollider != nullptr)
 		delete m_pCollider;
 }
-
 
 void CObject::SetSceneAlive()
 {
