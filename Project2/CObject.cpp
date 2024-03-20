@@ -11,6 +11,7 @@ CObject::CObject()
 	, m_pTex(nullptr)
 	, m_pCollider(nullptr)
 	, m_bAlive(true)
+	, m_bSceneAlive(false)
 {
 }
 
@@ -18,6 +19,17 @@ CObject::~CObject()
 {
 	if (m_pCollider != nullptr)
 		delete m_pCollider;
+}
+
+
+void CObject::SetSceneAlive()
+{
+	m_bSceneAlive = true;
+}
+
+bool CObject::GetSceneAlive()
+{
+	return m_bSceneAlive;
 }
 
 void CObject::CreateCollider()

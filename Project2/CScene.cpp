@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CScene.h"
 #include "CObject.h"
+#include "CSceneMgr.h"
 
 
 
@@ -72,9 +73,23 @@ void CScene::render(HDC _dc)
 	}
 }
 
+void CScene::SaveObject(CObject* _pObj, GROUP_TYPE _etype)
+{
+	_pObj->SetSceneAlive();
+	CSceneMgr::GetInst()->SaveObject(_pObj, _etype);
+}
+
 void CScene::DeleteGroup(GROUP_TYPE _eTarget)
 {
-	Safe_Delete_Vec<CObject*> (m_arrObj[(UINT)_eTarget]); // 템플릿 함수 호출의 정석, <typename>은 생략 가능
+	//Safe_Delete_Vec<CObject*> (m_arrObj[(UINT)_eTarget]); // 템플릿 함수 호출의 정석, <typename>은 생략 가능
+	vector<CObject*>& _vec = m_arrObj[(UINT)_eTarget];
+
+	for (size_t i = 0; i < _vec.size(); ++i)
+	{
+		if (_vec[i] != nullptr && !_vec[i]->GetSceneAlive())
+			delete _vec[i];
+	}
+	_vec.clear();
 }
 
 void CScene::DeleteAll()

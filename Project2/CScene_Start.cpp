@@ -30,11 +30,18 @@ void CScene_Start::update()
 
 void CScene_Start::Enter()
 {
+	// 전 씬에서 살릴거 받아오기
+	CSceneMgr::GetInst()->LoadObject();
+	CSceneMgr::GetInst()->ClearObject();
+
 	// CObject 포인터로 CPlayer 객체 생성
+	
 	CObject* pObj = new CPlayer;
-	pObj->SetPos(Vec2(640.f,384.f));
-	pObj->SetScale(Vec2(100.f,100.f));
+	pObj->SetPos(Vec2(640.f, 384.f));
+	pObj->SetScale(Vec2(100.f, 100.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
+	SaveObject(pObj, GROUP_TYPE::PLAYER);
+	
 
 	// Monster Object 추가
 	
@@ -53,7 +60,6 @@ void CScene_Start::Enter()
 		pMonsterObj->SetScale(Vec2(fObjScale, fObjScale));
 		pMonsterObj->SetMoveDistance(fMoveDist);
 		pMonsterObj->SetCenterPos(Vec2(xvalue, 100.f));
-		pMonsterObj->SetTarget(pObj);
 		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 	}
 

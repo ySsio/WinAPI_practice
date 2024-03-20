@@ -16,6 +16,7 @@ private:
 	CCollider*	m_pCollider;
 
 	bool		m_bAlive;
+	bool		m_bSceneAlive;
 
 private:
 	CTexture* m_pTex;
@@ -25,11 +26,13 @@ public:
 	void SetScale(Vec2 _vScale) { m_vScale = _vScale; }
 	void SetTexture(CTexture* _pTex) { m_pTex = _pTex; }
 	void SetName(const wstring& _strName) { m_strName = _strName; }
+	void SetSceneAlive();
 
 	Vec2 GetPos() { return m_vPos; }
 	Vec2 GetScale() { return m_vScale; }
 	CTexture* GetTexture() { return m_pTex; }
 	const wstring& GetName() { return m_strName; }
+	bool GetSceneAlive();
 
 	void CreateCollider();
 	CCollider* GetCollider() { return m_pCollider; }
