@@ -8,12 +8,24 @@
 #include "CPathMgr.h"
 #include "CCollisionMgr.h"
 
+#include "CKeyMgr.h"
+#include "CSceneMgr.h"
+
 CScene_Start::CScene_Start()
 {
 }
 
 CScene_Start::~CScene_Start()
 {
+}
+
+void CScene_Start::update()
+{
+	CScene::update(); // 부모쪽 기능 그대로 재활용하기 위해 호출.
+	if (KEY_TAP(KEY::ENTER))
+	{
+		ChangeScene(SCENE_TYPE::TOOL);	// func.cpp에 구현된 전역함수
+	}
 }
 
 void CScene_Start::Enter()
@@ -54,6 +66,10 @@ void CScene_Start::Enter()
 
 void CScene_Start::Exit()
 {
+	DeleteAll();
+
 	// 이번 씬에서 지정해뒀던 충돌 그룹을 모두 해제함.
 	CCollisionMgr::GetInst()->Reset();
 }
+
+

@@ -121,7 +121,7 @@ void CCore::progress()
 
 
 
-	//CTimeMgr::GetInst()->render();
+	CTimeMgr::GetInst()->render();
 	
 	// ======= 이벤트 지연처리 ======
 	// Event Mgr

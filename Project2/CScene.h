@@ -16,9 +16,9 @@ public:
 	void SetName(const wstring& _strName) { m_strName = _strName; }
 	const wstring& GetName() { return m_strName; }
 
-	void update();
-	void finalupdate();		// 마무리 작업 업데이트.
-	void render(HDC _dc);
+	virtual void update();
+	virtual void finalupdate();		// 마무리 작업 업데이트.
+	virtual void render(HDC _dc);
 
 	// 순수 가상함수 pure virtual function => 자식 클래스에서 구현 안하면 에러
 	// 포함하면 추상클래스 => 부모클래스 객체 생성 불가능
@@ -32,8 +32,9 @@ public:
 		m_arrObj[(UINT)_etype].push_back(_pObj);
 		return;
 	}
-
 	const vector<CObject*>& GetGroupObject(GROUP_TYPE _etype) { return m_arrObj[(UINT)_etype]; }
+	void DeleteGroup(GROUP_TYPE _eTarget);
+	void DeleteAll();
 
 public:
 	CScene();

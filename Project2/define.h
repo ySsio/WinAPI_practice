@@ -22,11 +22,11 @@
 #define fDT CTimeMgr::GetInst()->GetfDT()
 #define DT CTimeMgr::GetInst()->GetDT()
 
-#define KEY_CHECK(key, state) CKeyMgr::GetInst()->GetKeyState(KEY::key) == KEY_STATE::state
-#define KEY_HOLD(key) KEY_CHECK(key,HOLD)
-#define KEY_TAP(key) KEY_CHECK(key,TAP)
-#define KEY_AWAY(key) KEY_CHECK(key,AWAY)
-#define KEY_NONE(key) KEY_CHECK(key,NONE)
+#define KEY_CHECK(key, state) CKeyMgr::GetInst()->GetKeyState(key) == state
+#define KEY_HOLD(key) KEY_CHECK(key,KEY_STATE::HOLD)
+#define KEY_TAP(key) KEY_CHECK(key,KEY_STATE::TAP)
+#define KEY_AWAY(key) KEY_CHECK(key,KEY_STATE::AWAY)
+#define KEY_NONE(key) KEY_CHECK(key,KEY_STATE::NONE)
 
 #define PI 3.1415926535f
 

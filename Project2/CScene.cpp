@@ -2,6 +2,8 @@
 #include "CScene.h"
 #include "CObject.h"
 
+
+
 CScene::CScene()
 {
 }
@@ -67,5 +69,18 @@ void CScene::render(HDC _dc)
 			(*iter)->render(_dc);
 			++iter;
 		}
+	}
+}
+
+void CScene::DeleteGroup(GROUP_TYPE _eTarget)
+{
+	Safe_Delete_Vec<CObject*> (m_arrObj[(UINT)_eTarget]); // 템플릿 함수 호출의 정석, <typename>은 생략 가능
+}
+
+void CScene::DeleteAll()
+{
+	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
+	{
+		DeleteGroup((GROUP_TYPE)i);
 	}
 }

@@ -38,8 +38,6 @@ void CTimeMgr::update()
 	m_dDeltaTime = (double)(m_llCurCount.QuadPart - m_llPrevCount.QuadPart) / (double)m_llFrequency.QuadPart;
 	m_llPrevCount = m_llCurCount;
 
-	render();
-
 
 	// 디버그 모드일 때만 포함시키는 전처리기. Release 때는 무시됨.
 	// 프로젝트 속성 > C/C++ > 전처리기 > 전처리기 정의
