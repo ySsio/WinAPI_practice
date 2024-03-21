@@ -1,8 +1,10 @@
 #pragma once
 
 class CTexture;
+
+// Components
 class CCollider;
-class CEventMgr;
+class CAnimator;
 
 // 물체, 추상클래스
 class CObject
@@ -13,7 +15,9 @@ private:
 	Vec2		m_vPos;
 	Vec2		m_vScale;
 
+	// Component
 	CCollider*	m_pCollider;
+	CAnimator*	m_pAnimator;
 
 	bool		m_bAlive;
 	bool		m_bSceneAlive;
@@ -36,6 +40,9 @@ public:
 
 	void CreateCollider();
 	CCollider* GetCollider() { return m_pCollider; }
+
+	void CreateAnimator();
+	CAnimator* GetAnimator() { return m_pAnimator; }
 
 	bool IsDead() { return !m_bAlive; }
 	

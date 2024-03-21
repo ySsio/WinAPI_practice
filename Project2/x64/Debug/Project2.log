@@ -1,1 +1,21 @@
-﻿  Project2.vcxproj -> D:\cpp_Exercise\Project2\Output\bin_debug\Project2.exe
+﻿  CResMgr.cpp
+D:\cpp_Exercise\Project2\Project2\struct.h(71,18): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'CResMgr.cpp'을(를) 컴파일하는 중)
+  
+D:\cpp_Exercise\Project2\Project2\struct.h(72,18): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'CResMgr.cpp'을(를) 컴파일하는 중)
+  
+D:\cpp_Exercise\Project2\Project2\struct.h(80,14): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'CResMgr.cpp'을(를) 컴파일하는 중)
+  
+D:\cpp_Exercise\Project2\Project2\func.h(32,4): error C2248: 'CTexture::~CTexture': private 멤버('CTexture' 클래스에서 선언)에 액세스할 수 없습니다.
+  (소스 파일 'CResMgr.cpp'을(를) 컴파일하는 중)
+  D:\cpp_Exercise\Project2\Project2\CTexture.h(27,1):
+  컴파일러에서 여기에 'CTexture::~CTexture'을(를) 생성했습니다.
+  D:\cpp_Exercise\Project2\Project2\CTexture.h(4,7):
+  'CTexture' 선언을 참조하십시오.
+  D:\cpp_Exercise\Project2\Project2\func.h(32,4):
+  템플릿 인스턴스화 컨텍스트(가장 오래된 인스턴스화 컨텍스트)가
+  	D:\cpp_Exercise\Project2\Project2\CResMgr.cpp(14,2):
+  	컴파일되는 함수 템플릿 인스턴스화 'void Safe_Delete_Map<std::wstring,CTexture*>(std::map<std::wstring,CTexture *,std::less<std::wstring>,std::allocator<std::pair<const std::wstring,CTexture *>>> &)'에 대한 참조를 확인하세요.
+  

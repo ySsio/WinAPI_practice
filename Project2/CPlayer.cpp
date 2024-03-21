@@ -16,19 +16,24 @@
 #include "CCollider.h"
 
 #include "CEventMgr.h"
+#include "CAnimator.h"
 
 CPlayer::CPlayer()
 {
 	// 이름 설정
 	SetName(L"Player");
 
-	// Texture 로딩하기
-	SetTexture(CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp"));
 
 	// 콜라이더 활성화 (오브젝트 생성)
 	CreateCollider();
 	GetCollider()->SetOffsetPos(Vec2(0.f, 5.f));
 	GetCollider()->SetScale(Vec2(20.f, 40.f));
+
+	// Texture 로딩하기
+	SetTexture(CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\jelda.bmp"));
+
+	CreateAnimator();
+	GetAnimator()->CreateAnimation(L"PlayerWalk",GetTexture(), Vec2(0, 260), Vec2(60, 65), Vec2(60, 0), 10);
 }
 
 CPlayer::~CPlayer()

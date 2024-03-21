@@ -19,3 +19,18 @@ void Safe_Delete_Vec(vector<T>& _vec)
 	}
 	_vec.clear();
 }
+
+template <typename T1, typename T2>
+void Safe_Delete_Map(map<T1, T2>& _map)
+{
+	// template에서 inner class 를 사용하려면 typename을 앞에 붙여줘야 한다.
+	typename map<T1, T2>::iterator iter = _map.begin();
+	for (; iter != _map.end(); ++iter)
+	{
+		if (iter->second != nullptr)
+		{
+			delete iter->second;
+		}
+	}
+	_map.clear();
+}

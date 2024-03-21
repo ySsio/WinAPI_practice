@@ -42,9 +42,9 @@ void CScene_Start::Enter()
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 	SaveObject(pObj, GROUP_TYPE::PLAYER);
 
-	CObject* pOtherPlayer = pObj->Clone();	// CPlayer로 다운캐스팅 해야 CPlayer의 복사생성자 호출 가능
-	pOtherPlayer->SetPos(Vec2(740.f, 384.f));
-	AddObject(pOtherPlayer, GROUP_TYPE::PLAYER);
+	//CObject* pOtherPlayer = pObj->Clone();	// CPlayer로 다운캐스팅 해야 CPlayer의 복사생성자 호출 가능
+	//pOtherPlayer->SetPos(Vec2(740.f, 384.f));
+	//AddObject(pOtherPlayer, GROUP_TYPE::PLAYER);
 
 	// Monster Object 추가
 	
