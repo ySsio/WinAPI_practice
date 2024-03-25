@@ -33,7 +33,7 @@ CPlayer::CPlayer()
 	SetTexture(CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\jelda.bmp"));
 
 	CreateAnimator();
-	GetAnimator()->CreateAnimation(L"PlayerWalk",GetTexture(), Vec2(0, 260), Vec2(60, 65), Vec2(60, 0), 10);
+	GetAnimator()->CreateAnimation(L"WALK_DOWN", GetTexture(), Vec2(0, 260), Vec2(60, 65), Vec2(60, 0), 1.f, 10);
 }
 
 CPlayer::~CPlayer()

@@ -13,7 +13,7 @@ private:
 
 
 public:
-	void CreateAnimation(const wstring& _strName, CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount);	// 애니메이션을 만들 텍스처 파일, 시작 위치 (가로로 1줄이 한 애니메이션임), 간격(한 장면의 사이즈), 간격..?, 프레임 수
+	void CreateAnimation(const wstring& _strName, CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, float _fDuration, UINT _iFrameCount);	// 애니메이션을 만들 텍스처 파일, 시작 위치 (가로로 1줄이 한 애니메이션임), 간격(한 장면의 사이즈), 간격..?, 프레임 수
 	CAnimation*  FindAnimation(const wstring& _strName);
 	void Play();
 

@@ -19,7 +19,7 @@ CAnimator::~CAnimator()
 }
 
 
-void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount)
+void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, float _fDuration, UINT _iFrameCount)
 {
 	CAnimation* pAnim = FindAnimation(_strName);
 	assert(pAnim == nullptr);
@@ -29,7 +29,7 @@ void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _pTex, Vec2 _
 	
 	pAnim->SetName(_strName);
 	pAnim->m_pAnimator = this;
-	pAnim->Create(_pTex,_vLT,_vSliceSize,_vStep,_iFrameCount);
+	pAnim->Create(_pTex,_vLT,_vSliceSize,_vStep,_fDuration,_iFrameCount);
 
 	//m_mapAnim[_strName] = pAnim;
 	m_mapAnim.insert(make_pair(_strName, pAnim));

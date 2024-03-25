@@ -2,7 +2,6 @@
 #include "CTexture.h"
 #include "CCore.h"
 
-
 CTexture::CTexture()
 	: m_dc(0)
 	, m_hBit(0)

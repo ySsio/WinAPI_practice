@@ -11,7 +11,9 @@ CResMgr::CResMgr()
 
 CResMgr::~CResMgr()
 {
-	Safe_Delete_Map<wstring, CTexture*>(m_mapTex);
+	Safe_Delete_Map<wstring, CRes*>(m_mapTex);
+
+	m_mapTex.clear();
 }
 
 CTexture* CResMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
@@ -37,7 +39,7 @@ CTexture* CResMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelati
 CTexture* CResMgr::FindTexture(const wstring& _strKey)
 {
 	if (m_mapTex.find(_strKey) != m_mapTex.end())
-		return m_mapTex[_strKey];
+		return (CTexture*)m_mapTex[_strKey];	// downcasting ¤§¤§...
 
 	return nullptr;
 }

@@ -20,7 +20,7 @@ public:
 // 리소스 매니저에서만 생성할 수 있도록 막음.
 private:
     CTexture();
-    ~CTexture();
+    virtual ~CTexture();
 
     friend class CResMgr;   // 전방 선언 안해도 되네
 
