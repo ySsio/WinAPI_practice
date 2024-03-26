@@ -17,6 +17,7 @@
 
 #include "CEventMgr.h"
 #include "CAnimator.h"
+#include "CAnimation.h"
 
 CPlayer::CPlayer()
 {
@@ -35,6 +36,16 @@ CPlayer::CPlayer()
 	CreateAnimator();
 	GetAnimator()->CreateAnimation(L"WALK_DOWN", pTex, Vec2(0, 260), Vec2(60, 65), Vec2(60, 0), 0.05f, 10);
 	GetAnimator()->Play(L"WALK_DOWN",true);
+
+	CAnimation* pAnim = GetAnimator()->FindAnimation(L"WALK_DOWN");
+	
+	for (int i = 0; i < pAnim->GetMaxFrame(); i++)
+	{
+		pAnim->GetFrame(i).vOffset = Vec2(0.f, -20.f);
+	}
+	
+
+
 }
 
 CPlayer::~CPlayer()

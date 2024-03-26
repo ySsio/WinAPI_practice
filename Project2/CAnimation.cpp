@@ -47,18 +47,18 @@ void CAnimation::render(HDC _dc)
 	CObject* pObj = m_pAnimator->GetObj();
 	Vec2 vPos = pObj->GetPos();
 
-	m_vecFrm[m_iCurFrm].vSlice.x / 2.f;
+	vPos += m_vecFrm[m_iCurFrm].vOffset;	// offset 만큼 추가 이동
 
 	TransparentBlt(_dc
-			, (int)(vPos.x - m_vecFrm[m_iCurFrm].vSlice.x / 2.f	)
-			, (int)(vPos.y - m_vecFrm[m_iCurFrm].vSlice.y / 2.f	)
-			, (int)(m_vecFrm[m_iCurFrm].vSlice.x				)
-			, (int)(m_vecFrm[m_iCurFrm].vSlice.y				)
-			, m_pTex->GetDC()
-			, (int)(m_vecFrm[m_iCurFrm].vLT.x					)
-			, (int)(m_vecFrm[m_iCurFrm].vLT.y					)
-			, (int)(m_vecFrm[m_iCurFrm].vSlice.x				)
-			, (int)(m_vecFrm[m_iCurFrm].vSlice.y				)
+		, (int)(vPos.x - m_vecFrm[m_iCurFrm].vSlice.x / 2.f)
+		, (int)(vPos.y - m_vecFrm[m_iCurFrm].vSlice.y / 2.f)
+		, (int)(m_vecFrm[m_iCurFrm].vSlice.x)
+		, (int)(m_vecFrm[m_iCurFrm].vSlice.y)
+		, m_pTex->GetDC()
+		, (int)(m_vecFrm[m_iCurFrm].vLT.x)
+		, (int)(m_vecFrm[m_iCurFrm].vLT.y)
+		, (int)(m_vecFrm[m_iCurFrm].vSlice.x)
+		, (int)(m_vecFrm[m_iCurFrm].vSlice.y)
 			, RGB(255, 0, 255));
 
 }

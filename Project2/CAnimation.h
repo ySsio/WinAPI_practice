@@ -7,6 +7,7 @@ struct tAnimFrm
 {
 	Vec2	vLT;		// 프레임의 좌상단 좌표
 	Vec2	vSlice;		// 프레임을 자를 사이즈 영역
+	Vec2	vOffset;
 	float	fDuration;	// 프레임을 재생할 시간
 };
 
@@ -31,6 +32,10 @@ public:
 		m_iCurFrm = _iFrameIdx;
 		m_fAccTime = 0.f;
 	}
+
+	// 특정 프레임 얻어오는 함수, 수정 가능하도록 레퍼런스 반환
+	tAnimFrm& GetFrame(int _iIdx) { return m_vecFrm[_iIdx]; }
+	int GetMaxFrame() { return m_vecFrm.size(); }
 
 private:
 	void SetName(const wstring& _strName) { m_strName = _strName; }
