@@ -6,13 +6,15 @@ class CTexture;
 class CCollider;
 class CAnimator;
 
+#include "CCamera.h"
+
 // 물체, 추상클래스
 class CObject
 {
 private:
 	wstring		m_strName;
 
-	Vec2		m_vPos;
+	Vec2		m_vPos;		// 물체의 실제 위치 != 렌더 위치 (카메라 도입 후), 물리 연산 등은 얘로 진행
 	Vec2		m_vScale;
 
 	// Component

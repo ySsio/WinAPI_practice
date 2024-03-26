@@ -11,6 +11,8 @@
 #include "CKeyMgr.h"
 #include "CSceneMgr.h"
 
+#include "CCamera.h"
+
 CScene_Start::CScene_Start()
 {
 }
@@ -71,6 +73,9 @@ void CScene_Start::Enter()
 	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::PROJ_MONSTER);
 	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::PROJ_PLAYER);
 	
+
+	// Camera Look 지정
+	CCamera::GetInst()->SetLookAt(vResolution / 2.f);	// 해상도 절반 위치를 카메라 중앙으로 설정
 }
 
 void CScene_Start::Exit()

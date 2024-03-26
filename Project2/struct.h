@@ -44,11 +44,13 @@ public:
 
 	Vec2 operator / (int _iVal)
 	{
+		assert(_iVal != 0);
 		return Vec2(x / _iVal, y / _iVal);
 	}
 
 	Vec2 operator / (float _fVal)
 	{
+		assert(_fVal != 0.f);
 		return Vec2(x / _fVal, y / _fVal);
 	}
 

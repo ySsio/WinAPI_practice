@@ -79,6 +79,8 @@ void CObject::finalupdate()
 
 void CObject::render(HDC _dc)
 {
+	Vec2 vRenderPos = CCamera::GetInst()->GetRenderPos(m_vPos);
+
 	// width/ height은 당연히 양수니까 UINT였는데 좌표는 음수 될 수 있으니까 int로 변환
 	int iWidth = (int)GetTexture()->Width();
 	int iHeight = (int)GetTexture()->Height();
@@ -86,8 +88,8 @@ void CObject::render(HDC _dc)
 	Vec2 vPos = GetPos();
 
 	TransparentBlt(_dc
-		, (int)(vPos.x - (float)iWidth / 2)
-		, (int)(vPos.y - (float)iHeight / 2)
+		, (int)(vRenderPos.x - (float)iWidth / 2)
+		, (int)(vRenderPos.y - (float)iHeight / 2)
 		, iWidth, iHeight
 		, GetTexture()->GetDC()
 		, 0, 0, iWidth, iHeight
