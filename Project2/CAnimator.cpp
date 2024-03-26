@@ -6,6 +6,7 @@
 CAnimator::CAnimator()
 	: m_pCurAnim(nullptr)
 	, m_pOwner(nullptr)
+	, m_bRepeat(false)
 {
 }
 
@@ -44,15 +45,27 @@ CAnimation* CAnimator::FindAnimation(const wstring& _strName)
 	return iter->second;
 }
 
-void CAnimator::Play()
+void CAnimator::Play(const wstring& _strName, bool _bRepeat)
 {
+	m_pCurAnim = FindAnimation(_strName);
+	m_bRepeat = _bRepeat;
 }
+
+
 
 void CAnimator::update()
 {
 	if (m_pCurAnim != nullptr)
+	{
 		m_pCurAnim->update();	// 현재 진행중인 애니메이션 업데이트 호출
+		if (m_bRepeat && m_pCurAnim->IsFinish())
+		{
+			m_pCurAnim->SetFrame(0);
+		}
+	}
+		
 
+	
 }
 
 void CAnimator::render(HDC _dc)

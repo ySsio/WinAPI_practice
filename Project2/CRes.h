@@ -17,4 +17,3 @@ public:
 	CRes();
 	virtual ~CRes();	// base class의 destructor는 public virtual로 해준다.
 };
-
