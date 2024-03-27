@@ -42,6 +42,11 @@ public:
 		return Vec2(x * _fVal, y * _fVal);
 	}
 
+	Vec2 operator * (double _dVal)
+	{
+		return Vec2(x * _dVal, y * _dVal);
+	}
+
 	Vec2 operator / (int _iVal)
 	{
 		assert(_iVal != 0);
@@ -104,6 +109,10 @@ public :
 		, y(_y)
 	{}
 
+	Vec2(double _x,double _y)
+		: x((double)_x)
+		, y((double)_y)
+	{}
 
 	Vec2(int _x, int _y)
 		: x((float)_x)
