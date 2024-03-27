@@ -28,6 +28,12 @@ void CScene_Start::update()
 	{
 		ChangeScene(SCENE_TYPE::TOOL);	// func.cpp에 구현된 전역함수
 	}
+
+	if (KEY_TAP(KEY::LBTN))
+	{
+		Vec2 vLookAt = CCamera::GetInst()->GetRealPos(MOUSE_POS);
+		CCamera::GetInst()->SetLookAt(vLookAt);
+	}
 }
 
 void CScene_Start::Enter()
@@ -47,6 +53,8 @@ void CScene_Start::Enter()
 	//CObject* pOtherPlayer = pObj->Clone();	// CPlayer로 다운캐스팅 해야 CPlayer의 복사생성자 호출 가능
 	//pOtherPlayer->SetPos(Vec2(740.f, 384.f));
 	//AddObject(pOtherPlayer, GROUP_TYPE::PLAYER);
+
+	//CCamera::GetInst()->SetTarget(pObj);
 
 	// Monster Object 추가
 	

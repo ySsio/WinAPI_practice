@@ -27,6 +27,9 @@ enum class KEY
 	ENTER,
 	ESC,
 
+	LBTN,
+	RBTN,
+
 	LAST						// 마지막을 알리는 뜻. enum class KEY에 몇 개 있는 지 알아낼 수 있게 함.
 };
 
@@ -41,16 +44,15 @@ class CKeyMgr
 	SINGLETON(CKeyMgr);
 
 private:
-	vector<tKeyInfo> m_vecKey;	// 이 벡터에서 enum class KEY에 정의된 KEY들을 순서대로 관리할 것임. 예) 0번쨰는 LEFT, 1번쨰는 RIGHT, ..
+	vector<tKeyInfo>	m_vecKey;	// 이 벡터에서 enum class KEY에 정의된 KEY들을 순서대로 관리할 것임. 예) 0번쨰는 LEFT, 1번쨰는 RIGHT, ..
+	Vec2				m_vCurMousePos;
 
 public:
 	void init();
 	void update();
 
 public:
-	KEY_STATE GetKeyState(KEY _eKey)
-	{
-		return m_vecKey[(int)_eKey].eState;
-	};
+	KEY_STATE GetKeyState(KEY _eKey) { return m_vecKey[(int)_eKey].eState; };
+	Vec2 GetMousePos() { return m_vCurMousePos; }
 }; 
 

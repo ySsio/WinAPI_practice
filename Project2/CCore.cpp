@@ -7,6 +7,7 @@
 #include "CPathMgr.h"
 #include "CCollisionMgr.h"
 #include "CEventMgr.h"
+#include "CCamera.h"
 
 
 // ±¸Çö 1.
@@ -97,6 +98,7 @@ void CCore::progress()
 	// ====== Manager update =======
 	CTimeMgr::GetInst()->update();
 	CKeyMgr::GetInst()->update();
+	CCamera::GetInst()->update();
 	// =============================
 	
 	// ======= Scene Update ========

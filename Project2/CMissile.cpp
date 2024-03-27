@@ -50,6 +50,7 @@ void CMissile::render(HDC _dc)
 	int iHeight = (int)GetTexture()->Height();
 
 	Vec2 vPos = GetPos();
+	vPos = CCamera::GetInst()->GetRenderPos(vPos);
 
 	TransparentBlt(_dc
 		, (int)(vPos.x - (float)iWidth / 2)
