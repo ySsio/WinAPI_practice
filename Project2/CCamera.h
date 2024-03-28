@@ -14,7 +14,7 @@ private:
 
 	CObject*	m_pTargetObj;	// 카메라가 바라보는 타겟
 	Vec2		m_vDiff;		// 해상도 중심위치와 카메라 LookAt간의 차이 값
-	
+
 	float		m_fTime;		// 타겟을 따라가는데 걸리는 시간
 	float		m_fSpeed;		// 타겟 따라가는 속도
 	float		m_fAccTime;		// 누적 시간

@@ -80,7 +80,7 @@ public:
 		x = costheta * tempx - sintheta * tempy;
 		y = sintheta * tempx + costheta * tempy;
 	}
-
+	
 public:
 	float Length()
 	{
