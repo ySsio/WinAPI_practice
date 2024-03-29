@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "global.h"
 #include "CCollider.h"
 #include "CObject.h"
 #include "CCore.h"
@@ -10,6 +10,7 @@ UINT CCollider::g_iNextID = 0;
 CCollider::CCollider()
 	: m_pOwner(nullptr)
 	, m_iID(g_iNextID++)	// id를 할당하면서 static 변수를 1 증가 시키면서 중복 피함
+	, m_iCol(0)
 {
 }
 
@@ -18,6 +19,7 @@ CCollider::CCollider(const CCollider& _origin)
 	, m_vOffsetPos(_origin.m_vOffsetPos)		// 초기화 안하면 Vec2의 기본생성자가 초기화 해줄 거야!
 	, m_vScale(_origin.m_vScale)
 	, m_iID(g_iNextID++)
+	, m_iCol(0)
 {
 
 }
@@ -56,10 +58,10 @@ void CCollider::render(HDC _dc)
 	Vec2 vRenderPos = CCamera::GetInst()->GetRenderPos(m_vFinalPos);
 
 	Rectangle(_dc
-		, (int)vRenderPos.x - m_vScale.x / 2.f
-		, (int)vRenderPos.y - m_vScale.y / 2.f
-		, (int)vRenderPos.x + m_vScale.x / 2.f
-		, (int)vRenderPos.y + m_vScale.y / 2.f);
+		, (int)(vRenderPos.x - m_vScale.x / 2.f)
+		, (int)(vRenderPos.y - m_vScale.y / 2.f)
+		, (int)(vRenderPos.x + m_vScale.x / 2.f)
+		, (int)(vRenderPos.y + m_vScale.y / 2.f));
 }
 
 void CCollider::OnCollision(CCollider* _pOther)

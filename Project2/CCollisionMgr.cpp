@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "global.h"
 #include "CCollisionMgr.h"
 
 #include "CSceneMgr.h"

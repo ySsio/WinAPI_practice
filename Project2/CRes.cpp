@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "global.h"
 #include "CRes.h"
 
 CRes::CRes()

@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "global.h"
 #include "func.h"
 #include "CEventMgr.h"
 

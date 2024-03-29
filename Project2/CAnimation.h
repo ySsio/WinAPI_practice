@@ -1,5 +1,5 @@
 #pragma once
-
+#include "global.h"
 class CAnimator;
 class CTexture;
 
@@ -35,7 +35,7 @@ public:
 
 	// 특정 프레임 얻어오는 함수, 수정 가능하도록 레퍼런스 반환
 	tAnimFrm& GetFrame(int _iIdx) { return m_vecFrm[_iIdx]; }
-	int GetMaxFrame() { return m_vecFrm.size(); }
+	int GetMaxFrame() { return (int)m_vecFrm.size(); }
 
 private:
 	void SetName(const wstring& _strName) { m_strName = _strName; }

@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "CScene_Start.h"
 #include "CObject.h"
 #include "CPlayer.h"

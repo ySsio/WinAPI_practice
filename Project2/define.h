@@ -33,10 +33,13 @@
 
 #define PI 3.1415926535f
 
+#define TILE_SIZE 64
+
 // Scene에 존재하는 Object의 종류
 enum class GROUP_TYPE
 {
 	DEFAULT,
+	TILE,
 	PLAYER,
 	MONSTER,
 	PROJ_PLAYER,

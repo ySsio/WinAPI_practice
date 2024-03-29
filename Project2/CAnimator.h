@@ -1,5 +1,5 @@
 #pragma once
-
+#include "global.h"
 class CObject;
 class CAnimation;
 class CTexture;

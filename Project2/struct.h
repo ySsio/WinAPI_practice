@@ -47,6 +47,11 @@ public:
 		return Vec2(x * _dVal, y * _dVal);
 	}
 
+	Vec2 operator * (UINT _iVal)
+	{
+		return Vec2(x * _iVal, y * _iVal);
+	}
+
 	Vec2 operator / (int _iVal)
 	{
 		assert(_iVal != 0);
@@ -75,8 +80,8 @@ public:
 	{
 		float tempx = x;
 		float tempy = y;
-		float costheta = cos(_rad);
-		float sintheta = sin(_rad);
+		float costheta = (float)cos(_rad);
+		float sintheta = (float)sin(_rad);
 		x = costheta * tempx - sintheta * tempy;
 		y = sintheta * tempx + costheta * tempy;
 	}
@@ -84,7 +89,7 @@ public:
 public:
 	float Length()
 	{
-		return sqrt(x * x + y * y);
+		return (float)sqrt(x * x + y * y);
 	}
 
 	Vec2& Normalize()
@@ -110,8 +115,8 @@ public :
 	{}
 
 	Vec2(double _x,double _y)
-		: x((double)_x)
-		, y((double)_y)
+		: x((float)_x)
+		, y((float)_y)
 	{}
 
 	Vec2(int _x, int _y)

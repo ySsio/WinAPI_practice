@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "CAnimator.h"
 #include "CAnimation.h"
 #include "assert.h"

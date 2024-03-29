@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "CAnimation.h"
 #include "CAnimator.h"
 #include "CTexture.h"
@@ -72,7 +71,7 @@ void CAnimation::Create(CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vSte
 {
 	m_pTex = _pTex;
 	tAnimFrm frm = {};
-	for (int i = 0; i < _iFrameCount; ++i)
+	for (UINT i = 0; i < _iFrameCount; ++i)
 	{
 		frm.vLT = _vLT + _vStep * i;
 		frm.vSlice = _vSliceSize;

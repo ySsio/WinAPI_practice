@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "CMonster.h"
 #include "CTimeMgr.h"
 #include "CResMgr.h"

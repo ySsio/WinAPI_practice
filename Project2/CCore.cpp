@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "global.h"
 #include "CCore.h"
 #include "CObject.h"
 #include "CTimeMgr.h"

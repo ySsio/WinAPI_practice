@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "CScene.h"
 #include "CObject.h"
 #include "CSceneMgr.h"

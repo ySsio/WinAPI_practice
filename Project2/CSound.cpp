@@ -1,2 +1,2 @@
-#include "pch.h"
+#include "global.h"
 #include "CSound.h"
