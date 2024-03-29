@@ -50,3 +50,30 @@ void CScene_Tool::update()
 {
 	CScene::update();
 }
+
+
+
+// 전역 함수로 프로시저 구현 (윈도우로 타일 개수 입력 받아서 적용 함)
+// CALLBACK = __stdcall : 함수 호출 규약
+INT_PTR CALLBACK TileCountProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	UNREFERENCED_PARAMETER(lParam);
+	switch (message)
+	{
+	case WM_INITDIALOG:
+		return (INT_PTR)TRUE;
+
+	case WM_COMMAND:
+		if (LOWORD(wParam) == IDCANCEL)
+		{
+			EndDialog(hDlg, LOWORD(wParam));
+			return (INT_PTR)TRUE;
+		}
+		else if (LOWORD(wParam) == IDOK)
+		{
+			
+		}
+		break;
+	}
+	return (INT_PTR)FALSE;
+}
