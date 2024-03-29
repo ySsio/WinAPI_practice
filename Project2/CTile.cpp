@@ -4,7 +4,7 @@
 
 CTile::CTile()
 	: m_pTileTex(nullptr)
-	, m_iIdx(24)
+	, m_iImgIdx(0)
 {
 	SetScale(Vec2(TILE_SIZE,TILE_SIZE));
 }
@@ -28,8 +28,8 @@ void CTile::render(HDC _dc)
 	UINT iMaxCol = iWidth / TILE_SIZE;	// 타일 열 개수
 	UINT iMaxRow = iHeight / TILE_SIZE; // 타일 행 개수
 
-	UINT iCurRow = (UINT)m_iIdx / iMaxCol;
-	UINT iCurCol = (UINT)m_iIdx % iMaxCol;
+	UINT iCurRow = (UINT)m_iImgIdx / iMaxCol;
+	UINT iCurCol = (UINT)m_iImgIdx % iMaxCol;
 
 	// 텍스처 범위를 벗어난 인덱스
 	if (iMaxRow <= iCurRow)

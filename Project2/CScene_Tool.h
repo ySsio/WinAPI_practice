@@ -12,6 +12,9 @@ public:
 	void update() override;
 
 public:
+	void SetTileIdx();
+
+public:
 	CScene_Tool();
 	~CScene_Tool();
 };

@@ -12,9 +12,15 @@ private:
 	vector<CObject*>	m_arrObj[(UINT)GROUP_TYPE::END];	// 벡터 배열 선언 법. []를 사용해서 [] 안의 크기만큼 배열을 만들고, 각 배열 안에 벡터가 있음. 즉 벡터가 배열로 32개 있는 거임
 	wstring				m_strName;	// Scene 이름
 
+	UINT				m_iTileX;	// 타일 가로 개수
+	UINT				m_iTileY;	// 타일 세로 개수
+
 public:
 	void SetName(const wstring& _strName) { m_strName = _strName; }
 	const wstring& GetName() { return m_strName; }
+
+	UINT GetTileX() { return m_iTileX; };
+	UINT GetTileY() { return m_iTileY; };
 
 	virtual void update();
 	virtual void finalupdate();		// 마무리 작업 업데이트.
@@ -26,6 +32,8 @@ public:
 	virtual void Exit() = 0;	// 탈출
 
 public:
+	
+
 	// 클래스 함수 헤더에 구현하면 자동으로 inline 처리. 함수 호출 비용 x 해당 스택에서 처리함.
 	void AddObject(CObject* _pObj, GROUP_TYPE _etype)
 	{
@@ -37,6 +45,8 @@ public:
 	const vector<CObject*>& GetGroupObject(GROUP_TYPE _etype) { return m_arrObj[(UINT)_etype]; }
 	void DeleteGroup(GROUP_TYPE _eTarget);
 	void DeleteAll();
+
+	void CreateTile(UINT _iXCount, UINT _iYCount);
 
 	const vector<CObject*> GetArrObj(GROUP_TYPE _etype) { return m_arrObj[(UINT)_etype]; }
 
