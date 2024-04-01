@@ -28,15 +28,3 @@
 
 #include "D:\cpp_Exercise\Project2\Project2\CMonster.cpp"
 
-
-#include "D:\cpp_Exercise\Project2\Project2\CObject.cpp"
-
-
-#include "D:\cpp_Exercise\Project2\Project2\CPathMgr.cpp"
-
-
-#include "D:\cpp_Exercise\Project2\Project2\CPlayer.cpp"
-
-
-#include "D:\cpp_Exercise\Project2\Project2\CRes.cpp"
-

@@ -7,16 +7,52 @@
       "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CSceneMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CSceneMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CScene_Tool.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CScene_Tool.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CUIMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CUIMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CCore.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CCore.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CUIMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CUIMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\define.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\define.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CPanelUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CPanelUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CPanelUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CPanelUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CSceneMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CSceneMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\func.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\func.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -39,16 +75,8 @@
       "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CAnimation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\define.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\define.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CTile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CTile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -75,10 +103,6 @@
       "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\struct.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CCollider.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CCollider.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -101,10 +125,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\global.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\global.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\func.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\func.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\func.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -145,10 +165,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CCollisionMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CCollisionMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CCore.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|solutionrelative:Project2\\CCore.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B5C8476-66D0-4ADD-9C7D-7CF38C95DCA0}|Project2\\Project2.vcxproj|D:\\cpp_Exercise\\Project2\\Project2\\CSound.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -241,15 +257,43 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "CUI.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CUI.h",
               "RelativeDocumentMoniker": "Project2\\CUI.h",
               "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CUI.h",
               "RelativeToolTip": "Project2\\CUI.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAkAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-04-01T12:05:52.955Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CUIMgr.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CUIMgr.h",
+              "RelativeDocumentMoniker": "Project2\\CUIMgr.h",
+              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CUIMgr.h",
+              "RelativeToolTip": "Project2\\CUIMgr.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-01T13:04:10.501Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CPanelUI.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CPanelUI.h",
+              "RelativeDocumentMoniker": "Project2\\CPanelUI.h",
+              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CPanelUI.h",
+              "RelativeToolTip": "Project2\\CPanelUI.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-01T13:14:57.187Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -259,45 +303,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "CSceneMgr.h",
-              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CSceneMgr.h",
-              "RelativeDocumentMoniker": "Project2\\CSceneMgr.h",
-              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CSceneMgr.h",
-              "RelativeToolTip": "Project2\\CSceneMgr.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-15T19:02:01.958Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "define.h",
-              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\define.h",
-              "RelativeDocumentMoniker": "Project2\\define.h",
-              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\define.h",
-              "RelativeToolTip": "Project2\\define.h",
-              "ViewState": "AQIAACUAAAAAAAAAAAAqwDAAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-15T19:41:07.99Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "CScene.h",
-              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CScene.h",
-              "RelativeDocumentMoniker": "Project2\\CScene.h",
-              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CScene.h",
-              "RelativeToolTip": "Project2\\CScene.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-29T05:10:57.176Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 24,
               "Title": "struct.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\struct.h",
               "RelativeDocumentMoniker": "Project2\\struct.h",
@@ -309,7 +315,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 13,
               "Title": "CObject.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CObject.h",
               "RelativeDocumentMoniker": "Project2\\CObject.h",
@@ -317,12 +323,11 @@
               "RelativeToolTip": "Project2\\CObject.h",
               "ViewState": "AQIAADwAAAAAAAAAAAAiwE0AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-13T05:25:40.44Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-13T05:25:40.44Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 16,
               "Title": "CAnimator.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CAnimator.h",
               "RelativeDocumentMoniker": "Project2\\CAnimator.h",
@@ -330,12 +335,60 @@
               "RelativeToolTip": "Project2\\CAnimator.h",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAABYAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-21T17:06:51.796Z",
+              "WhenOpened": "2024-03-21T17:06:51.796Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "define.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\define.h",
+              "RelativeDocumentMoniker": "Project2\\define.h",
+              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\define.h",
+              "RelativeToolTip": "Project2\\define.h",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAqwB0AAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-15T19:41:07.99Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
+              "Title": "CScene.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CScene.h",
+              "RelativeDocumentMoniker": "Project2\\CScene.h",
+              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CScene.h",
+              "RelativeToolTip": "Project2\\CScene.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-29T05:10:57.176Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "func.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\func.h",
+              "RelativeDocumentMoniker": "Project2\\func.h",
+              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\func.h",
+              "RelativeToolTip": "Project2\\func.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-19T06:45:48.549Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "CSceneMgr.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CSceneMgr.h",
+              "RelativeDocumentMoniker": "Project2\\CSceneMgr.h",
+              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CSceneMgr.h",
+              "RelativeToolTip": "Project2\\CSceneMgr.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-15T19:02:01.958Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
               "Title": "CScene_Tool.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CScene_Tool.h",
               "RelativeDocumentMoniker": "Project2\\CScene_Tool.h",
@@ -347,7 +400,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 18,
               "Title": "CTile.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CTile.h",
               "RelativeDocumentMoniker": "Project2\\CTile.h",
@@ -355,12 +408,11 @@
               "RelativeToolTip": "Project2\\CTile.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-29T05:05:50.73Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-29T05:05:50.73Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 23,
               "Title": "CKeyMgr.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CKeyMgr.h",
               "RelativeDocumentMoniker": "Project2\\CKeyMgr.h",
@@ -372,7 +424,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 26,
               "Title": "CAnimation.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CAnimation.h",
               "RelativeDocumentMoniker": "Project2\\CAnimation.h",
@@ -384,7 +436,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 27,
               "Title": "CCollider.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CCollider.h",
               "RelativeDocumentMoniker": "Project2\\CCollider.h",
@@ -396,7 +448,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 30,
               "Title": "global.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\global.h",
               "RelativeDocumentMoniker": "Project2\\global.h",
@@ -408,7 +460,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 49,
               "Title": "CCamera.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CCamera.h",
               "RelativeDocumentMoniker": "Project2\\CCamera.h",
@@ -420,19 +472,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "func.h",
-              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\func.h",
-              "RelativeDocumentMoniker": "Project2\\func.h",
-              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\func.h",
-              "RelativeToolTip": "Project2\\func.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-19T06:45:48.549Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 45,
               "Title": "CTexture.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CTexture.h",
               "RelativeDocumentMoniker": "Project2\\CTexture.h",
@@ -444,7 +484,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 46,
               "Title": "CRes.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CRes.h",
               "RelativeDocumentMoniker": "Project2\\CRes.h",
@@ -456,7 +496,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 47,
               "Title": "CResMgr.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CResMgr.h",
               "RelativeDocumentMoniker": "Project2\\CResMgr.h",
@@ -468,7 +508,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 48,
               "Title": "CPlayer.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CPlayer.h",
               "RelativeDocumentMoniker": "Project2\\CPlayer.h",
@@ -480,7 +520,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 52,
               "Title": "CScene_Start.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CScene_Start.h",
               "RelativeDocumentMoniker": "Project2\\CScene_Start.h",
@@ -492,7 +532,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 50,
               "Title": "CMissile.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CMissile.h",
               "RelativeDocumentMoniker": "Project2\\CMissile.h",
@@ -504,7 +544,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 51,
               "Title": "CMonster.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CMonster.h",
               "RelativeDocumentMoniker": "Project2\\CMonster.h",
@@ -516,7 +556,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 54,
               "Title": "CEventMgr.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CEventMgr.h",
               "RelativeDocumentMoniker": "Project2\\CEventMgr.h",
@@ -528,7 +568,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 58,
               "Title": "CCore.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CCore.h",
               "RelativeDocumentMoniker": "Project2\\CCore.h",
@@ -540,7 +580,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 57,
               "Title": "SelectGDI.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\SelectGDI.h",
               "RelativeDocumentMoniker": "Project2\\SelectGDI.h",
@@ -552,7 +592,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 53,
               "Title": "CTimeMgr.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CTimeMgr.h",
               "RelativeDocumentMoniker": "Project2\\CTimeMgr.h",
@@ -564,7 +604,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 56,
               "Title": "CCollisionMgr.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CCollisionMgr.h",
               "RelativeDocumentMoniker": "Project2\\CCollisionMgr.h",
@@ -576,7 +616,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 55,
               "Title": "CPathMgr.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CPathMgr.h",
               "RelativeDocumentMoniker": "Project2\\CPathMgr.h",
@@ -588,7 +628,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 59,
               "Title": "CSound.h",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CSound.h",
               "RelativeDocumentMoniker": "Project2\\CSound.h",
@@ -602,48 +642,21 @@
         },
         {
           "DockedWidth": 223,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "CScene_Tool.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CScene_Tool.cpp",
               "RelativeDocumentMoniker": "Project2\\CScene_Tool.cpp",
               "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CScene_Tool.cpp",
               "RelativeToolTip": "Project2\\CScene_Tool.cpp",
-              "ViewState": "AQIAAA8AAAAAAAAAAAASwB4AAAAJAAAA",
+              "ViewState": "AQIAAF0AAAAAAAAAAAAAACQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-03-20T15:33:37.494Z",
               "IsPinned": true,
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CSceneMgr.cpp",
-              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CSceneMgr.cpp",
-              "RelativeDocumentMoniker": "Project2\\CSceneMgr.cpp",
-              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CSceneMgr.cpp",
-              "RelativeToolTip": "Project2\\CSceneMgr.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-15T19:02:02.694Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "CTile.cpp",
-              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CTile.cpp",
-              "RelativeDocumentMoniker": "Project2\\CTile.cpp",
-              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CTile.cpp",
-              "RelativeToolTip": "Project2\\CTile.cpp",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAsAAAAPAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-29T05:06:15.053Z",
-              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -653,7 +666,7 @@
               "RelativeDocumentMoniker": "Project2\\CUI.cpp",
               "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CUI.cpp*",
               "RelativeToolTip": "Project2\\CUI.cpp*",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAAACYAAAAXAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-04-01T12:06:03.325Z",
               "IsPinned": true,
@@ -661,7 +674,61 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CUIMgr.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CUIMgr.cpp",
+              "RelativeDocumentMoniker": "Project2\\CUIMgr.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CUIMgr.cpp",
+              "RelativeToolTip": "Project2\\CUIMgr.cpp",
+              "ViewState": "AQIAACIAAAAAAAAAAAAiwC0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-01T13:04:12.849Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CPanelUI.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CPanelUI.cpp",
+              "RelativeDocumentMoniker": "Project2\\CPanelUI.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CPanelUI.cpp",
+              "RelativeToolTip": "Project2\\CPanelUI.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-01T13:15:10.024Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "CScene.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CScene.cpp",
+              "RelativeDocumentMoniker": "Project2\\CScene.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CScene.cpp",
+              "RelativeToolTip": "Project2\\CScene.cpp",
+              "ViewState": "AQIAACcAAAAAAAAAAAAQwDUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-15T19:04:58.083Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CCore.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CCore.cpp",
+              "RelativeDocumentMoniker": "Project2\\CCore.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CCore.cpp",
+              "RelativeToolTip": "Project2\\CCore.cpp",
+              "ViewState": "AQIAAF0AAAAAAAAAAAApwHIAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-15T19:40:15.667Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "CAnimator.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CAnimator.cpp",
               "RelativeDocumentMoniker": "Project2\\CAnimator.cpp",
@@ -669,12 +736,48 @@
               "RelativeToolTip": "Project2\\CAnimator.cpp",
               "ViewState": "AQIAAC0AAAAAAAAAAAAqwDgAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-21T17:07:07.266Z",
+              "WhenOpened": "2024-03-21T17:07:07.266Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "CTile.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CTile.cpp",
+              "RelativeDocumentMoniker": "Project2\\CTile.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CTile.cpp",
+              "RelativeToolTip": "Project2\\CTile.cpp",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAsAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-29T05:06:15.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "main.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\main.cpp",
+              "RelativeDocumentMoniker": "Project2\\main.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\main.cpp",
+              "RelativeToolTip": "Project2\\main.cpp",
+              "ViewState": "AQIAAFoAAAAAAAAAAAAAABcAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-12T05:45:32.124Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
+              "Title": "CSceneMgr.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CSceneMgr.cpp",
+              "RelativeDocumentMoniker": "Project2\\CSceneMgr.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CSceneMgr.cpp",
+              "RelativeToolTip": "Project2\\CSceneMgr.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-15T19:02:02.694Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "CObject.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CObject.cpp",
               "RelativeDocumentMoniker": "Project2\\CObject.cpp",
@@ -682,12 +785,11 @@
               "RelativeToolTip": "Project2\\CObject.cpp",
               "ViewState": "AQIAADkAAAAAAAAAAAAqwE0AAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-13T05:25:41.012Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-13T05:25:41.012Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 17,
               "Title": "CAnimation.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CAnimation.cpp",
               "RelativeDocumentMoniker": "Project2\\CAnimation.cpp",
@@ -695,12 +797,11 @@
               "RelativeToolTip": "Project2\\CAnimation.cpp",
               "ViewState": "AQIAABIAAAAAAAAAAAAqwFIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-21T17:09:43.97Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-21T17:09:43.97Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 60,
               "Title": "vector",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\vector",
               "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\vector",
@@ -710,32 +811,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "CScene.cpp",
-              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CScene.cpp",
-              "RelativeDocumentMoniker": "Project2\\CScene.cpp",
-              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CScene.cpp",
-              "RelativeToolTip": "Project2\\CScene.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGcAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-15T19:04:58.083Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "main.cpp",
-              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\main.cpp",
-              "RelativeDocumentMoniker": "Project2\\main.cpp",
-              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\main.cpp",
-              "RelativeToolTip": "Project2\\main.cpp",
-              "ViewState": "AQIAANQAAAAAAAAAAAAAABcAAAA+AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-12T05:45:32.124Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 25,
               "Title": "CCollider.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CCollider.cpp",
               "RelativeDocumentMoniker": "Project2\\CCollider.cpp",
@@ -747,7 +823,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 29,
               "Title": "CCamera.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CCamera.cpp",
               "RelativeDocumentMoniker": "Project2\\CCamera.cpp",
@@ -759,7 +835,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 28,
               "Title": "CScene_Start.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CScene_Start.cpp",
               "RelativeDocumentMoniker": "Project2\\CScene_Start.cpp",
@@ -771,7 +847,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 31,
               "Title": "func.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\func.cpp",
               "RelativeDocumentMoniker": "Project2\\func.cpp",
@@ -783,7 +859,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 32,
               "Title": "CPlayer.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CPlayer.cpp",
               "RelativeDocumentMoniker": "Project2\\CPlayer.cpp",
@@ -795,7 +871,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 33,
               "Title": "CMonster.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CMonster.cpp",
               "RelativeDocumentMoniker": "Project2\\CMonster.cpp",
@@ -807,7 +883,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 34,
               "Title": "CMissile.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CMissile.cpp",
               "RelativeDocumentMoniker": "Project2\\CMissile.cpp",
@@ -819,7 +895,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 35,
               "Title": "CTimeMgr.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CTimeMgr.cpp",
               "RelativeDocumentMoniker": "Project2\\CTimeMgr.cpp",
@@ -831,7 +907,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 36,
               "Title": "CResMgr.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CResMgr.cpp",
               "RelativeDocumentMoniker": "Project2\\CResMgr.cpp",
@@ -843,7 +919,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 37,
               "Title": "CPathMgr.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CPathMgr.cpp",
               "RelativeDocumentMoniker": "Project2\\CPathMgr.cpp",
@@ -855,7 +931,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 38,
               "Title": "CKeyMgr.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CKeyMgr.cpp",
               "RelativeDocumentMoniker": "Project2\\CKeyMgr.cpp",
@@ -867,7 +943,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 39,
               "Title": "CEventMgr.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CEventMgr.cpp",
               "RelativeDocumentMoniker": "Project2\\CEventMgr.cpp",
@@ -879,7 +955,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 40,
               "Title": "CCollisionMgr.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CCollisionMgr.cpp",
               "RelativeDocumentMoniker": "Project2\\CCollisionMgr.cpp",
@@ -891,19 +967,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "CCore.cpp",
-              "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CCore.cpp",
-              "RelativeDocumentMoniker": "Project2\\CCore.cpp",
-              "ToolTip": "D:\\cpp_Exercise\\Project2\\Project2\\CCore.cpp",
-              "RelativeToolTip": "Project2\\CCore.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-15T19:40:15.667Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 41,
               "Title": "CSound.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CSound.cpp",
               "RelativeDocumentMoniker": "Project2\\CSound.cpp",
@@ -915,7 +979,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 42,
               "Title": "SelectGDI.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\SelectGDI.cpp",
               "RelativeDocumentMoniker": "Project2\\SelectGDI.cpp",
@@ -927,7 +991,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 43,
               "Title": "CRes.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CRes.cpp",
               "RelativeDocumentMoniker": "Project2\\CRes.cpp",
@@ -939,7 +1003,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 44,
               "Title": "CTexture.cpp",
               "DocumentMoniker": "D:\\cpp_Exercise\\Project2\\Project2\\CTexture.cpp",
               "RelativeDocumentMoniker": "Project2\\CTexture.cpp",

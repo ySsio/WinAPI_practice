@@ -1,12 +1,19 @@
+#include "global.h"
 #include "CUI.h"
+#include "CKeyMgr.h"
+#include "CCamera.h"
 
-CUI::CUI()
+CUI::CUI(bool _bCamAff)
 	: m_pParentUI(nullptr)
+	, m_bCamAffected(_bCamAff)
+	, m_bMouseOn(false)
+	, m_bLbtnDown(false)
 {
 }
 
 CUI::~CUI()
 {
+	Safe_Delete_Vec(m_vecChildUI);
 }
 
 void CUI::update()
@@ -19,13 +26,18 @@ void CUI::finalupdate()
 {
 	CObject::finalupdate();	// 부모의 final update (콜라이더, 애니메이터)
 
-	m_vFinalPos = GetPos();
+	m_vFinalPos = GetPos();	// position을 부모에 대한 offsetpos로 사용할 예정
 
 	if (m_pParentUI)
 	{
 		Vec2 vParentPos = m_pParentUI->GetFinalPos();
 		m_vFinalPos += vParentPos;
 	}
+
+	// UI Mouse 체크
+	MouseOnCheck();
+
+	
 
 	finalupdate_child();
 }
@@ -34,6 +46,9 @@ void CUI::render(HDC _dc)
 {
 	Vec2 vPos = GetFinalPos();
 	Vec2 vScale = GetScale();
+
+	if (m_bCamAffected)
+		vPos = CCamera::GetInst()->GetRenderPos(vPos);
 
 	// UI는 카메라 좌표에 영향을 받지 않는다. ? 다 그런건 아니다.
 	// -> 자식 클래스로 분류해서 구현 예정
@@ -69,4 +84,41 @@ void CUI::render_child(HDC _dc)
 	{
 		child->render(_dc);
 	}
+}
+
+void CUI::MouseOnCheck()
+{
+	Vec2 vMousePos = MOUSE_POS;
+	Vec2 vScale = GetScale();
+
+	if (m_bCamAffected)
+	{
+		vMousePos = CCamera::GetInst()->GetRealPos(vMousePos);
+	}
+
+	if (m_vFinalPos.x <= vMousePos.x && vMousePos.x <= m_vFinalPos.x + vScale.x
+		&& m_vFinalPos.y <= vMousePos.y && vMousePos.y <= m_vFinalPos.y + vScale.y)
+	{
+		m_bMouseOn = true;
+	}
+	else
+	{
+		m_bMouseOn = false;
+	}
+}
+
+void CUI::MouseOn()
+{
+}
+
+void CUI::MouseLbtnDown()
+{
+}
+
+void CUI::MouseLbtnUp()
+{
+}
+
+void CUI::MouseLbtnClicked()
+{
 }
