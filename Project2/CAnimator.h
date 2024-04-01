@@ -20,6 +20,7 @@ public:
 	CObject* GetObj() { return m_pOwner; }
 
 	void update();
+	void finalupdate();
 	void render(HDC _dc);
 
 public:

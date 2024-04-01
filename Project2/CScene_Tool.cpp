@@ -7,6 +7,7 @@
 #include "CCore.h"
 #include "CResMgr.h"
 #include "CCamera.h"
+#include "CUI.h"
 
 CScene_Tool::CScene_Tool()
 {
@@ -23,6 +24,23 @@ void CScene_Tool::Enter()
 	CreateTile(5,5);
 
 	Vec2 vResolution = CCore::GetInst()->GetResolution();	// 복사생성자
+
+
+	CUI* pUI = new CUI;
+	pUI->SetScale(Vec2(500.f,300.f));
+	pUI->SetPos(Vec2(vResolution.x - pUI->GetScale().x,0.f));
+	
+
+
+	CUI* pChildUI = new CUI;
+	pChildUI->SetScale(Vec2(100.f, 40.f));
+	pChildUI->SetPos(Vec2(0.f, 0.f));
+
+	// 씬에서는 최상위 부모 UI만 알고 있음..?? 나중에 메모리 해제는 어케 하려고
+	pUI->AddChild(pChildUI);
+
+	AddObject(pUI, GROUP_TYPE::UI);
+	
 	// Camera Look 지정
 	CCamera::GetInst()->SetLookAt(vResolution / 2.f);	// 해상도 절반 위치를 카메라 중앙으로 설정
 	
@@ -51,11 +69,18 @@ void CScene_Tool::SetTileIdx()
 		Vec2 vMousePos = MOUSE_POS;
 		vMousePos = CCamera::GetInst()->GetRealPos(vMousePos);
 
-		UINT iTileX = GetTileX();
-		UINT iTileY = GetTileY();
+		int iTileX = (int)GetTileX();
+		int iTileY = (int)GetTileY();
 
-		UINT iCol = (UINT)vMousePos.x / TILE_SIZE;
-		UINT iRow = (UINT)vMousePos.y / TILE_SIZE;
+		int iCol = (int)vMousePos.x / TILE_SIZE;
+		int iRow = (int)vMousePos.y / TILE_SIZE;
+
+		if (vMousePos.x < 0 || iCol >= iTileX 
+			|| vMousePos.y < 0 || iRow >= iTileY)
+		{
+			return;
+		}
+
 
 		UINT iIdx = iCol + iRow * iTileX;
 

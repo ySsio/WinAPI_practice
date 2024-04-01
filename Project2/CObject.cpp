@@ -74,6 +74,9 @@ void CObject::finalupdate()
 {
 	if (m_pCollider)
 		m_pCollider->finalupdate();
+
+	if (m_pAnimator)
+		m_pAnimator->finalupdate();
 }
 
 void CObject::render(HDC _dc)
