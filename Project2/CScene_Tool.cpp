@@ -31,12 +31,12 @@ void CScene_Tool::Enter()
 	pUI->SetScale(Vec2(500.f,300.f));
 	pUI->SetPos(Vec2(vResolution.x - pUI->GetScale().x,0.f));
 
-	//CUI* pChildUI = new CUI(true);
-	//pChildUI->SetScale(Vec2(100.f, 40.f));
-	//pChildUI->SetPos(Vec2(0.f, 0.f));
+	CUI* pChildUI = new CUI(true);
+	pChildUI->SetScale(Vec2(100.f, 40.f));
+	pChildUI->SetPos(Vec2(0.f, 0.f));
 
-	//// 씬에서는 최상위 부모 UI만 알고 있음..?? 나중에 메모리 해제는 어케 하려고
-	//pUI->AddChild(pChildUI);
+	// 씬에서는 최상위 부모 UI만 알고 있음..?? 나중에 메모리 해제는 어케 하려고
+	pUI->AddChild(pChildUI);
 
 	AddObject(pUI, GROUP_TYPE::UI);
 	

@@ -15,6 +15,7 @@ private:
 
 public :
     Vec2 GetFinalPos() { return m_vFinalPos; }
+    const vector<CUI*>& GetUIChild() { return m_vecChildUI; }
     CUI* GetParent() { return m_pParentUI; }
     bool IsMouseOn() { return m_bMouseOn; }
 
