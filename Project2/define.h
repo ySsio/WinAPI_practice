@@ -65,6 +65,8 @@ enum class SCENE_TYPE
 enum class BRUSH_TYPE
 {
 	HOLLOW,
+	BLACK,
+	WHITE,
 	END,
 };
 

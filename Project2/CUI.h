@@ -13,6 +13,7 @@ private:
     bool                m_bMouseOn;         // UI 위에 마우스가 있는 지(hover)
     bool                m_bLbtnDown;        // UI에 왼쪽 버튼 down 된 적 있는지
 
+
 public :
     Vec2 GetFinalPos() { return m_vFinalPos; }
     const vector<CUI*>& GetUIChild() { return m_vecChildUI; }

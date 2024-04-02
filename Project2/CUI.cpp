@@ -2,6 +2,8 @@
 #include "CUI.h"
 #include "CKeyMgr.h"
 #include "CCamera.h"
+#include "SelectGDI.h"
+#include "CCore.h"
 
 CUI::CUI(bool _bCamAff)
 	: m_pParentUI(nullptr)
@@ -50,6 +52,18 @@ void CUI::render(HDC _dc)
 	if (m_bCamAffected)
 		vPos = CCamera::GetInst()->GetRenderPos(vPos);
 
+	HPEN hPen = CCore::GetInst()->GetPen(PEN_TYPE::BLUE);
+	HBRUSH hBrush = CCore::GetInst()->GetBrush(BRUSH_TYPE::WHITE);
+
+	if (m_bLbtnDown)
+	{
+		hPen = CCore::GetInst()->GetPen(PEN_TYPE::RED);
+		hBrush = CCore::GetInst()->GetBrush(BRUSH_TYPE::BLACK);
+	}
+
+	HPEN m_hDefaultPen = (HPEN)SelectObject(_dc, hPen);
+	HBRUSH m_hDefaultBrush = (HBRUSH)SelectObject(_dc, hBrush);
+
 	// UI는 카메라 좌표에 영향을 받지 않는다. ? 다 그런건 아니다.
 	// -> 자식 클래스로 분류해서 구현 예정
 	Rectangle(_dc
@@ -57,6 +71,11 @@ void CUI::render(HDC _dc)
 		, int(vPos.y)
 		, int(vPos.x + vScale.x)
 		, int(vPos.y + vScale.y));
+
+
+	
+	SelectObject(_dc, m_hDefaultPen);
+	SelectObject(_dc, m_hDefaultBrush);
 
 	// ui child render
 	render_child(_dc);
@@ -109,6 +128,7 @@ void CUI::MouseOnCheck()
 
 void CUI::MouseOn()
 {
+	
 }
 
 void CUI::MouseLbtnDown()

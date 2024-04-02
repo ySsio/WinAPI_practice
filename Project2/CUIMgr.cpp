@@ -63,71 +63,85 @@ CUI* CUIMgr::GetTargetedUI(CUI* _pParentUI)
 {
 	CUI* pTargetUI = nullptr;
 
-	// level 순회 (BFS)
-	// 계속 targetUI를 갱신하다가 가장 마지막으로 나온 targetUI를 리턴
-	// 계층 상 가장 하위층의 UI를 리턴해야 하므로..
-	
-	list<CUI*> queue;
-	bool bState = false;	// 반복문 돌면서 좌클릭 떨어졌으면 bLbtnDown을 모두 false로 만들어주는데
-							// pTargetUI는 돌아가서 Click 처리를 해줘야 하기 때문에 얘의 상태를 저장해놨다가
-							// 나중에 돌려줌.
+	//// level 순회 (BFS)
+	//// 계속 targetUI를 갱신하다가 가장 마지막으로 나온 targetUI를 리턴
+	//// 계층 상 가장 하위층의 UI를 리턴해야 하므로..
+	//
+	//list<CUI*> queue;
+	//bool bState = false;	// 반복문 돌면서 좌클릭 떨어졌으면 bLbtnDown을 모두 false로 만들어주는데
+	//						// pTargetUI는 돌아가서 Click 처리를 해줘야 하기 때문에 얘의 상태를 저장해놨다가
+	//						// 나중에 돌려줌.
 
-	queue.push_back(_pParentUI);
+	//queue.push_back(_pParentUI);
 
-	while (!queue.empty())
+	//while (!queue.empty())
+	//{
+	//	CUI* pUI = queue.front();
+	//	queue.pop_front();
+
+	//	// queue에서 꺼낸 UI가 targetUI인지 확인.
+	//	if (pUI->IsMouseOn())
+	//	{
+	//		pTargetUI = pUI;
+	//		bState = pUI->m_bLbtnDown;
+	//	}
+
+	//	// Lbtn Up 체크
+	//	if (KEY_AWAY(KEY::LBTN))
+	//	{
+	//		pUI->m_bLbtnDown = false;
+	//	}
+
+	//	const vector<CUI*>& vecChild = pUI->GetUIChild();
+
+	//	for (auto child : pUI->GetUIChild())
+	//	{
+	//		queue.push_back(child);
+	//	}
+
+	//}
+
+
+	//if (KEY_AWAY(KEY::LBTN) && pTargetUI)
+	//	pTargetUI->m_bLbtnDown = bState;
+
+	//return pTargetUI;
+
+
+
+	// 재귀 구현 (내가 함)
+	vector<CUI*> myChild = _pParentUI->GetUIChild();
+
+	if (myChild.size() == 0)
 	{
-		CUI* pUI = queue.front();
-		queue.pop_front();
-
-		// queue에서 꺼낸 UI가 targetUI인지 확인.
-		if (pUI->IsMouseOn())
+		if (_pParentUI->IsMouseOn())
 		{
-			pTargetUI = pUI;
-			bState = pUI->m_bLbtnDown;
+			return _pParentUI;
 		}
 
-		// Lbtn Up 체크
 		if (KEY_AWAY(KEY::LBTN))
 		{
-			pUI->m_bLbtnDown = false;
+			_pParentUI->m_bLbtnDown = false;
 		}
+		return nullptr;
+	}
+		
+	for (auto child : myChild)
+	{
+		CUI* targetUI = GetTargetedUI(child);
 
-		const vector<CUI*>& vecChild = pUI->GetUIChild();
-
-		for (auto child : pUI->GetUIChild())
+		if (targetUI)
 		{
-			queue.push_back(child);
+			pTargetUI = targetUI;
 		}
 
+		if (KEY_AWAY(KEY::LBTN))
+		{
+			_pParentUI->m_bLbtnDown = false;
+		}
 	}
 
-	if (KEY_AWAY(KEY::LBTN) && pTargetUI)
-		pTargetUI->m_bLbtnDown = bState;
+	if (pTargetUI) return pTargetUI;
 
-	return pTargetUI;
-
-
-
-
-
-	//// 재귀 구현 (내가 함)
-	//vector<CUI*> myChild = _pParentUI->GetUIChild();
-
-	//if (myChild.size() == 0)
-	//{
-	//	_pParentUI->MouseOnCheck();
-	//	return _pParentUI->IsMouseOn() ? _pParentUI : nullptr;
-	//}
-	//	
-	//for (auto child : myChild)
-	//{
-	//	CUI* targetUI = GetTargetedUI(child);
-	//	if (targetUI)
-	//	{
-	//		return targetUI;
-	//	}
-	//}
-
-	//_pParentUI->MouseOnCheck();
-	//return _pParentUI->IsMouseOn() ? _pParentUI : nullptr;
+	return _pParentUI->IsMouseOn() ? _pParentUI : nullptr;
 }

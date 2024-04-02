@@ -141,6 +141,8 @@ void CCore::CreateBrushPen()
 {
 	// GetStockObject() 윈도우도 똑같은 생각 자주 사용하는 브러쉬 펜 등록되어 잇음. => 이거로 얻어오면 따로 지워줄 필요 x
 	m_arrBrush[(UINT)BRUSH_TYPE::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
+	m_arrBrush[(UINT)BRUSH_TYPE::BLACK] = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	m_arrBrush[(UINT)BRUSH_TYPE::WHITE] = (HBRUSH)GetStockObject(WHITE_BRUSH);
 
 
 	// PEN
