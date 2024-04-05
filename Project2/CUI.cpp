@@ -13,6 +13,19 @@ CUI::CUI(bool _bCamAff)
 {
 }
 
+CUI::CUI(const CUI& _origin)
+	: CObject(_origin)
+	, m_pParentUI(nullptr)
+	, m_bCamAffected(_origin.m_bCamAffected)
+	, m_bMouseOn(false)
+	, m_bLbtnDown(false)
+{
+	for (CUI* child : _origin.m_vecChildUI)
+	{
+		AddChild(child->Clone());
+	}
+}
+
 CUI::~CUI()
 {
 	Safe_Delete_Vec(m_vecChildUI);
@@ -28,7 +41,7 @@ void CUI::finalupdate()
 {
 	CObject::finalupdate();	// 부모의 final update (콜라이더, 애니메이터)
 
-	m_vFinalPos = GetPos();	// position을 부모에 대한 offsetpos로 사용할 예정
+ 	m_vFinalPos = GetPos();	// position을 부모에 대한 offsetpos로 사용할 예정
 
 	if (m_pParentUI)
 	{

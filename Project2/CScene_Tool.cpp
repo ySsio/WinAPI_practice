@@ -8,6 +8,8 @@
 #include "CResMgr.h"
 #include "CCamera.h"
 #include "CUI.h"
+#include "CPanelUI.h"
+#include "CBtnUI.h"
 
 
 CScene_Tool::CScene_Tool()
@@ -27,23 +29,25 @@ void CScene_Tool::Enter()
 
 	Vec2 vResolution = CCore::GetInst()->GetResolution();	// 복사생성자
 
-	CUI* pUI = new CUI(false);
-	pUI->SetScale(Vec2(500.f,300.f));
-	pUI->SetPos(Vec2(vResolution.x - pUI->GetScale().x,0.f));
+	CUI* pPanelUI = new CPanelUI;
+	pPanelUI->SetName(L"ParentUI");
+	pPanelUI->SetScale(Vec2(500.f,300.f));
+	pPanelUI->SetPos(Vec2(vResolution.x - pPanelUI->GetScale().x,0.f));
 
-	CUI* pChildUI = new CUI(false);
-	pChildUI->SetScale(Vec2(300.f, 80.f));
-	pChildUI->SetPos(Vec2(0.f, 0.f));
+	CUI* pBtnUI = new CBtnUI;
+	pBtnUI->SetScale(Vec2(100.f, 50.f));
+	pBtnUI->SetPos(Vec2(0.f, 0.f));
 
-	CUI* pChildChildUI = new CUI(false);
-	pChildChildUI->SetScale(Vec2(40.f, 40.f));
-	pChildChildUI->SetPos(Vec2(20.f, 20.f));
 
 	// 씬에서는 최상위 부모 UI만 알고 있음
-	pUI->AddChild(pChildUI);
-	pChildUI->AddChild(pChildChildUI);
+	pPanelUI->AddChild(pBtnUI);
 
-	AddObject(pUI, GROUP_TYPE::UI);
+	AddObject(pPanelUI, GROUP_TYPE::UI);
+
+	
+	CUI* pClonePanel = pPanelUI->Clone();
+	pClonePanel->SetPos(pClonePanel->GetPos() + Vec2(-250.f, 150.f));
+	AddObject(pClonePanel, GROUP_TYPE::UI);
 	
 	// Camera Look 지정
 	CCamera::GetInst()->SetLookAt(vResolution / 2.f);	// 해상도 절반 위치를 카메라 중앙으로 설정

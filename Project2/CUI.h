@@ -19,6 +19,7 @@ public :
     const vector<CUI*>& GetUIChild() { return m_vecChildUI; }
     CUI* GetParent() { return m_pParentUI; }
     bool IsMouseOn() { return m_bMouseOn; }
+    bool IsLbtnDown() { return m_bLbtnDown; }
 
     void AddChild(CUI* _pUI) { m_vecChildUI.push_back(_pUI); _pUI->m_pParentUI = this; }
 
@@ -27,14 +28,14 @@ public:
     void finalupdate() override;
     void render(HDC _dc) override;
 
+    virtual CUI* Clone() = 0;
+
 private:
     void update_child();
     void finalupdate_child();
     void render_child(HDC _dc);
 
     void MouseOnCheck();
-
-    CLONE(CUI);
 
 public:
     virtual void MouseOn();
@@ -45,6 +46,7 @@ public:
 
 public:
     CUI(bool _bCamAff); // 기본 생성자를 없앴으므로 자식 클래스 생성자에서 신경써줘야 함
+    CUI(const CUI& _origin);
     virtual ~CUI();
 
     friend class CUIMgr;
