@@ -38,18 +38,18 @@ public:
 	void AddObject(CObject* _pObj, GROUP_TYPE _etype)
 	{
 		m_arrObj[(UINT)_etype].push_back(_pObj);
-		return;
 	}
 	void SaveObject(CObject* _pObj, GROUP_TYPE _etype);
 	
 	const vector<CObject*>& GetGroupObject(GROUP_TYPE _etype) { return m_arrObj[(UINT)_etype]; }
 	void DeleteGroup(GROUP_TYPE _eTarget);
 	void DeleteAll();
-
 	void CreateTile(UINT _iXCount, UINT _iYCount);
 
-	const vector<CObject*> GetArrObj(GROUP_TYPE _etype) { return m_arrObj[(UINT)_etype]; }
+	vector<CObject*>& GetUIGroup() { return m_arrObj[(UINT)GROUP_TYPE::UI]; }
 
+	const vector<CObject*> GetArrObj(GROUP_TYPE _etype) { return m_arrObj[(UINT)_etype]; }
+	
 
 public:
 	CScene();

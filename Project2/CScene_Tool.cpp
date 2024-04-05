@@ -10,6 +10,7 @@
 #include "CUI.h"
 #include "CPanelUI.h"
 #include "CBtnUI.h"
+#include "CUIMgr.h"
 
 
 CScene_Tool::CScene_Tool()
@@ -48,6 +49,8 @@ void CScene_Tool::Enter()
 	CUI* pClonePanel = pPanelUI->Clone();
 	pClonePanel->SetPos(pClonePanel->GetPos() + Vec2(-250.f, 150.f));
 	AddObject(pClonePanel, GROUP_TYPE::UI);
+
+	m_pUI = pClonePanel;
 	
 	// Camera Look 지정
 	CCamera::GetInst()->SetLookAt(vResolution / 2.f);	// 해상도 절반 위치를 카메라 중앙으로 설정
@@ -66,7 +69,11 @@ void CScene_Tool::update()
 {
 	CScene::update();
 	SetTileIdx();
-	
+
+	if (KEY_TAP(KEY::LSHIFT))
+	{
+		CUIMgr::GetInst()->SetFocusedUI(m_pUI);
+	}
 	
 }
 
