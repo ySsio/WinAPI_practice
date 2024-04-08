@@ -3,6 +3,7 @@
 #include "CSceneMgr.h"
 #include "CTile.h"
 #include "CResMgr.h"
+#include "CPathMgr.h"
 
 CScene::CScene()
 	: m_iTileX(0)
@@ -103,6 +104,8 @@ void CScene::DeleteAll()
 
 void CScene::CreateTile(UINT _iXCount, UINT _iYCount)
 {
+	DeleteGroup(GROUP_TYPE::TILE);
+
 	m_iTileX = _iXCount;
 	m_iTileY = _iYCount;
 
@@ -119,4 +122,37 @@ void CScene::CreateTile(UINT _iXCount, UINT _iYCount)
 			AddObject(pTile, GROUP_TYPE::TILE);
 		}
 	}
+}
+
+void CScene::LoadTile(const wstring _strRelativePath)
+{
+	wstring strFilePath = CPathMgr::GetInst()->GetContentPath();
+	strFilePath += _strRelativePath;
+
+	FILE* pFile = nullptr;
+
+	_wfopen_s(&pFile, strFilePath.c_str(), L"rb");
+	// file open을 했는데도 여전히 nullptr -> 파일 열기 실패했다는 뜻.
+	assert(pFile);
+
+	UINT xCount = 0;
+	UINT yCount = 0;
+
+	fread(&xCount, sizeof(UINT), 1, pFile);
+	fread(&yCount, sizeof(UINT), 1, pFile);
+
+	// 불러온 개수에 맞게 EmptyTile 만들기.
+	CreateTile(xCount, yCount);
+
+	// 파일에 쓴 순서대로 데이터를 읽으면 됨!! 데이터 형식 상관없이 알맞게 읽을 수 있다.
+	const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
+
+	for (size_t i = 0; i < vecTile.size(); ++i)
+	{
+		((CTile*)vecTile[i])->Load(pFile);
+	}
+
+
+	// 파일 닫기 (file stream 종료?)
+	fclose(pFile);
 }

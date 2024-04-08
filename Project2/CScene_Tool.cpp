@@ -1,5 +1,6 @@
 #include "CScene_Tool.h"
 #include "CKeyMgr.h"
+#include "CPathMgr.h"
 
 #include "CCollisionMgr.h"
 #include "CSceneMgr.h"
@@ -52,13 +53,12 @@ void CScene_Tool::Enter()
 	AddObject(pPanelUI, GROUP_TYPE::UI);
 
 	
-	CUI* pClonePanel = pPanelUI->Clone();
-	pClonePanel->SetPos(pClonePanel->GetPos() + Vec2(-250.f, 150.f));
-	((CBtnUI*)(pClonePanel->GetUIChild()[0]))->SetClickedCallBack(ChangeScene);
+	//CUI* pClonePanel = pPanelUI->Clone();
+	//pClonePanel->SetPos(pClonePanel->GetPos() + Vec2(-250.f, 150.f));
+	//((CBtnUI*)(pClonePanel->GetUIChild()[0]))->SetClickedCallBack(ChangeScene);
+	//AddObject(pClonePanel, GROUP_TYPE::UI);
 
-	AddObject(pClonePanel, GROUP_TYPE::UI);
-
-	m_pUI = pClonePanel;
+	//m_pUI = pClonePanel;
 	
 	// Camera Look 지정
 	CCamera::GetInst()->SetLookAt(vResolution / 2.f);	// 해상도 절반 위치를 카메라 중앙으로 설정
@@ -79,7 +79,12 @@ void CScene_Tool::update()
 
 	if (KEY_TAP(KEY::LSHIFT))
 	{
-		CUIMgr::GetInst()->SetFocusedUI(m_pUI);
+		SaveTile(L"tile\\Test.tile");
+	}
+
+	if (KEY_TAP(KEY::CTRL))
+	{
+		LoadTile(L"tile\\Test.tile");
 	}
 	
 }
@@ -110,6 +115,49 @@ void CScene_Tool::SetTileIdx()
 		((CTile*)vecTile[iIdx])->AddImgIdx();
 	}
 	
+
+}
+
+void CScene_Tool::SaveTile(const wstring& _strRelativePath)
+{
+	wstring strFilePath = CPathMgr::GetInst()->GetContentPath();
+	strFilePath += _strRelativePath;
+
+	// C++ file open
+	FILE* pFile = nullptr;	// FILE 자료형 : 주소값 하나 들고 있음, 커널 오브젝트
+
+	// 이중 포인터 = 포인터 변수의 포인터. 포인터 변수 값에 접근하는 것?
+	// 파일 포인터 주소 , 파일 절대 경로, 모드 (w, r)
+	// 읽기모드의 파일이 존재하지 않으면 파일 열기 실패.
+	// 쓰기모드의 파일이 이미 존재하면 "덮어씀". 물론 이어쓰는 옵션도 존재.
+	// 쓰기 모드로 없는 파일을 열면 파일을 생성함!! 개꿀!
+	// binary라는 의미로 b를 붙여서 wb. 
+	// 만약 b를 안붙이면 기본적으로 "문자"데이터로 인식함.
+	// 예를 들어 3을 저장하면 ASCII 코드 상 3으로 인식하는 것.
+	// 사실상 아무런 상관이 없을 것 같지만, 문제는 ASCII 코드표 중, 27 = ESC
+	// 27 읽으면 종료라고 생각하고 파일이 닫힘.
+	
+	_wfopen_s(&pFile, strFilePath.c_str(), L"wb");  // 2byte open?? input : 이중 포인터 .. 포인터 주소 넘김
+	assert(pFile);
+
+	// 데이터 저장
+	UINT xCount = GetTileX();
+	UINT yCount = GetTileY();
+
+	fwrite(&xCount, sizeof(UINT), 1, pFile);	// void 포인터와 데이터 사이즈를 받아서 범용적으로 데이터 저장하는 함수
+	fwrite(&yCount, sizeof(UINT), 1, pFile);
+
+	// 모든 타일들을 개별적으로 저장함. 순서대로 쓰고, 나중에 읽을 때도 그 순서대로 읽으면 되는 듯.
+	const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
+
+	for (size_t i = 0; i < vecTile.size(); ++i)
+	{
+		((CTile*)vecTile[i])->Save(pFile);
+	}
+
+
+	// 파일 닫기 (file stream 종료?)
+	fclose(pFile);
 
 }
 

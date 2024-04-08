@@ -17,6 +17,11 @@ public:
 private:
     void update() override;
     void render(HDC _dc) override;
+
+public:
+    virtual void Save(FILE* _pFile);
+    virtual void Load(FILE* _pFile);
+
     CLONE(CTile);
 
 public:
@@ -24,4 +29,5 @@ public:
     ~CTile();
 
 };
+
 
