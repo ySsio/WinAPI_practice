@@ -40,7 +40,7 @@ void CScene_Start::Enter()
 	// 전 씬에서 살릴거 받아오기
 	CSceneMgr::GetInst()->LoadObject();
 	//CSceneMgr::GetInst()->ClearObject();
-
+	
 	// CObject 포인터로 CPlayer 객체 생성
 	
 	CObject* pObj = new CPlayer;

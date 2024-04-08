@@ -6,7 +6,7 @@ class CUIMgr
 {
 	SINGLETON(CUIMgr);
 
-private:
+public:
 	CUI*	m_pFocusedUI;	// 이벤트 받을 포커싱된 UI(하나)를 관리함.
 
 public:

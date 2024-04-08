@@ -4,6 +4,7 @@
 #include "CObject.h"
 #include "CSceneMgr.h"
 #include "CScene.h"
+#include "CUIMgr.h"
 
 CEventMgr::CEventMgr()
 	: m_vecEvent{}
@@ -81,6 +82,8 @@ void CEventMgr::Execute(const tEvent& _eve)
 	{
 		// lParam : Next Scene Type
 		CSceneMgr::GetInst()->ChangeScene((SCENE_TYPE)_eve.lParam);
+		// UIMgr가 들고 있는 focusedUI를 해제함. (UI가 삭제되었기 때문)
+		CUIMgr::GetInst()->SetFocusedUI(nullptr);
 	}
 		break;
 	}

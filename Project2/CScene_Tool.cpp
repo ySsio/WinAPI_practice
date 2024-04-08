@@ -14,12 +14,18 @@
 
 
 CScene_Tool::CScene_Tool()
+	: m_pUI(nullptr)
 {
 	
 }
 
 CScene_Tool::~CScene_Tool()
 {
+}
+
+void ChangeScene(DWORD_PTR, DWORD_PTR)
+{
+	ChangeScene(SCENE_TYPE::START);
 }
 
 
@@ -31,14 +37,14 @@ void CScene_Tool::Enter()
 	Vec2 vResolution = CCore::GetInst()->GetResolution();	// 복사생성자
 
 	CUI* pPanelUI = new CPanelUI;
-	pPanelUI->SetName(L"ParentUI");
+	pPanelUI->SetName(L"ParentUI111");
 	pPanelUI->SetScale(Vec2(500.f,300.f));
 	pPanelUI->SetPos(Vec2(vResolution.x - pPanelUI->GetScale().x,0.f));
 
-	CUI* pBtnUI = new CBtnUI;
+	CBtnUI* pBtnUI = new CBtnUI;
+	pBtnUI-> SetName(L"ChildUI111");
 	pBtnUI->SetScale(Vec2(100.f, 50.f));
 	pBtnUI->SetPos(Vec2(0.f, 0.f));
-
 
 	// 씬에서는 최상위 부모 UI만 알고 있음
 	pPanelUI->AddChild(pBtnUI);
@@ -48,6 +54,8 @@ void CScene_Tool::Enter()
 	
 	CUI* pClonePanel = pPanelUI->Clone();
 	pClonePanel->SetPos(pClonePanel->GetPos() + Vec2(-250.f, 150.f));
+	((CBtnUI*)(pClonePanel->GetUIChild()[0]))->SetClickedCallBack(ChangeScene);
+
 	AddObject(pClonePanel, GROUP_TYPE::UI);
 
 	m_pUI = pClonePanel;
@@ -60,7 +68,6 @@ void CScene_Tool::Enter()
 void CScene_Tool::Exit()
 {
 	DeleteAll();
-
 	// 이번 씬에서 지정해뒀던 충돌 그룹을 모두 해제함.
 	CCollisionMgr::GetInst()->Reset();
 }
@@ -105,6 +112,8 @@ void CScene_Tool::SetTileIdx()
 	
 
 }
+
+
 
 #include "Resource.h"
 

@@ -25,11 +25,12 @@ void CUIMgr::update()
 	// 1. FocusedUI 확인 - 내가 이해하기로는 FocusedUI는 활성화된 부모 UI를 의미하고
 	// TargetUI는 FocusedUI 중에서도 실제로 타게팅된 UI를 뜻하는 듯.
 	// 예를 들면 내가 롤을 하면 롤 화면이 FocusedUI고 내가 상점을 열려고 하면 상점버튼이 TargetUI
+	
 	m_pFocusedUI = GetFocusedUI();
 
 	if (!m_pFocusedUI)
 		return;
-
+	
 	// focusedUI에서 실제 targetUI를 받음.
 	CUI* pTargetUI = GetTargetedUI(m_pFocusedUI);
 
@@ -37,7 +38,7 @@ void CUIMgr::update()
 		return;
 
 	// targetUI라는 거는 마우스가 올라와있는 거니까 MouseOn 이벤트를 실행
-	pTargetUI->MouseOn();
+ 	pTargetUI->MouseOn();
 
 	// 좌클릭이 눌린 경우 (down)
 	if (KEY_TAP(KEY::LBTN))
@@ -64,14 +65,13 @@ void CUIMgr::update()
 
 void CUIMgr::SetFocusedUI(CUI* _pUI)
 {
+	m_pFocusedUI = _pUI;
+
 	// 이미 포커싱된 애를 또 요청하거나 nullptr을 요청한 경우 (= 전부 해제요청)
 	if (_pUI == m_pFocusedUI || _pUI == nullptr)
 	{
-		m_pFocusedUI = _pUI;
 		return;
 	}
-	
-	m_pFocusedUI = _pUI;
 
 	CScene* pCurScene = CSceneMgr::GetInst()->GetCurScene();
 	vector<CObject*>& vecUI = pCurScene->GetUIGroup();
@@ -94,7 +94,7 @@ CUI* CUIMgr::GetFocusedUI()
 {
 	CScene* pCurScene = CSceneMgr::GetInst()->GetCurScene();
 	vector<CObject*>& vecUI = pCurScene->GetUIGroup();
-
+	
 	CUI* pFocusedUI = m_pFocusedUI;
 
 	if (!(KEY_TAP(KEY::LBTN)))
@@ -164,7 +164,7 @@ CUI* CUIMgr::GetTargetedUI(CUI* _pParentUI)
 
 		const vector<CUI*>& vecChild = pUI->GetUIChild();
 
-		for (auto child : pUI->GetUIChild())
+		for (auto child : vecChild)
 		{
 			queue.push_back(child);
 		}

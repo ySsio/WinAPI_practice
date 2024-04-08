@@ -54,7 +54,7 @@ void CCamera::CalDiff()
 
 
 
-	if (vLookDir.x != 0 || vLookDir.y != 0)
+	if (!vLookDir.IsZero())
 	{
 		if (m_fAccTime > m_fTime)
 		{

@@ -87,6 +87,11 @@ public:
 	}
 	
 public:
+	bool IsZero()
+	{
+		return x == 0.f && y == 0.f;
+	}
+
 	float Length()
 	{
 		return (float)sqrt(x * x + y * y);
