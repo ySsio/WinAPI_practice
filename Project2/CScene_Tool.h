@@ -16,7 +16,10 @@ public:
 
 public:
 	void SetTileIdx();
-	void SaveTile(const wstring& _strRelativePath);
+	void SaveTileData();	// 파일 저장할 경로를 받음 (윈도우를 띄워서)
+	void SaveTile(const wstring& _strFilePath);
+	void LoadTileData();
+	
 	
 
 public:

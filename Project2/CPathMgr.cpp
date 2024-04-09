@@ -5,6 +5,7 @@
 
 CPathMgr::CPathMgr()
 	: m_szContentPath{}
+	, m_szRelativePath{}
 {
 }
 
@@ -39,4 +40,13 @@ void CPathMgr::init()
 	// \bin\content ∫Ÿ¿Ã±‚
 	wcscat_s(m_szContentPath, 255, L"\\bin\\content\\");
 
+}
+
+wstring CPathMgr::GetRelativePath(const wchar_t* _filepath)
+{
+	wstring strFilePath = _filepath;
+
+	wstring strRelativePath = strFilePath.substr(wcslen(m_szContentPath));
+
+	return strRelativePath;
 }

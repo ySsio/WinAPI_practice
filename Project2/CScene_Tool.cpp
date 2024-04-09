@@ -79,12 +79,12 @@ void CScene_Tool::update()
 
 	if (KEY_TAP(KEY::LSHIFT))
 	{
-		SaveTile(L"tile\\Test.tile");
+		SaveTileData();
 	}
 
 	if (KEY_TAP(KEY::CTRL))
 	{
-		LoadTile(L"tile\\Test.tile");
+		LoadTileData();
 	}
 	
 }
@@ -118,11 +118,39 @@ void CScene_Tool::SetTileIdx()
 
 }
 
-void CScene_Tool::SaveTile(const wstring& _strRelativePath)
+void CScene_Tool::SaveTileData()
 {
-	wstring strFilePath = CPathMgr::GetInst()->GetContentPath();
-	strFilePath += _strRelativePath;
+	OPENFILENAME ofn = {};
 
+	wchar_t szName[256] = {};
+
+	ofn.lStructSize = sizeof(OPENFILENAME);
+	ofn.hwndOwner = CCore::GetInst()->GetMainHwnd();	// 이 윈도우를 띄울 부모 윈도우
+	ofn.lpstrFile = szName;		// 완성된 경로가 채워질 곳
+	ofn.nMaxFile = sizeof(szName);	// 2byte 문자열이므로 512byte
+	ofn.lpstrFilter = L"ALL\0*.*\0Tile\0*.tile";	// 필터가 목록으로 뜨고, 선택한 필터 확장자 파일만 보임. 필터이름\0필터형식(이름.확장자)
+	ofn.nFilterIndex = 0;	// 위에서 설정한 필터의 몇 번쨰를 사용할 건지 인덱스
+	ofn.lpstrFileTitle = nullptr;
+	ofn.nMaxFileTitle = 0;
+
+	wstring strTileFolder = CPathMgr::GetInst()->GetContentPath();
+	strTileFolder += L"tile";
+
+	ofn.lpstrInitialDir = strTileFolder.c_str();	// 초기 경로
+	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+	
+	// 세이브 윈도우(dialog, 모달 방식) 여는 함수
+	// 저장 눌렀으면 true, 취소 눌렀으면 false가 반환됨.
+	if (GetSaveFileNameW(&ofn))
+	{
+		SaveTile(szName);
+	}
+
+
+}
+
+void CScene_Tool::SaveTile(const wstring& _strFilePath)
+{
 	// C++ file open
 	FILE* pFile = nullptr;	// FILE 자료형 : 주소값 하나 들고 있음, 커널 오브젝트
 
@@ -137,7 +165,7 @@ void CScene_Tool::SaveTile(const wstring& _strRelativePath)
 	// 사실상 아무런 상관이 없을 것 같지만, 문제는 ASCII 코드표 중, 27 = ESC
 	// 27 읽으면 종료라고 생각하고 파일이 닫힘.
 	
-	_wfopen_s(&pFile, strFilePath.c_str(), L"wb");  // 2byte open?? input : 이중 포인터 .. 포인터 주소 넘김
+	_wfopen_s(&pFile, _strFilePath.c_str(), L"wb");  // 2byte open?? input : 이중 포인터 .. 포인터 주소 넘김
 	assert(pFile);
 
 	// 데이터 저장
@@ -159,6 +187,36 @@ void CScene_Tool::SaveTile(const wstring& _strRelativePath)
 	// 파일 닫기 (file stream 종료?)
 	fclose(pFile);
 
+}
+
+void CScene_Tool::LoadTileData()
+{
+	OPENFILENAME ofn = {};
+
+	wchar_t szName[256] = {};
+
+	ofn.lStructSize = sizeof(OPENFILENAME);
+	ofn.hwndOwner = CCore::GetInst()->GetMainHwnd();	// 이 윈도우를 띄울 부모 윈도우
+	ofn.lpstrFile = szName;		// 완성된 경로가 채워질 곳
+	ofn.nMaxFile = sizeof(szName);	// 2byte 문자열이므로 512byte
+	ofn.lpstrFilter = L"ALL\0*.*\0Tile\0*.tile";	// 필터가 목록으로 뜨고, 선택한 필터 확장자 파일만 보임. 필터이름\0필터형식(이름.확장자)
+	ofn.nFilterIndex = 0;	// 위에서 설정한 필터의 몇 번쨰를 사용할 건지 인덱스
+	ofn.lpstrFileTitle = nullptr;
+	ofn.nMaxFileTitle = 0;
+
+	wstring strTileFolder = CPathMgr::GetInst()->GetContentPath();
+	strTileFolder += L"tile";
+
+	ofn.lpstrInitialDir = strTileFolder.c_str();	// 초기 경로
+	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+
+	// 세이브 윈도우(dialog, 모달 방식) 여는 함수
+	// 저장 눌렀으면 true, 취소 눌렀으면 false가 반환됨.
+	if (GetOpenFileNameW(&ofn))
+	{
+		wstring strRelativePath = CPathMgr::GetInst()->GetRelativePath(szName);
+		LoadTile(strRelativePath);
+	}
 }
 
 

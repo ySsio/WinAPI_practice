@@ -4,6 +4,7 @@
 #include "CTile.h"
 #include "CResMgr.h"
 #include "CPathMgr.h"
+#include "CCore.h"
 
 CScene::CScene()
 	: m_iTileX(0)
@@ -123,6 +124,7 @@ void CScene::CreateTile(UINT _iXCount, UINT _iYCount)
 		}
 	}
 }
+
 
 void CScene::LoadTile(const wstring _strRelativePath)
 {
