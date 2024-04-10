@@ -22,14 +22,28 @@ CTexture* CResMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelati
 	if (pTex != nullptr)
 		return pTex;
 
-	pTex = new CTexture;
-
 	wstring strFilePath = CPathMgr::GetInst()->GetContentPath();
 	strFilePath += _strRelativePath;
 
+	pTex = new CTexture;
 	pTex->Load(strFilePath);
 	pTex->SetKey(_strKey);
 	pTex->SetRelativePath(_strRelativePath);
+
+	m_mapTex.insert(make_pair(_strKey, pTex));
+
+	return pTex;
+}
+
+CTexture* CResMgr::CreateTexture(const wstring& _strKey, UINT _iWidth, UINT _iHeight)
+{
+	CTexture* pTex = FindTexture(_strKey);
+	if (pTex != nullptr)
+		return pTex;
+
+	pTex = new CTexture;
+	pTex->Create(_iWidth, _iHeight);
+	pTex->SetKey(_strKey);
 
 	m_mapTex.insert(make_pair(_strKey, pTex));
 

@@ -65,6 +65,7 @@
 //
 //};
 
+class CTexture;
 
 // 구현 2.
 class CCore
@@ -76,10 +77,12 @@ private:
 	POINT	m_ptResolution; // 메인 윈도우 해상도
 	HDC		m_hDC;			// 메인 윈도우에 그릴 DC
 
-	// 이중 버퍼링 - 사본용 DC
-	HBITMAP m_hBit;
-	HDC		m_memDC;		// 사본 비트맵에 그릴 DC
 
+
+	// 이중 버퍼링 - 사본용 DC
+	//HBITMAP	m_hBit;
+	//HDC		m_memDC;		// 사본 비트맵에 그릴 DC
+	CTexture*	m_pMemTex;		// 백버퍼 텍스쳐
 
 	// 자주 사용하는 GDI Object (Graphic Device Interface object)
 	HBRUSH m_arrBrush[(UINT)BRUSH_TYPE::END];

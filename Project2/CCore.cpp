@@ -9,6 +9,8 @@
 #include "CEventMgr.h"
 #include "CCamera.h"
 #include "CUIMgr.h"
+#include "CTexture.h"
+#include "CResMgr.h"
 
 
 // 구현 1.
@@ -22,10 +24,9 @@ CCore::CCore()
 	: m_hWnd(0)
 	, m_ptResolution{}
 	, m_hDC(0)
-	, m_hBit(0)
-	, m_memDC(0)
 	, m_arrBrush{}
 	, m_arrPen{}
+	, m_pMemTex(nullptr)
 {
 
 }
@@ -36,8 +37,8 @@ CCore::~CCore()
 	ReleaseDC(m_hWnd, m_hDC);
 
 	// 사본 DC를 삭제. 메인 윈도우 DC와 다르게 DeleteDC를 사용해야 한대.
-	DeleteDC(m_memDC);
-	DeleteObject(m_hBit);
+	//DeleteDC(m_memDC);
+	//DeleteObject(m_hBit);
 
 	for (int i = 0; i < (UINT)PEN_TYPE::END; ++i)
 	{
@@ -69,14 +70,22 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 
 
 
-	// 이중 버퍼링 용도의 비트맵과 DC 생성
-	m_hBit = CreateCompatibleBitmap(m_hDC, m_ptResolution.x, m_ptResolution.y);
-	m_memDC = CreateCompatibleDC(m_hDC);
+	
 
+	// 이중 버퍼링 용도의 비트맵과 DC 생성
+	//m_hBit = CreateCompatibleBitmap(m_hDC, m_ptResolution.x, m_ptResolution.y);
+	//m_memDC = CreateCompatibleDC(m_hDC);
+		
 	// 이렇게 각각 만들어줘도 서로 연관 없음. DC를 Bitmap에 연결해줘야 함. => SelectObject() 
 	// => 원래 비트맵이 반환됨. DC 생성할 때 기본적으로 목적지가 필요하므로 1비트 짜리 bitmap이 등록되어 있음. 이걸 반환받아서 지워줌.
-	HBITMAP hOldBit = (HBITMAP)SelectObject(m_memDC, m_hBit);
-	DeleteObject(hOldBit);
+	//HBITMAP hOldBit = (HBITMAP)SelectObject(m_memDC, m_hBit);
+	//DeleteObject(hOldBit);
+
+	// 텍스쳐로 대체함
+	m_pMemTex = CResMgr::GetInst()->CreateTexture(L"BackBuffer", (UINT)m_ptResolution.x, (UINT)m_ptResolution.y);
+
+
+
 
 	// 자주 사용하는 브러쉬 펜 생성
 	CreateBrushPen();
@@ -85,6 +94,7 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	CPathMgr::GetInst()->init();
 	CTimeMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
+	CCamera::GetInst()->init();
 	CSceneMgr::GetInst()->init();
 	CCollisionMgr::GetInst()->init();
 
@@ -117,14 +127,19 @@ void CCore::progress()
 
 	// ========= Rendering =========
 	// 화면 청소
-	Rectangle(m_memDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
 
-	CSceneMgr::GetInst()->render(m_memDC);
+	Rectangle(m_pMemTex->GetDC(), -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
+
+	// 씬의 모든 물체 렌더
+	CSceneMgr::GetInst()->render(m_pMemTex->GetDC());
+
+	// 모든 물체가 렌더링 된 후 카메라 효과 적용
+	CCamera::GetInst()->render(m_pMemTex->GetDC());
 
 	// 비트맵에서 윈도울 복사 (BitBlt = Bit-Block transfer).. 프레임 ㅈㄴ드랍됐음..!!
 	// 엄청난 반복처리 (단순작업이지만) .. CPU 혹사
 	// => 그래픽카드. Direct X는 그래픽카드를 다루는 함수 사용.
-	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memDC, 0, 0, SRCCOPY);
+	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_pMemTex->GetDC(), 0, 0, SRCCOPY);
 	// =============================
 
 

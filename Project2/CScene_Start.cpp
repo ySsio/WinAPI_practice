@@ -86,6 +86,10 @@ void CScene_Start::Enter()
 
 	// Camera Look 지정
 	CCamera::GetInst()->SetLookAt(vResolution / 2.f);	// 해상도 절반 위치를 카메라 중앙으로 설정
+
+
+	// Camera 효과 지정
+	CCamera::GetInst()->FadeOut(5.f);
 }
 
 void CScene_Start::Exit()

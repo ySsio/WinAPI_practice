@@ -1,7 +1,15 @@
 #pragma once
 
 class CObject;
+class CTexture;
 
+enum class CAM_EFFECT
+{
+	FADE_IN,
+	FADE_OUT,
+	NONE,
+	END,
+};
 
 class CCamera
 {
@@ -19,6 +27,11 @@ private:
 	float		m_fSpeed;		// 타겟 따라가는 속도
 	float		m_fAccTime;		// 누적 시간
 
+	CAM_EFFECT	m_eEffect;		// 카메라 효과
+	CTexture*	m_pVeilTex;		// 카메라 효과를 위한 가림막 텍스쳐
+	float		m_fEffectDuration;	// 카메라 효과 진행 시간
+	float		m_fCurTime;		// 카메라 효과 현재 진행된 시간
+
 public:
 	void SetLookAt(Vec2 _vLook) {
 		m_vLookAt = _vLook; 
@@ -31,8 +44,24 @@ public:
 	Vec2 GetRenderPos(Vec2 _vObjPos) { return _vObjPos - m_vDiff; }
 	Vec2 GetRealPos(Vec2 _vRenderPos) { return _vRenderPos + m_vDiff; }
 
+	void FadeIn(float _fDuration)
+	{
+		assert(_fDuration != 0);
+		m_eEffect = CAM_EFFECT::FADE_IN;
+		m_fEffectDuration = _fDuration;
+	}
+
+	void FadeOut(float _fDuration)
+	{
+		assert(_fDuration != 0);
+		m_eEffect = CAM_EFFECT::FADE_OUT;
+		m_fEffectDuration = _fDuration;
+	}
+
 public:
+	void init();
 	void update();
+	void render(HDC _dc);
 
 private:
 	void CalDiff();
