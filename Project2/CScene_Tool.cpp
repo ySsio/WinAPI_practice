@@ -46,6 +46,7 @@ void CScene_Tool::Enter()
 	pBtnUI-> SetName(L"ChildUI111");
 	pBtnUI->SetScale(Vec2(100.f, 50.f));
 	pBtnUI->SetPos(Vec2(0.f, 0.f));
+	pBtnUI->SetClickedCallBack(this, (SCENE_MEMFUNC) & CScene_Tool::SaveTileData);
 
 	// 씬에서는 최상위 부모 UI만 알고 있음
 	pPanelUI->AddChild(pBtnUI);
@@ -76,17 +77,6 @@ void CScene_Tool::update()
 {
 	CScene::update();
 	SetTileIdx();
-
-	if (KEY_TAP(KEY::LSHIFT))
-	{
-		SaveTileData();
-	}
-
-	if (KEY_TAP(KEY::CTRL))
-	{
-		LoadTileData();
-	}
-	
 }
 
 void CScene_Tool::SetTileIdx()
