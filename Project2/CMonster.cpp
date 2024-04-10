@@ -24,7 +24,7 @@ CMonster::CMonster()
 	SetName(L"Monster");
 
 	// Texture 로딩하기
-	SetTexture(CResMgr::GetInst()->LoadTexture(L"MonsterTex", L"texture\\Monster.bmp"));
+	SetTexture(CResMgr::GetInst()->LoadTexture(L"MonsterTex_A", L"texture\\Monster_A.bmp"));
 
 	// 콜라이더 활성화 (오브젝트 생성)
 	CreateCollider();
@@ -97,13 +97,27 @@ void CMonster::render(HDC _dc)
 	Vec2 vPos = GetPos();
 	vPos = CCamera::GetInst()->GetRenderPos(vPos);
 
-	TransparentBlt(_dc
+	BLENDFUNCTION bf = {};
+	bf.BlendOp = AC_SRC_OVER;
+	bf.BlendFlags = 0;
+	bf.AlphaFormat = AC_SRC_ALPHA;
+	bf.SourceConstantAlpha = 127;
+
+	AlphaBlend(_dc
 		, (int)(vPos.x - (float)iWidth / 2)
 		, (int)(vPos.y - (float)iHeight / 2)
 		, iWidth, iHeight
 		, GetTexture()->GetDC()
 		, 0, 0, iWidth, iHeight
-		, RGB(255, 0, 255));
+		, bf);
+
+	//TransparentBlt(_dc
+	//	, (int)(vPos.x - (float)iWidth / 2)
+	//	, (int)(vPos.y - (float)iHeight / 2)
+	//	, iWidth, iHeight
+	//	, GetTexture()->GetDC()
+	//	, 0, 0, iWidth, iHeight
+	//	, RGB(255, 0, 255));
 
 	component_render(_dc);
 
