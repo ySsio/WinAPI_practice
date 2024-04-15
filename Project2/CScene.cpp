@@ -5,6 +5,7 @@
 #include "CResMgr.h"
 #include "CPathMgr.h"
 #include "CCore.h"
+#include "CCamera.h"
 
 CScene::CScene()
 	: m_iTileX(0)
@@ -61,6 +62,12 @@ void CScene::render(HDC _dc)
 {
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
+		if (i == (UINT)GROUP_TYPE::TILE)
+		{
+			render_tile(_dc);
+			continue;
+		}
+
 		vector<CObject*>::iterator iter = m_arrObj[i].begin();
 		for (; iter != m_arrObj[i].end();)
 		{
@@ -74,6 +81,39 @@ void CScene::render(HDC _dc)
 			++iter;
 		}
 	}
+}
+
+void CScene::render_tile(HDC _dc)
+{
+	vector<CObject*> vecTile = GetGroupObject(GROUP_TYPE::TILE);
+
+	Vec2 vCamLook = CCamera::GetInst()->GetLookAt();
+	Vec2 vResolution = CCore::GetInst()->GetResolution();
+	Vec2 vLeftTop = vCamLook - vResolution / 2.f;
+	
+	int iTileSize = TILE_SIZE;
+
+	int iLTCol = (int)vLeftTop.x / iTileSize;
+	int iLTRow = (int)vLeftTop.y / iTileSize;
+	int iLTIdx = m_iTileX * iLTRow + iLTCol;	// 카메라 좌상단 지점을 포함하는 타일의 인덱스
+
+	int iClientWidth = (int)vResolution.x / iTileSize;	// 화면 상의 타일 가로 개수
+	int iClientHeight = (int)vResolution.y / iTileSize;	// 화면 상의 타일 세로 개수
+
+	for (int row = iLTRow; row <= iLTRow + iClientHeight; ++row)
+	{
+		for (int col = iLTCol; col <= iLTCol + iClientWidth; ++col)
+		{
+			if (col < 0 || col >= m_iTileX
+				|| row < 0 || row >= m_iTileY)
+				continue;
+
+			int iIdx = m_iTileX * row + col;
+			vecTile[iIdx]->render(_dc);
+		}
+	}
+
+
 }
 
 void CScene::SaveObject(CObject* _pObj, GROUP_TYPE _etype)

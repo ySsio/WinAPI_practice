@@ -25,6 +25,7 @@ public:
 	virtual void update();
 	virtual void finalupdate();		// 마무리 작업 업데이트.
 	virtual void render(HDC _dc);
+	void render_tile(HDC _dc);
 
 	// 순수 가상함수 pure virtual function => 자식 클래스에서 구현 안하면 에러
 	// 포함하면 추상클래스 => 부모클래스 객체 생성 불가능
