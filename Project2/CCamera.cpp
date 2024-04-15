@@ -13,10 +13,7 @@ CCamera::CCamera()
 	, m_fTime(1.f)
 	, m_fSpeed(0.f)
 	, m_fAccTime(1.f)
-	, m_eEffect(CAM_EFFECT::NONE)
 	, m_pVeilTex(nullptr)
-	, m_fEffectDuration(0.f)
-	, m_fCurTime(0.f)
 {
 	
 }
@@ -64,47 +61,36 @@ void CCamera::render(HDC _dc)
 {
 	float fRatio = 0;
 
-	switch (m_eEffect)
-	{
-		case CAM_EFFECT::NONE:
-			return;
-			break;
+	if (m_listCamEffect.empty())
+		return;
 
+	tCamEffect& effect = m_listCamEffect.front();
+
+	// 시간 누적값을 체크
+	effect.fCurTime += fDT;
+
+	switch (effect.eEffect)
+	{
 		case CAM_EFFECT::FADE_IN:
 		{
-			// 시간 누적값을 체크
-			m_fCurTime += fDT;
-
-			// 시간 넘어갔으면 효과 종료
-			if (m_fEffectDuration <= m_fCurTime)
-			{
-				m_eEffect = CAM_EFFECT::NONE;
-				return;
-			}
-
-			fRatio = 1 - m_fCurTime / m_fEffectDuration;
-
+			fRatio = 1 - effect.fCurTime / effect.fDuration;
 			break;
 		}
 	
 		case CAM_EFFECT::FADE_OUT:
 		{
-			// 시간 누적값을 체크
-			m_fCurTime += fDT;
-
-			// 시간 넘어갔으면 효과 종료
-			if (m_fEffectDuration <= m_fCurTime)
-			{
-				m_eEffect = CAM_EFFECT::NONE;
-				return;
-			}
-
-			fRatio = m_fCurTime / m_fEffectDuration;
-
+			fRatio = effect.fCurTime / effect.fDuration;
 			break;
 		}
+	}
 
-
+	if (fRatio < 0.f)
+	{
+		fRatio = 0.f;
+	}
+	else if (fRatio > 1.f)
+	{
+		fRatio = 1.f;
 	}
 	
 	int iWidth = (int)m_pVeilTex->Width();
@@ -121,6 +107,13 @@ void CCamera::render(HDC _dc)
 		, m_pVeilTex->GetDC()
 		, 0, 0, iWidth, iHeight
 		, bf);
+
+	// 시간 넘어갔으면 효과 종료
+	if (effect.fDuration <= effect.fCurTime)
+	{
+		m_listCamEffect.pop_front();
+	}
+
 }
 
 void CCamera::CalDiff()
