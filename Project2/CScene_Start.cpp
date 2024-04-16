@@ -12,6 +12,9 @@
 
 #include "CCamera.h"
 
+#include "AI.h"
+#include "CIdleState.h"
+
 CScene_Start::CScene_Start()
 {
 }
@@ -57,12 +60,15 @@ void CScene_Start::Enter()
 
 	// Monster Object 추가
 	
-	int iMonCount = 10;
+	int iMonCount = 1;
 	float fMoveDist = 25.f;
 	float fObjScale = 50.f;
 
 	Vec2 vResolution = CCore::GetInst()->GetResolution();	// 복사생성자
 	CMonster * pMonsterObj = nullptr;
+
+	AI* pAI = new AI;
+	pAI->AddState(new CIdleState);
 
 	for (int i = 0; i < iMonCount; ++i)
 	{
@@ -70,8 +76,8 @@ void CScene_Start::Enter()
 		float xvalue = (fMoveDist + fObjScale / 2) + i * (vResolution.x - 2*(fMoveDist+fObjScale/2)) / (iMonCount-1);
 		pMonsterObj->SetPos(Vec2(xvalue, -150.f));
 		pMonsterObj->SetScale(Vec2(fObjScale, fObjScale));
-		pMonsterObj->SetMoveDistance(fMoveDist);
-		pMonsterObj->SetCenterPos(Vec2(xvalue, 100.f));
+		pMonsterObj->SetAI(pAI);
+
 		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 	}
 

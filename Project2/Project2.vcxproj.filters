@@ -104,6 +104,24 @@
     <Filter Include="Engine\04. Object\UI\ButtonUI">
       <UniqueIdentifier>{bfbeda9c-f7ae-4fe0-b336-48a70aa040b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\08. Module\AI">
+      <UniqueIdentifier>{171fbd17-4db1-442d-9c43-6b3102fcfa27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08. Module\AI\State">
+      <UniqueIdentifier>{08d5d478-c75a-4884-8592-eba56735f31a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08. Module\AI\State\IDLE">
+      <UniqueIdentifier>{5c1be4b6-a160-4ce1-ba73-6d467938e70e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08. Module\AI\State\TRACE">
+      <UniqueIdentifier>{d727f89f-ceae-4833-8e34-a8d9ada71b49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08. Module\AI\State\ATTACK">
+      <UniqueIdentifier>{03edf482-a817-4b28-adf5-ab7022b22a58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08. Module\AI\State\DEAD">
+      <UniqueIdentifier>{a6dbb888-de87-4bb8-b1c9-e8814c14c5f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -215,6 +233,18 @@
     <ClInclude Include="CBtnUI.h">
       <Filter>Engine\04. Object\UI\ButtonUI</Filter>
     </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>Engine\08. Module\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="CState.h">
+      <Filter>Engine\08. Module\AI\State</Filter>
+    </ClInclude>
+    <ClInclude Include="CIdleState.h">
+      <Filter>Engine\08. Module\AI\State\IDLE</Filter>
+    </ClInclude>
+    <ClInclude Include="CTraceState.h">
+      <Filter>Engine\08. Module\AI\State\TRACE</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CCore.cpp">
@@ -304,6 +334,18 @@
     </ClCompile>
     <ClCompile Include="CBtnUI.cpp">
       <Filter>Engine\04. Object\UI\ButtonUI</Filter>
+    </ClCompile>
+    <ClCompile Include="AI.cpp">
+      <Filter>Engine\08. Module\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="CState.cpp">
+      <Filter>Engine\08. Module\AI\State</Filter>
+    </ClCompile>
+    <ClCompile Include="CIdleState.cpp">
+      <Filter>Engine\08. Module\AI\State\IDLE</Filter>
+    </ClCompile>
+    <ClCompile Include="CTraceState.cpp">
+      <Filter>Engine\08. Module\AI\State\TRACE</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

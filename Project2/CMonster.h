@@ -1,30 +1,20 @@
 #pragma once
 #include "CObject.h"
 
-
+class AI;
 
 class CMonster :
     public CObject
 {
 private:
-    Vec2        m_vSpeed;
-    Vec2        m_vCenterPos;
-    CObject*    m_target;
-    float       m_fSpeed;
-    float       m_fMaxDistance;
-    int         m_iDir;     // 1 (¿ìÃø), -1(ÁÂÃø)
-    float m_time;
-    
+    float       m_fSpeed;    
     int         m_iHP;
+    AI*         m_pAI;
 
 public:
     float GetSpeed() { return m_fSpeed; }
     void SetSpeed(float _fSpeed) { m_fSpeed = _fSpeed; }
-
-    void SetCenterPos(Vec2 _vPos) { m_vCenterPos = _vPos; }
-    void SetMoveDistance(float _fDist) { m_fMaxDistance = _fDist;  }
-
-	void SetTarget(CObject* _target) { m_target = _target; }
+    void SetAI(AI* _AI) { m_pAI = _AI; }
 
 public:
     void update() override;

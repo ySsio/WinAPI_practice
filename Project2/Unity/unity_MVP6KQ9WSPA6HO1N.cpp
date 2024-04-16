@@ -1,4 +1,7 @@
 
+#include "D:\cpp_Exercise\Project2\Project2\AI.cpp"
+
+
 #include "D:\cpp_Exercise\Project2\Project2\CAnimation.cpp"
 
 
@@ -23,8 +26,8 @@
 #include "D:\cpp_Exercise\Project2\Project2\CEventMgr.cpp"
 
 
+#include "D:\cpp_Exercise\Project2\Project2\CIdleState.cpp"
+
+
 #include "D:\cpp_Exercise\Project2\Project2\CKeyMgr.cpp"
-
-
-#include "D:\cpp_Exercise\Project2\Project2\CMissile.cpp"
 

@@ -1,8 +1,2 @@
-﻿  unity_PK1ZDKVZXFDY09V0.cpp
-D:\cpp_Exercise\Project2\Project2\CScene.cpp(107,23): warning C4018: '>=': signed 또는 unsigned가 일치하지 않습니다.
-  (소스 파일 'Unity/unity_PK1ZDKVZXFDY09V0.cpp'을(를) 컴파일하는 중)
-  
-D:\cpp_Exercise\Project2\Project2\CScene.cpp(108,23): warning C4018: '>=': signed 또는 unsigned가 일치하지 않습니다.
-  (소스 파일 'Unity/unity_PK1ZDKVZXFDY09V0.cpp'을(를) 컴파일하는 중)
-  
+﻿  unity_OYND0GIM728XRU4C.cpp
   Project2.vcxproj -> D:\cpp_Exercise\Project2\Output\bin_debug\Project2.exe
