@@ -159,7 +159,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_PROJECT2));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);   // @ 커서 모양 지정
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+2);         // @ 윈도우 색 지정
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_PROJECT2);   // @ nullptr로 세팅하면 메뉴바 사용 안 함.
+    wcex.lpszMenuName   = nullptr;                          // @ nullptr로 세팅하면 메뉴바 사용 안 함.
     wcex.lpszClassName  = szWindowClass;                    // @ key 값?
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 

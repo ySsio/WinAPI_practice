@@ -1,7 +1,8 @@
 #pragma once
 #include "global.h"
 
-class AI;
+class AI; 
+class CMonster;
 
 // 상속 용 추상클래스 (인터페이스)
 class CState
@@ -13,6 +14,7 @@ private:
 public:
 	AI* GetAI() { return m_pAI; }
 	MON_STATE GetType() { return m_eState; }
+	CMonster* GetMonster();
 
 public:
 	virtual void update() = 0;

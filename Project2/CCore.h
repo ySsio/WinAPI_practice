@@ -73,10 +73,9 @@ class CCore
 	SINGLETON(CCore);
 
 private:
-	HWND	m_hWnd;			// 메인 윈도우 핸들
-	POINT	m_ptResolution; // 메인 윈도우 해상도
-	HDC		m_hDC;			// 메인 윈도우에 그릴 DC
-
+	HWND		m_hWnd;			// 메인 윈도우 핸들
+	POINT		m_ptResolution; // 메인 윈도우 해상도
+	HDC			m_hDC;			// 메인 윈도우에 그릴 DC
 
 
 	// 이중 버퍼링 - 사본용 DC
@@ -85,16 +84,24 @@ private:
 	CTexture*	m_pMemTex;		// 백버퍼 텍스쳐
 
 	// 자주 사용하는 GDI Object (Graphic Device Interface object)
-	HBRUSH m_arrBrush[(UINT)BRUSH_TYPE::END];
-	HPEN m_arrPen[(UINT)PEN_TYPE::END];
+	HBRUSH		m_arrBrush[(UINT)BRUSH_TYPE::END];
+	HPEN		m_arrPen[(UINT)PEN_TYPE::END];
 
+	// 메뉴
+	HMENU		m_hMenu;
 
 public:
 	int init(HWND _hWnd, POINT _ptResolution);
 	void progress();
 
 private:
+	void Clear();
 	void CreateBrushPen();
+
+public:
+	void DockMenu();
+	void SeparateMenu();
+	void ChangeWindowSize(POINT _vResolution, bool _bMenu);
 
 public:
 	HWND GetMainHwnd() { return m_hWnd; }

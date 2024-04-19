@@ -12,8 +12,8 @@
 #include "AI.h"
 
 CMonster::CMonster()
-	: m_fSpeed(100.f)
-	, m_iHP(5)
+	: m_tInfo{}
+	, m_pAI(nullptr)
 {
 	// 이름 지정
 	SetName(L"Monster");
@@ -31,6 +31,11 @@ CMonster::~CMonster()
 {
 	if (m_pAI != nullptr)
 		delete m_pAI;
+}
+
+void CMonster::SetAI(AI* _AI)
+{
+	m_pAI = _AI; m_pAI->m_pOwner = this;
 }
 
 void CMonster::update()
@@ -85,10 +90,10 @@ void CMonster::OnCollisionEnter(CCollider* _pOther)
 		// 예를 들어 유도탄이 노리던 객체가 삭제되면 갑자기 이상한 메모리 주소를 target으로 유도됨
 		// 삭제된 객체 포인터를 사용하고 있는 모든 모든 애들한테 알려줘야 한다고? 에바지
 
-		--m_iHP;
+		--m_tInfo.m_fHP;
 	}
 
-	if (m_iHP == 0)
+	if (m_tInfo.m_fHP == 0)
 	{
 		DeleteObject(this);
 	}

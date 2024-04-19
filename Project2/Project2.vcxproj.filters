@@ -122,6 +122,12 @@
     <Filter Include="Engine\08. Module\AI\State\DEAD">
       <UniqueIdentifier>{a6dbb888-de87-4bb8-b1c9-e8814c14c5f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\09. Factory">
+      <UniqueIdentifier>{ff346bff-f3ec-424b-bd62-913669958f9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\09. Factory\MonFactory">
+      <UniqueIdentifier>{0f2227b1-fa87-4891-94ba-c1c1373bb9ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -245,6 +251,9 @@
     <ClInclude Include="CTraceState.h">
       <Filter>Engine\08. Module\AI\State\TRACE</Filter>
     </ClInclude>
+    <ClInclude Include="CMonFactory.h">
+      <Filter>Engine\09. Factory\MonFactory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CCore.cpp">
@@ -346,6 +355,9 @@
     </ClCompile>
     <ClCompile Include="CTraceState.cpp">
       <Filter>Engine\08. Module\AI\State\TRACE</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonFactory.cpp">
+      <Filter>Engine\09. Factory\MonFactory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

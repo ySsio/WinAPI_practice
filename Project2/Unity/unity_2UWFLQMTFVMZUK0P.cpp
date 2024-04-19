@@ -1,7 +1,4 @@
 
-#include "D:\cpp_Exercise\Project2\Project2\CScene_Tool.cpp"
-
-
 #include "D:\cpp_Exercise\Project2\Project2\CSound.cpp"
 
 
@@ -30,4 +27,7 @@
 
 
 #include "D:\cpp_Exercise\Project2\Project2\main.cpp"
+
+
+#include "D:\cpp_Exercise\Project2\Project2\SelectGDI.cpp"
 

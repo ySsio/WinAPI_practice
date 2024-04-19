@@ -1,5 +1,7 @@
 #pragma once
 #include "global.h"
+#include "CMonFactory.h"
+
 // 전방선언한 경우 포인터 타입은 사용할 수 있다. (포인터타입 = 주소는 크기가 고정이니까)
 // 컴파일 속도에 영향 x. 헤더 참조했으면 CObject가 변경사항 있으면 여기에서는 그거에 대해 컴파일러가 재확인할 필요가 없다.. ? 헤더끼리 참조를 방지하고자 전방선언 사용.
 class CObject;
@@ -15,12 +17,15 @@ private:
 	UINT				m_iTileX;	// 타일 가로 개수
 	UINT				m_iTileY;	// 타일 세로 개수
 
+	CObject*			m_pPlayer;	// 플레이어
+
 public:
 	void SetName(const wstring& _strName) { m_strName = _strName; }
 	const wstring& GetName() { return m_strName; }
 
-	UINT GetTileX() { return m_iTileX; };
-	UINT GetTileY() { return m_iTileY; };
+	UINT GetTileX() { return m_iTileX; }
+	UINT GetTileY() { return m_iTileY; }
+	CObject* GetPlayer() { return m_pPlayer; }
 
 	virtual void update();
 	virtual void finalupdate();		// 마무리 작업 업데이트.
@@ -40,6 +45,7 @@ public:
 	{
 		m_arrObj[(UINT)_etype].push_back(_pObj);
 	}
+	void RegisterPlayer(CObject* _pPlayer) { m_pPlayer = _pPlayer; }
 	void SaveObject(CObject* _pObj, GROUP_TYPE _etype);
 	
 	const vector<CObject*>& GetGroupObject(GROUP_TYPE _etype) { return m_arrObj[(UINT)_etype]; }

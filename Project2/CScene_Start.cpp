@@ -14,6 +14,7 @@
 
 #include "AI.h"
 #include "CIdleState.h"
+#include "CTraceState.h"
 
 CScene_Start::CScene_Start()
 {
@@ -52,6 +53,8 @@ void CScene_Start::Enter()
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 	SaveObject(pObj, GROUP_TYPE::PLAYER);
 
+	RegisterPlayer(pObj);
+
 	//CObject* pOtherPlayer = pObj->Clone();	// CPlayer로 다운캐스팅 해야 CPlayer의 복사생성자 호출 가능
 	//pOtherPlayer->SetPos(Vec2(740.f, 384.f));
 	//AddObject(pOtherPlayer, GROUP_TYPE::PLAYER);
@@ -65,21 +68,10 @@ void CScene_Start::Enter()
 	float fObjScale = 50.f;
 
 	Vec2 vResolution = CCore::GetInst()->GetResolution();	// 복사생성자
-	CMonster * pMonsterObj = nullptr;
+	CMonster * pMonsterObj = CMonFactory::CreatMonster(MON_TYPE::NORMAL,vResolution/2.f - Vec2(0.f,300.f));
+	AddObject(pMonsterObj,GROUP_TYPE::MONSTER);
 
-	AI* pAI = new AI;
-	pAI->AddState(new CIdleState);
-
-	for (int i = 0; i < iMonCount; ++i)
-	{
-		pMonsterObj = new CMonster;
-		float xvalue = (fMoveDist + fObjScale / 2) + i * (vResolution.x - 2*(fMoveDist+fObjScale/2)) / (iMonCount-1);
-		pMonsterObj->SetPos(Vec2(xvalue, -150.f));
-		pMonsterObj->SetScale(Vec2(fObjScale, fObjScale));
-		pMonsterObj->SetAI(pAI);
-
-		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
-	}
+	
 
 	// 타일 로딩
 	//LoadTile(L"tile\\Start.tile");
@@ -88,6 +80,7 @@ void CScene_Start::Enter()
 	// Player 그룹과 Monster 그룹 간의 충돌 체크 - Render 직전 finalupdate 이후 가장 마지막에 로직
 	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::PROJ_MONSTER);
 	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::PROJ_PLAYER);
+	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::PLAYER);
 	
 
 	// Camera Look 지정

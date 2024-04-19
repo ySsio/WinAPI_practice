@@ -32,6 +32,9 @@ void ChangeScene(DWORD_PTR, DWORD_PTR)
 
 void CScene_Tool::Enter()
 {
+	// 툴 SCENE에서 사용할 메뉴 붙임. 메뉴 추가한만큼 해상도가 달라짐.
+	CCore::GetInst()->DockMenu();
+
 	// 타일 생성
 	CreateTile(5,5);
 
@@ -68,6 +71,9 @@ void CScene_Tool::Enter()
 
 void CScene_Tool::Exit()
 {
+	// 메뉴제거
+	CCore::GetInst()->SeparateMenu();
+
 	DeleteAll();
 	// 이번 씬에서 지정해뒀던 충돌 그룹을 모두 해제함.
 	CCollisionMgr::GetInst()->Reset();

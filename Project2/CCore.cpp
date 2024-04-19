@@ -11,6 +11,9 @@
 #include "CUIMgr.h"
 #include "CTexture.h"
 #include "CResMgr.h"
+#include "SelectGDI.h"
+
+#include "resource.h"
 
 
 // 구현 1.
@@ -27,6 +30,7 @@ CCore::CCore()
 	, m_arrBrush{}
 	, m_arrPen{}
 	, m_pMemTex(nullptr)
+	, m_hMenu(nullptr)
 {
 
 }
@@ -45,6 +49,8 @@ CCore::~CCore()
 		DeleteObject(m_arrPen[i]);
 	}
 
+	// 메뉴바 전체 파괴.
+	DestroyMenu(m_hMenu);
 }
 
 int CCore::init(HWND _hWnd, POINT _ptResolution)
@@ -52,25 +58,16 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	m_hWnd = _hWnd;
 	m_ptResolution = _ptResolution;
 
-	// 해상도에 맞게 윈도우 크기 조정
-	// 우리가 원하는 해상도로 사각형 좌표 만듦
-	RECT rt = { 0, 0, _ptResolution.x, _ptResolution.y };
+	ChangeWindowSize(_ptResolution, false);
 
-	// AdjustWindowRect : 우리가 설정하려는 해상도를 넘겨주면 타이틀, 메뉴바, 테두리 등의 고려사항을 적용해서 SetWindowPos에 넣어야 할 값으로 수정해 줌. (리턴값 x)
-	// 보통 리턴값이 너무 크면 (레지스터에 담았다가 메모리에 저장하기 비효율적인 경우) 받은 인자에 다시 결과값을 저장해주는 방식을 채택함.
-	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, true);	// 3번째 인자는 메뉴바 고려해야 하는지 여부
-
-	// SetWindowPos : 타이틀 창, 메뉴 바, 윈도우 테두리를 포함한 크기를 조절함
-	SetWindowPos(m_hWnd, nullptr, 100, 100, rt.right - rt.left, rt.bottom - rt.top, 0);
+	// 메뉴
+	m_hMenu = LoadMenu(nullptr, MAKEINTRESOURCEW(IDC_PROJECT2));
 
 	// Device Context 커널 오브젝트 -> 그리기 위해 필요
 	// 메세지 방식은 BeginPaint/EndPaint로 DC를 생성하고 release 했는데,
 	// 메세지 방식 안사용하면 GetDC로 DC를 강제로 만들고, 그림 다 그리고 나서 release할 필요도 없이 프로그램 종료할 때 해제해주면 됨. (소멸자에 구현)
 	m_hDC = GetDC(m_hWnd);
 
-
-
-	
 
 	// 이중 버퍼링 용도의 비트맵과 DC 생성
 	//m_hBit = CreateCompatibleBitmap(m_hDC, m_ptResolution.x, m_ptResolution.y);
@@ -127,8 +124,7 @@ void CCore::progress()
 
 	// ========= Rendering =========
 	// 화면 청소
-
-	Rectangle(m_pMemTex->GetDC(), -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
+	Clear();
 
 	// 씬의 모든 물체 렌더
 	CSceneMgr::GetInst()->render(m_pMemTex->GetDC());
@@ -152,6 +148,12 @@ void CCore::progress()
 	CEventMgr::GetInst()->update();
 }
 
+void CCore::Clear()
+{
+	SelectGDI gdi(m_pMemTex->GetDC(), BRUSH_TYPE::BLACK);
+	Rectangle(m_pMemTex->GetDC(), -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
+}
+
 void CCore::CreateBrushPen()
 {
 	// GetStockObject() 윈도우도 똑같은 생각 자주 사용하는 브러쉬 펜 등록되어 잇음. => 이거로 얻어오면 따로 지워줄 필요 x
@@ -166,6 +168,32 @@ void CCore::CreateBrushPen()
 	m_arrPen[(UINT)PEN_TYPE::GREEN] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
 	m_arrPen[(UINT)PEN_TYPE::BLUE] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
 
+}
+
+void CCore::DockMenu()
+{
+	SetMenu(m_hWnd, m_hMenu);
+	ChangeWindowSize(m_ptResolution, true);
+}
+
+void CCore::SeparateMenu()
+{
+	SetMenu(m_hWnd, nullptr);
+	ChangeWindowSize(m_ptResolution, false);
+}
+
+void CCore::ChangeWindowSize(POINT _vResolution, bool _bMenu)
+{
+	// 해상도에 맞게 윈도우 크기 조정
+	// 우리가 원하는 해상도로 사각형 좌표 만듦
+	RECT rt = { 0, 0, (LONG)_vResolution.x, (LONG)_vResolution.y };
+
+	// AdjustWindowRect : 우리가 설정하려는 해상도를 넘겨주면 타이틀, 메뉴바, 테두리 등의 고려사항을 적용해서 SetWindowPos에 넣어야 할 값으로 수정해 줌. (리턴값 x)
+	// 보통 리턴값이 너무 크면 (레지스터에 담았다가 메모리에 저장하기 비효율적인 경우) 받은 인자에 다시 결과값을 저장해주는 방식을 채택함.
+	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, _bMenu);	// 3번째 인자는 메뉴바 고려해야 하는지 여부
+
+	// SetWindowPos : 타이틀 창, 메뉴 바, 윈도우 테두리를 포함한 크기를 조절함
+	SetWindowPos(m_hWnd, nullptr, 100, 100, rt.right - rt.left, rt.bottom - rt.top, 0);
 }
 
 //void CCore::update()
