@@ -7,6 +7,7 @@ class CTexture;
 // Components
 class CCollider;
 class CAnimator;
+class CRigidBody;
 
 #include "CCamera.h"
 
@@ -22,6 +23,7 @@ private:
 	// Component
 	CCollider*	m_pCollider;
 	CAnimator*	m_pAnimator;
+	CRigidBody* m_pRigidBody;
 
 	bool		m_bAlive;
 	bool		m_bSceneAlive;
@@ -46,6 +48,9 @@ public:
 
 	void CreateAnimator();
 	CAnimator* GetAnimator() { return m_pAnimator; }
+
+	void CreateRigidBody();
+	CRigidBody* GetRigidBody() { return m_pRigidBody; }
 
 	bool IsDead() { return !m_bAlive; }
 

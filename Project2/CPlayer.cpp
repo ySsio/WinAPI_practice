@@ -17,6 +17,7 @@
 #include "CEventMgr.h"
 #include "CAnimator.h"
 #include "CAnimation.h"
+#include "CRigidBody.h"
 
 CPlayer::CPlayer()
 {
@@ -35,6 +36,9 @@ CPlayer::CPlayer()
 	CreateAnimator();
 	GetAnimator()->CreateAnimation(L"WALK_DOWN", pTex, Vec2(0, 260), Vec2(60, 65), Vec2(60, 0), 0.05f, 10);
 	GetAnimator()->Play(L"WALK_DOWN",true);
+
+	// Rigidbody 활성화
+	CreateRigidBody();
 
 	CAnimation* pAnim = GetAnimator()->FindAnimation(L"WALK_DOWN");
 	
@@ -55,23 +59,28 @@ CPlayer::~CPlayer()
 
 void CPlayer::update()
 {
-	Vec2 vPos = GetPos();
+	// 힘 방식으로 변경. position을 가져와서 직접 세팅해주지 않고 
+	// 속도를 업데이트 해주는 방식으로 변경
+
+	CRigidBody* pRigid = GetRigidBody();
+
+	
 
 	if (KEY_HOLD(KEY::W))
 	{
-		vPos.y -= 200.f * fDT;
+		pRigid->AddForce(Vec2(0.f,-200.f));
 	}
 	if (KEY_HOLD(KEY::S))
 	{
-		vPos.y += 200.f * fDT;
+		pRigid->AddForce(Vec2(0.f, 200.f));
 	}
 	if (KEY_HOLD(KEY::A))
 	{
-		vPos.x -= 200.f * fDT;
+		pRigid->AddForce(Vec2(-200.f, 0.f));
 	}
 	if (KEY_HOLD(KEY::D))
 	{
-		vPos.x += 200.f * fDT;
+		pRigid->AddForce(Vec2(200.f, 0.f));
 	}
 
 	if (KEY_TAP(KEY::SPACE))
@@ -79,9 +88,8 @@ void CPlayer::update()
 		CreateMissile();
 	}
 
-	SetPos(vPos);
+	pRigid->finalupdate();
 	GetAnimator()->update(); 
-
 }
 
 void CPlayer::render(HDC _dc)

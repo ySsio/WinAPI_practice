@@ -4,6 +4,7 @@
 #include "CTexture.h"
 #include "CCollider.h"
 #include "CAnimator.h"
+#include "CRigidBody.h"
 
 CObject::CObject()
 	: m_vPos{}
@@ -11,6 +12,7 @@ CObject::CObject()
 	, m_pTex(nullptr)
 	, m_pCollider(nullptr)
 	, m_pAnimator(nullptr)
+	, m_pRigidBody(nullptr)
 	, m_bAlive(true)
 	, m_bSceneAlive(false)
 {
@@ -22,6 +24,7 @@ CObject::CObject(const CObject& _origin)
 	, m_vScale(_origin.m_vScale)
 	, m_pCollider(nullptr)
 	, m_pAnimator(nullptr)
+	, m_pRigidBody(nullptr)
 	, m_bAlive(true)
 	, m_bSceneAlive(false)
 	, m_pTex(_origin.m_pTex)
@@ -37,6 +40,12 @@ CObject::CObject(const CObject& _origin)
 		m_pAnimator = new CAnimator(*_origin.m_pAnimator); // 콜라이더 복사생성자 ㄷ
 		m_pAnimator->m_pOwner = this;
 	}
+
+	if (_origin.m_pRigidBody)
+	{
+		m_pRigidBody = new CRigidBody(*_origin.m_pRigidBody); // 콜라이더 복사생성자 ㄷ
+		m_pRigidBody->m_pOwner = this;
+	}
 }
 
 CObject::~CObject()
@@ -46,6 +55,9 @@ CObject::~CObject()
 
 	if (m_pAnimator != nullptr)
 		delete m_pAnimator;
+
+	if (m_pRigidBody != nullptr)
+		delete m_pRigidBody;
 }
 
 void CObject::SetSceneAlive()
@@ -68,6 +80,12 @@ void CObject::CreateAnimator()
 {
 	m_pAnimator = new CAnimator;
 	m_pAnimator->m_pOwner = this;
+}
+
+void CObject::CreateRigidBody()
+{
+	m_pRigidBody = new CRigidBody;
+	m_pRigidBody->m_pOwner = this;
 }
 
 void CObject::finalupdate()
@@ -108,4 +126,5 @@ void CObject::component_render(HDC _dc)
 
 	if (m_pAnimator != nullptr)
 		m_pAnimator->render(_dc);
+
 }

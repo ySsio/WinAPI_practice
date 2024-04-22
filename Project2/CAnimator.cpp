@@ -10,6 +10,9 @@ CAnimator::CAnimator()
 }
 
 CAnimator::CAnimator(const CAnimator& _other)
+	: m_pCurAnim(_other.m_pCurAnim)
+	, m_pOwner(nullptr)
+	, m_bRepeat(_other.m_bRepeat)
 {
 }
 
