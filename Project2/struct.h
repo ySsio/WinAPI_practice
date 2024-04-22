@@ -8,6 +8,11 @@ struct Vec2
 
 
 public:
+	Vec2 operator - ()
+	{
+		return Vec2(-x, -y);
+	}
+
 	Vec2& operator = (POINT _pt)
 	{
 		x = (float)_pt.x;
@@ -66,15 +71,26 @@ public:
 
 	Vec2& operator+= (Vec2 _vOther)
 	{
-		*this = *this + _vOther;
+		x += _vOther.x;
+		y += _vOther.y;
 		return *this;
 	}
 
 	Vec2& operator-= (Vec2 _vOther)
 	{
-		*this = *this - _vOther;
+		x -= _vOther.x;
+		y -= _vOther.y;
 		return *this;
 	}
+
+	Vec2& operator*= (float _f)
+	{
+		x *= _f;
+		y *= _f;
+		return *this;
+	}
+
+	
 
 	void Rotate(float _rad)
 	{

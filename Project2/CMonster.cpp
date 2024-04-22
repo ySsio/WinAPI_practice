@@ -40,7 +40,8 @@ void CMonster::SetAI(AI* _AI)
 
 void CMonster::update()
 {
-	m_pAI->update();
+	if (m_pAI != nullptr)
+		m_pAI->update();
 }
 
 void CMonster::render(HDC _dc)

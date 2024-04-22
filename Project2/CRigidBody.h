@@ -10,8 +10,12 @@ private:
 	Vec2		m_vForce;	// 힘 (크기, 방향) F=m*a
 	Vec2		m_vAccel;	// 가속도
 	float		m_fMass;	// 질량
+
+	float		m_fFricCoef; // 마찰계수. 실제로는 정지마찰계수 운동마찰계수 나눠져있다고 ..
+
 	
 	Vec2		m_vVelocity; // 속도 v = v0 + a*t (매 프레임 계산하니까 t=DT)
+	float		m_fMaxSpeed;
 
 public:
 	void finalupdate();
@@ -19,6 +23,10 @@ public:
 public:
 	void AddForce(Vec2 _vF) { m_vForce += _vF; }
 	void SetMass(float _fMass) { m_fMass = _fMass; }
+
+	void SetVelocity(Vec2 _v) { m_vVelocity = _v; }
+	void AddVelocity(Vec2 _v) { m_vVelocity += _v; }
+	void SetMaxVelocity(float _v) { m_fMaxSpeed = _v; }
 	
 private:
 	void Move();

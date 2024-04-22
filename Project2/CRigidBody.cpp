@@ -8,6 +8,8 @@
 CRigidBody::CRigidBody()
 	: m_pOwner(nullptr)
 	, m_fMass(1.f)
+	, m_fFricCoef(100.f)
+	, m_fMaxSpeed(300.f)
 {
 }
 
@@ -27,6 +29,32 @@ void CRigidBody::finalupdate()
 
 		// 속도 v = v0 + at
 		m_vVelocity += m_vAccel * fDT;
+	}
+
+	
+	if (!m_vVelocity.IsZero())
+	{
+		// 마찰력 적용
+		Vec2 vFriction = -m_vVelocity;
+		vFriction.Normalize();
+		vFriction *= m_fFricCoef;
+
+		if (m_fFricCoef * fDT >= m_vVelocity.Length())
+		{
+			m_vVelocity = Vec2(0.f, 0.f);
+		}
+		else
+		{
+			m_vVelocity += vFriction * fDT;
+		}
+	}
+	
+
+	// 속도 제한 검사
+	if (m_vVelocity.Length() > m_fMaxSpeed)
+	{
+		m_vVelocity.Normalize();
+		m_vVelocity *= m_fMaxSpeed;
 	}
 	
 	Move();
