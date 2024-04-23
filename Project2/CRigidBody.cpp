@@ -37,9 +37,9 @@ void CRigidBody::finalupdate()
 		// ¸¶Âû·Â Àû¿ë
 		Vec2 vFriction = -m_vVelocity;
 		vFriction.Normalize();
-		vFriction *= m_fFricCoef;
+		vFriction *= m_fFricCoef * fDT;
 
-		if (m_fFricCoef * fDT >= m_vVelocity.Length())
+		if (vFriction.Length() >= m_vVelocity.Length())
 		{
 			m_vVelocity = Vec2(0.f, 0.f);
 		}
