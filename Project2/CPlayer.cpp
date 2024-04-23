@@ -20,6 +20,10 @@
 #include "CRigidBody.h"
 
 CPlayer::CPlayer()
+	: m_iDir(1)
+	, m_iPrevDir(1)
+	, m_eCurState(PLAYER_STATE::IDLE)
+	, m_ePrevState(PLAYER_STATE::IDLE)
 {
 	// 이름 설정
 	SetName(L"Player");
@@ -31,21 +35,20 @@ CPlayer::CPlayer()
 	GetCollider()->SetScale(Vec2(20.f, 40.f));
 
 	// Texture 로딩하기
-	CTexture* pTex = CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\jelda.bmp");
+	CTexture* pTex = CResMgr::GetInst()->LoadTexture(L"Player", L"texture\\jelda.bmp");
+
 
 	CreateAnimator();
-	GetAnimator()->CreateAnimation(L"WALK_DOWN", pTex, Vec2(0, 260), Vec2(60, 65), Vec2(60, 0), 0.05f, 10);
-	GetAnimator()->Play(L"WALK_DOWN",true);
+
+	GetAnimator()->CreateAnimation(L"IDLE_LEFT", pTex, Vec2(0, 65), Vec2(60, 65), Vec2(60, 0), 0.08f, 3);
+	GetAnimator()->CreateAnimation(L"IDLE_RIGHT", pTex, Vec2(0, 195), Vec2(60, 65), Vec2(60, 0), 0.08f, 3);
+
+	GetAnimator()->CreateAnimation(L"WALK_LEFT", pTex, Vec2(0, 325), Vec2(60, 65), Vec2(60, 0), 0.08f, 10);
+	GetAnimator()->CreateAnimation(L"WALK_RIGHT", pTex, Vec2(0, 455), Vec2(60, 65), Vec2(60, 0), 0.08f, 10);
+	GetAnimator()->Play(L"IDLE_RIGHT", true);
 
 	// Rigidbody 활성화
 	CreateRigidBody();
-
-	CAnimation* pAnim = GetAnimator()->FindAnimation(L"WALK_DOWN");
-	
-	for (int i = 0; i < pAnim->GetMaxFrame(); ++i)
-	{
-		pAnim->GetFrame(i).vOffset = Vec2(0.f, -20.f);
-	}
 	
 
 
@@ -59,54 +62,25 @@ CPlayer::~CPlayer()
 
 void CPlayer::update()
 {
-	// 힘 방식으로 변경. position을 가져와서 직접 세팅해주지 않고 
-	// 속도를 업데이트 해주는 방식으로 변경
+	update_move();
 
-	CRigidBody* pRigid = GetRigidBody();
+	update_state();
+
+	update_animation();
+
+	update_gravity();
 
 	
-
-	if (KEY_HOLD(KEY::W))
-	{
-		pRigid->AddForce(Vec2(0.f,-200.f));
-	}
-	if (KEY_HOLD(KEY::S))
-	{
-		pRigid->AddForce(Vec2(0.f, 200.f));
-	}
-	if (KEY_HOLD(KEY::A))
-	{
-		pRigid->AddForce(Vec2(-200.f, 0.f));
-	}
-	if (KEY_HOLD(KEY::D))
-	{
-		pRigid->AddForce(Vec2(200.f, 0.f));
-	}
-
-	if (KEY_TAP(KEY::W))
-	{
-		pRigid->AddVelocity(Vec2(0.f, -100.f));
-	}
-	if (KEY_TAP(KEY::S))
-	{
-		pRigid->AddVelocity(Vec2(0.f, 100.f));
-	}
-	if (KEY_TAP(KEY::A))
-	{
-		pRigid->AddVelocity(Vec2(-100.f, 0.f));
-	}
-	if (KEY_TAP(KEY::D))
-	{
-		pRigid->AddVelocity(Vec2(100.f, 0.f));
-	}
-
 	if (KEY_TAP(KEY::SPACE))
 	{
 		CreateMissile();
 	}
 
-	pRigid->finalupdate();
-	GetAnimator()->update(); 
+	
+	GetAnimator()->update();
+
+	m_ePrevState = m_eCurState;
+	m_iPrevDir = m_iDir;
 }
 
 void CPlayer::render(HDC _dc)
@@ -152,4 +126,93 @@ void CPlayer::CreateMissile()
 	pMissile->SetDir(Vec2(0.f, -1.f));
 
 	CreateObject(pMissile, GROUP_TYPE::PROJ_PLAYER);
+}
+
+void CPlayer::update_state()
+{
+	if (KEY_TAP(KEY::A))
+	{
+		m_iDir = -1;
+		m_eCurState = PLAYER_STATE::WALK;
+	}
+	if (KEY_TAP(KEY::D))
+	{
+		m_iDir = 1;
+		m_eCurState = PLAYER_STATE::WALK;
+	}
+
+	if (GetRigidBody()->GetSpeed() == 0.f && KEY_NONE(KEY::D) && KEY_NONE(KEY::A))
+	{
+		m_eCurState = PLAYER_STATE::IDLE;
+	}
+
+}
+
+void CPlayer::update_move()
+{
+	CRigidBody* pRigid = GetRigidBody();
+
+	if (KEY_HOLD(KEY::A))
+	{
+		pRigid->AddForce(Vec2(-200.f, 0.f));
+	}
+	if (KEY_HOLD(KEY::D))
+	{
+		pRigid->AddForce(Vec2(200.f, 0.f));
+	}
+
+	if (KEY_TAP(KEY::W))
+	{
+		pRigid->AddVelocity(Vec2(0.f, -100.f));
+	}
+	if (KEY_TAP(KEY::S))
+	{
+		pRigid->AddVelocity(Vec2(0.f, 100.f));
+	}
+	if (KEY_TAP(KEY::A))
+	{
+		pRigid->AddVelocity(Vec2(-100.f, 0.f));
+	}
+	if (KEY_TAP(KEY::D))
+	{
+		pRigid->AddVelocity(Vec2(100.f, 0.f));
+	}
+	pRigid->finalupdate();
+}
+
+void CPlayer::update_animation()
+{
+	if (m_eCurState == m_ePrevState && m_iPrevDir == m_iDir)
+		return;
+
+	switch (m_eCurState)
+	{
+	case PLAYER_STATE::IDLE:
+	{
+		if (m_iDir == -1)
+			GetAnimator()->Play(L"IDLE_LEFT", true);
+		else
+			GetAnimator()->Play(L"IDLE_RIGHT", true);
+	}
+		break;
+	case PLAYER_STATE::WALK:
+	{
+		if (m_iDir == -1)
+			GetAnimator()->Play(L"WALK_LEFT", true);
+		else
+			GetAnimator()->Play(L"WALK_RIGHT", true);
+	}
+		break;
+	case PLAYER_STATE::ATTACK:
+
+		break;
+	case PLAYER_STATE::DEAD:
+
+		break;
+	}
+}
+
+void CPlayer::update_gravity()
+{
+	GetRigidBody()->AddForce(Vec2(0.f, 500.f));
 }

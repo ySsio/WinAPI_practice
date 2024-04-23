@@ -45,7 +45,7 @@ void CRigidBody::finalupdate()
 		}
 		else
 		{
-			m_vVelocity += vFriction * fDT;
+			m_vVelocity += vFriction;
 		}
 	}
 	
