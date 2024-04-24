@@ -32,6 +32,17 @@ CScene::~CScene()
 }
 
 
+void CScene::start()
+{
+	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
+	{
+		for (size_t j = 0; j < m_arrObj[i].size(); ++j)
+		{
+			m_arrObj[i][j]->start();
+		}
+	}
+}
+
 void CScene::update()
 {
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
@@ -105,8 +116,8 @@ void CScene::render_tile(HDC _dc)
 	{
 		for (int col = iLTCol; col <= iLTCol + iClientWidth; ++col)
 		{
-			if (col < 0 || col >= m_iTileX
-				|| row < 0 || row >= m_iTileY)
+			if (col < 0 || col >= (int)m_iTileX
+				|| row < 0 || row >= (int)m_iTileY)
 				continue;
 
 			int iIdx = m_iTileX * row + col;

@@ -22,14 +22,18 @@ public:
 
 public:
 	void AddForce(Vec2 _vF) { m_vForce += _vF; }
+	void AddAccel(Vec2 _vA) { m_vForce += _vA * m_fMass; }
+
 	void SetMass(float _fMass) { m_fMass = _fMass; }
 	float GetMass() { return m_fMass; }
 	float GetSpeed() { return m_vVelocity.Length(); }
 	Vec2 GetVelocity() { return m_vVelocity; }
+	Vec2 GetAccel() { return m_vAccel; }
 
 	void SetVelocity(Vec2 _v) { m_vVelocity = _v; }
 	void AddVelocity(Vec2 _v) { m_vVelocity += _v; }
 	void SetMaxVelocity(float _v) { m_fMaxSpeed = _v; }
+	
 	
 private:
 	void Move();

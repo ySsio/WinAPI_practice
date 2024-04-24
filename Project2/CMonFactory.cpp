@@ -25,9 +25,8 @@ CMonster* CMonFactory::CreatMonster(MON_TYPE _eType, Vec2 _vPos)
 		info.m_fAttack = 10.f;
 		info.m_fAttackRange = 50.f;
 		info.m_fSearchRange = 300.f;
-		info.m_fHP = 100.f;
+		info.m_fHP = 5.f;
 		info.m_fSpeed = 150.f;
-
 		pMon->SetMonInfo(info);
 
 		pMon->CreateRigidBody();

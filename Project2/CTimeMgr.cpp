@@ -54,16 +54,16 @@ void CTimeMgr::update()
 
 void CTimeMgr::render()
 {
-	++m_iCallCount;
-	m_dAcc += m_dDeltaTime;
-	if (m_dAcc >= 1.)
-	{
-		m_iFPS = m_iCallCount;
-		m_dAcc = 0.;
-		m_iCallCount = 0;
+	//++m_iCallCount;
+	//m_dAcc += m_dDeltaTime;
+	//if (m_dAcc >= 1.)
+	//{
+	//	m_iFPS = m_iCallCount;
+	//	m_dAcc = 0.;
+	//	m_iCallCount = 0;
 
-		wchar_t szBuffer[255] = {};
-		swprintf_s(szBuffer, L"FPS : %d, DT : %f", m_iFPS, m_dDeltaTime);
-		SetWindowText(CCore::GetInst()->GetMainHwnd(), szBuffer);
-	}
+	//	wchar_t szBuffer[255] = {};
+	//	swprintf_s(szBuffer, L"FPS : %d, DT : %f", m_iFPS, m_dDeltaTime);
+	//	SetWindowText(CCore::GetInst()->GetMainHwnd(), szBuffer);
+	//}
 }

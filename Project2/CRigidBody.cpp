@@ -2,8 +2,7 @@
 #include "CRigidBody.h"
 #include "CObject.h"
 #include "CTimeMgr.h"
-
-
+#include "CCore.h"
 
 CRigidBody::CRigidBody()
 	: m_pOwner(nullptr)
@@ -26,12 +25,10 @@ void CRigidBody::finalupdate()
 	{
 		// 가속도 = 힘 / 질량
 		m_vAccel = m_vForce / m_fMass;
-
 		// 속도 v = v0 + at
 		m_vVelocity += m_vAccel * fDT;
 	}
 
-	
 	if (!m_vVelocity.IsZero())
 	{
 		// 마찰력 적용
@@ -48,18 +45,22 @@ void CRigidBody::finalupdate()
 			m_vVelocity += vFriction;
 		}
 	}
-	
+
+
 
 	// 속도 제한 검사
-	if (m_vVelocity.Length() > m_fMaxSpeed)
+	if (abs(m_vVelocity.x) > m_fMaxSpeed)
 	{
-		m_vVelocity.Normalize();
-		m_vVelocity *= m_fMaxSpeed;
+		if (m_vVelocity.x > 0)
+			m_vVelocity.x = m_fMaxSpeed;
+		else
+			m_vVelocity.x = -m_fMaxSpeed;
 	}
 	
 	Move();
 
 	// 다음 프레임에서 힘을 계산하기 전에 초기화
+	m_vAccel = Vec2(0.f, 0.f);
 	m_vForce = Vec2(0.f, 0.f);
 }
 

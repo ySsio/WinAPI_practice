@@ -21,6 +21,8 @@
 
 #include "CRigidBody.h"
 
+#include "CGround.h"
+
 
 CScene_Start::CScene_Start()
 	: m_bUseForce(false)
@@ -132,6 +134,7 @@ void CScene_Start::Enter()
 	// CObject 포인터로 CPlayer 객체 생성
 	
 	CObject* pObj = new CPlayer;
+	pObj->SetName(L"Player");
 	pObj->SetPos(Vec2(640.f, 384.f));
 	pObj->SetScale(Vec2(100.f, 100.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
@@ -155,7 +158,11 @@ void CScene_Start::Enter()
 	CMonster * pMonsterObj = CMonFactory::CreatMonster(MON_TYPE::NORMAL,vResolution/2.f - Vec2(0.f,300.f));
 	AddObject(pMonsterObj,GROUP_TYPE::MONSTER);
 
-	
+	// Ground Object 추가
+	CGround* pGround = new CGround;
+	pGround->SetPos(Vec2(640.f, 584.f));
+	pGround->SetScale(Vec2(800.f, 100.f));
+	AddObject(pGround, GROUP_TYPE::GROUND);
 
 	// 타일 로딩
 	//LoadTile(L"tile\\Start.tile");
@@ -165,6 +172,7 @@ void CScene_Start::Enter()
 	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::PROJ_MONSTER);
 	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::PROJ_PLAYER);
 	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::PLAYER);
+	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::GROUND);
 	
 
 	// Camera Look 지정
@@ -174,6 +182,8 @@ void CScene_Start::Enter()
 	// Camera 효과 지정
 	CCamera::GetInst()->FadeOut(1.f);
 	CCamera::GetInst()->FadeIn(1.f);
+
+	start();
 }
 
 void CScene_Start::Exit()

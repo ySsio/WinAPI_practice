@@ -1,5 +1,5 @@
 #include "CPlayer.h"
-
+#include "CCore.h"
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
 
@@ -18,6 +18,7 @@
 #include "CAnimator.h"
 #include "CAnimation.h"
 #include "CRigidBody.h"
+#include "CGravity.h"
 
 CPlayer::CPlayer()
 	: m_iDir(1)
@@ -31,8 +32,8 @@ CPlayer::CPlayer()
 
 	// 콜라이더 활성화 (오브젝트 생성)
 	CreateCollider();
-	GetCollider()->SetOffsetPos(Vec2(0.f, 5.f));
-	GetCollider()->SetScale(Vec2(20.f, 40.f));
+	GetCollider()->SetOffsetPos(Vec2(0.f, 20.f));
+	GetCollider()->SetScale(Vec2(25.f, 25.f));
 
 	// Texture 로딩하기
 	CTexture* pTex = CResMgr::GetInst()->LoadTexture(L"Player", L"texture\\jelda.bmp");
@@ -50,6 +51,8 @@ CPlayer::CPlayer()
 	// Rigidbody 활성화
 	CreateRigidBody();
 	
+	// Gravity 활성화
+	CreateGravity();
 
 
 }
@@ -68,7 +71,7 @@ void CPlayer::update()
 
 	update_animation();
 
-	update_gravity();
+	//update_gravity();
 
 	
 	if (KEY_TAP(KEY::SPACE))
@@ -85,29 +88,21 @@ void CPlayer::update()
 
 void CPlayer::render(HDC _dc)
 {
-	// width/ height은 당연히 양수니까 UINT였는데 좌표는 음수 될 수 있으니까 int로 변환
-	//int iWidth = (int)GetTexture()->Width();
-	//int iHeight = (int)GetTexture()->Height();
+	static double m_dAcc = 0.f;
+	static wchar_t szBuffer[255] = {};
+	m_dAcc += DT;
 
-	//Vec2 vPos = GetPos();
+	Vec2 m_vAccel = GetRigidBody() -> GetAccel();
+	Vec2 m_vVelocity = GetRigidBody()->GetVelocity();
+	
+	if (m_dAcc >= 0.1)
+	{
+		m_dAcc = 0.;
 
-	//BitBlt(_dc
-	//	, (int)(vPos.x - (float)iWidth / 2)
-	//	, (int)(vPos.y - (float)iHeight / 2)
-	//	, iWidth, iHeight
-	//	, m_pTex->GetDC()
-	//	, 0, 0, SRCCOPY);
+		swprintf_s(szBuffer, L"Accel : %13f, %13f, Velocity : %f, %f", m_vAccel.x, m_vAccel.y, m_vVelocity.x, m_vVelocity.y);
 
-	// 특정 조건은 투명처리해서 복사함. RGB(255,0,255) = magenta 색상
-	// 선언만 되어있음 (Windows.h 안에 wingdi.h에) 구현부분 없음.
-	// library를 참조해야 함. #pragma comment(lib, "Msimg32.lib")
-	//TransparentBlt(_dc
-	//	, (int)(vPos.x - (float)iWidth / 2)
-	//	, (int)(vPos.y - (float)iHeight / 2)
-	//	, iWidth, iHeight
-	//	, GetTexture()->GetDC()
-	//	, 0, 0, iWidth, iHeight
-	//	, RGB(255,0,255));
+	}
+	SetWindowText(CCore::GetInst()->GetMainHwnd(), szBuffer);
 
 	// 컴포넌트 렌더
 	component_render(_dc);
@@ -130,6 +125,7 @@ void CPlayer::CreateMissile()
 
 void CPlayer::update_state()
 {
+	// WALK
 	if (KEY_TAP(KEY::A))
 	{
 		m_iDir = -1;
@@ -141,10 +137,13 @@ void CPlayer::update_state()
 		m_eCurState = PLAYER_STATE::WALK;
 	}
 
+	// IDLE
 	if (GetRigidBody()->GetSpeed() == 0.f && KEY_NONE(KEY::D) && KEY_NONE(KEY::A))
 	{
 		m_eCurState = PLAYER_STATE::IDLE;
 	}
+
+	// JUMP - 땅에 있을 때
 
 }
 
@@ -163,11 +162,11 @@ void CPlayer::update_move()
 
 	if (KEY_TAP(KEY::W))
 	{
-		pRigid->AddVelocity(Vec2(0.f, -100.f));
+		pRigid->SetVelocity(pRigid->GetVelocity() + Vec2(0.f, -200.f));
 	}
 	if (KEY_TAP(KEY::S))
 	{
-		pRigid->AddVelocity(Vec2(0.f, 100.f));
+		pRigid->SetVelocity(pRigid->GetVelocity() + Vec2(0.f, 200.f));
 	}
 	if (KEY_TAP(KEY::A))
 	{
@@ -177,7 +176,7 @@ void CPlayer::update_move()
 	{
 		pRigid->AddVelocity(Vec2(100.f, 0.f));
 	}
-	pRigid->finalupdate();
+	
 }
 
 void CPlayer::update_animation()

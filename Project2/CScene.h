@@ -27,6 +27,7 @@ public:
 	UINT GetTileY() { return m_iTileY; }
 	CObject* GetPlayer() { return m_pPlayer; }
 
+	virtual void start();	// Scene이 시작되기 직전에 호출되는 함수
 	virtual void update();
 	virtual void finalupdate();		// 마무리 작업 업데이트.
 	virtual void render(HDC _dc);

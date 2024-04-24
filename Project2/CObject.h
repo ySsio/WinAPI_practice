@@ -8,6 +8,7 @@ class CTexture;
 class CCollider;
 class CAnimator;
 class CRigidBody;
+class CGravity;
 
 #include "CCamera.h"
 
@@ -24,6 +25,7 @@ private:
 	CCollider*	m_pCollider;
 	CAnimator*	m_pAnimator;
 	CRigidBody* m_pRigidBody;
+	CGravity*	m_pGravity;
 
 	bool		m_bAlive;
 	bool		m_bSceneAlive;
@@ -52,6 +54,9 @@ public:
 	void CreateRigidBody();
 	CRigidBody* GetRigidBody() { return m_pRigidBody; }
 
+	void CreateGravity();
+	CGravity* GetGravity() { return m_pGravity; }
+
 	bool IsDead() { return !m_bAlive; }
 
 // #####################################
@@ -76,6 +81,7 @@ private:
 
 	
 public:
+	virtual void start() {}
 	virtual void update() = 0;			// pure virtual function
 	//void finalupdate();				// virtual 안하면 오버라이딩 할 수 있음. 그래도 Scene에서 object 포인터로 모든 오브젝트를 관리하기 때문에 부모함수로밖에 실행 안됨..!!
 	virtual void finalupdate();			// 아예 오버라이딩 못하게 방지하는 방법. final을 붙이면 이 이상 오버라이딩을 할 수 없다는 뜻.
