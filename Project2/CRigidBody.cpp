@@ -8,7 +8,7 @@ CRigidBody::CRigidBody()
 	: m_pOwner(nullptr)
 	, m_fMass(1.f)
 	, m_fFricCoef(100.f)
-	, m_fMaxSpeed(300.f)
+	, m_vMaxVelocity{300.f,600.f}
 {
 }
 
@@ -49,12 +49,20 @@ void CRigidBody::finalupdate()
 
 
 	// 속도 제한 검사
-	if (abs(m_vVelocity.x) > m_fMaxSpeed)
+	if (abs(m_vVelocity.x) > m_vMaxVelocity.x)
 	{
 		if (m_vVelocity.x > 0)
-			m_vVelocity.x = m_fMaxSpeed;
+			m_vVelocity.x = m_vMaxVelocity.x;
 		else
-			m_vVelocity.x = -m_fMaxSpeed;
+			m_vVelocity.x = -m_vMaxVelocity.x;
+	}
+
+	if (abs(m_vVelocity.y) > m_vMaxVelocity.y)
+	{
+		if (m_vVelocity.y > 0)
+			m_vVelocity.y = m_vMaxVelocity.y;
+		else
+			m_vVelocity.y = -m_vMaxVelocity.y;
 	}
 	
 	Move();

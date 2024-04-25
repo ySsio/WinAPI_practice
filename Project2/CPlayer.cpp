@@ -46,6 +46,10 @@ CPlayer::CPlayer()
 
 	GetAnimator()->CreateAnimation(L"WALK_LEFT", pTex, Vec2(0, 325), Vec2(60, 65), Vec2(60, 0), 0.08f, 10);
 	GetAnimator()->CreateAnimation(L"WALK_RIGHT", pTex, Vec2(0, 455), Vec2(60, 65), Vec2(60, 0), 0.08f, 10);
+	
+	GetAnimator()->CreateAnimation(L"JUMP_LEFT", pTex, Vec2(120, 325), Vec2(60, 65), Vec2(60, 0), 0.08f, 1);
+	GetAnimator()->CreateAnimation(L"JUMP_RIGHT", pTex, Vec2(120, 455), Vec2(60, 65), Vec2(60, 0), 0.08f, 1);
+	
 	GetAnimator()->Play(L"IDLE_RIGHT", true);
 
 	// Rigidbody 활성화
@@ -72,12 +76,6 @@ void CPlayer::update()
 	update_animation();
 
 	//update_gravity();
-
-	
-	if (KEY_TAP(KEY::SPACE))
-	{
-		CreateMissile();
-	}
 
 	
 	GetAnimator()->update();
@@ -126,24 +124,30 @@ void CPlayer::CreateMissile()
 void CPlayer::update_state()
 {
 	// WALK
-	if (KEY_TAP(KEY::A))
+	if (KEY_HOLD(KEY::A))
 	{
 		m_iDir = -1;
-		m_eCurState = PLAYER_STATE::WALK;
+		if (m_eCurState != PLAYER_STATE::JUMP)
+			m_eCurState = PLAYER_STATE::WALK;
 	}
-	if (KEY_TAP(KEY::D))
+	if (KEY_HOLD(KEY::D))
 	{
 		m_iDir = 1;
-		m_eCurState = PLAYER_STATE::WALK;
+		if (m_eCurState != PLAYER_STATE::JUMP)
+			m_eCurState = PLAYER_STATE::WALK;
 	}
 
 	// IDLE
-	if (GetRigidBody()->GetSpeed() == 0.f && KEY_NONE(KEY::D) && KEY_NONE(KEY::A))
+	if (GetRigidBody()->GetSpeed() == 0.f && m_eCurState != PLAYER_STATE::JUMP)
 	{
 		m_eCurState = PLAYER_STATE::IDLE;
 	}
 
 	// JUMP - 땅에 있을 때
+	if (KEY_TAP(KEY::SPACE))
+	{
+		m_eCurState = PLAYER_STATE::JUMP;
+	}
 
 }
 
@@ -160,21 +164,24 @@ void CPlayer::update_move()
 		pRigid->AddForce(Vec2(200.f, 0.f));
 	}
 
-	if (KEY_TAP(KEY::W))
-	{
-		pRigid->SetVelocity(pRigid->GetVelocity() + Vec2(0.f, -200.f));
-	}
-	if (KEY_TAP(KEY::S))
-	{
-		pRigid->SetVelocity(pRigid->GetVelocity() + Vec2(0.f, 200.f));
-	}
 	if (KEY_TAP(KEY::A))
 	{
-		pRigid->AddVelocity(Vec2(-100.f, 0.f));
+		Vec2 vVelocity = pRigid->GetVelocity();
+		vVelocity.x = -100.f;
+		pRigid->SetVelocity(vVelocity);
 	}
 	if (KEY_TAP(KEY::D))
 	{
-		pRigid->AddVelocity(Vec2(100.f, 0.f));
+		Vec2 vVelocity = pRigid->GetVelocity();
+		vVelocity.x = 100.f;
+		pRigid->SetVelocity(vVelocity);
+	}
+
+	if (KEY_TAP(KEY::SPACE))
+	{
+		Vec2 vVelocity = pRigid->GetVelocity();
+		vVelocity.y = -400.f;
+		pRigid->SetVelocity(vVelocity);
 	}
 	
 }
@@ -205,6 +212,15 @@ void CPlayer::update_animation()
 	case PLAYER_STATE::ATTACK:
 
 		break;
+	case PLAYER_STATE::JUMP:
+	{
+		if (m_iDir == -1)
+			GetAnimator()->Play(L"JUMP_LEFT", true);
+		else
+			GetAnimator()->Play(L"JUMP_RIGHT", true);
+	}
+
+		break;
 	case PLAYER_STATE::DEAD:
 
 		break;
@@ -214,4 +230,16 @@ void CPlayer::update_animation()
 void CPlayer::update_gravity()
 {
 	GetRigidBody()->AddForce(Vec2(0.f, 500.f));
+}
+
+void CPlayer::OnCollisionEnter(CCollider* _pOther)
+{
+	if (_pOther->GetOwner()->GetName() == L"Ground")
+	{
+		// 내가 ground보다 위에 있을 때
+		if (GetPos().y < _pOther->GetOwner()->GetPos().y)
+		{
+			m_eCurState = PLAYER_STATE::IDLE;
+		}
+	}
 }

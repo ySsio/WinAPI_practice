@@ -38,6 +38,8 @@ public:
     void update_animation();
     void update_gravity();
 
+    virtual void OnCollisionEnter(CCollider* _pOther);
+
     CLONE(CPlayer)
     //CPlayer* Clone() override { return new CPlayer(*this); }
     // # 아니 근데 이거 CObject* Clone()이 순수가상함수였는데 리턴타입이 다른데 이것도 오버라이딩임? 이해 안되네 이건

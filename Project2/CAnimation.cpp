@@ -44,7 +44,7 @@ void CAnimation::render(HDC _dc)
 {
 	if (m_bFinish) return;
 
-	CObject* pObj = m_pAnimator->GetObj();
+	CObject* pObj = m_pAnimator->GetOwner();
 	Vec2 vPos = pObj->GetPos();
 	
 

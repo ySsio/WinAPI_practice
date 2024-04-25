@@ -2,6 +2,7 @@
 #include "CCollider.h"
 #include "CCamera.h"
 #include "CGravity.h"
+#include "CKeyMgr.h"
 
 CGround::CGround()
 {
@@ -24,7 +25,7 @@ void CGround::update()
 
 void CGround::OnCollisionEnter(CCollider* _pOther)
 {
-	CObject* pOtherObj = _pOther->GetObj();
+	CObject* pOtherObj = _pOther->GetOwner();
 	if (pOtherObj->GetName() == L"Player")
 	{
 		pOtherObj->GetGravity()->SetGround(true);
@@ -38,18 +39,16 @@ void CGround::OnCollisionEnter(CCollider* _pOther)
 		float fLen = abs(vColPos.y - vPos.y);
 		float depth = (vColScale.y / 2.f + vScale.y / 2.f) - fLen;
 
-		if (depth > 0)
-		{
-			Vec2 vObjPos = pOtherObj->GetPos();
-			vObjPos.y -= depth-1;
-			pOtherObj->SetPos(vObjPos);
-		}
+		Vec2 vObjPos = pOtherObj->GetPos();
+		vObjPos.y -= depth;
+
+		pOtherObj->SetPos(vObjPos);
 	}
 }
 
 void CGround::OnCollision(CCollider* _pOther)
 {
-	CObject* pOtherObj = _pOther->GetObj();
+	CObject* pOtherObj = _pOther->GetOwner();
 	if (pOtherObj->GetName() == L"Player")
 	{
 		pOtherObj->GetGravity()->SetGround(true);
@@ -63,19 +62,21 @@ void CGround::OnCollision(CCollider* _pOther)
 		float fLen = abs(vColPos.y - vPos.y);
 		float depth = (vColScale.y / 2.f + vScale.y / 2.f) - fLen;
 
-		if (depth > 0)
-		{
-			Vec2 vObjPos = pOtherObj->GetPos();
-			vObjPos.y -= depth-1;
-			pOtherObj->SetPos(vObjPos);
-		}
+		Vec2 vObjPos = pOtherObj->GetPos();
+		vObjPos.y -= depth;
+
+		pOtherObj->SetPos(vObjPos);
 	}
 }
 
 void CGround::OnCollisionExit(CCollider* _pOther)
 {
-	CObject* pOtherObj = _pOther->GetObj();
-	pOtherObj->GetGravity()->SetGround(false);
+	CObject* pOtherObj = _pOther->GetOwner();
+	if (pOtherObj->GetName() == L"Player")
+	{
+		pOtherObj->GetGravity()->SetGround(false);
+	}
+	
 }
 
 void CGround::render(HDC _dc)

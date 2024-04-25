@@ -92,7 +92,7 @@ void CMissile::render(HDC _dc)
 
 void CMissile::OnCollisionEnter(CCollider* _pOther)
 {
-	CObject* pOtherObj = _pOther->GetObj();
+	CObject* pOtherObj = _pOther->GetOwner();
 
 	// 이름으로 충돌한 오브젝트 구분한다고 가정
 	if (pOtherObj->GetName() == L"Monster")

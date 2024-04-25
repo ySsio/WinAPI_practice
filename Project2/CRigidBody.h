@@ -15,7 +15,7 @@ private:
 
 	
 	Vec2		m_vVelocity; // 속도 v = v0 + a*t (매 프레임 계산하니까 t=DT)
-	float		m_fMaxSpeed;
+	Vec2		m_vMaxVelocity;
 
 public:
 	void finalupdate();
@@ -32,7 +32,7 @@ public:
 
 	void SetVelocity(Vec2 _v) { m_vVelocity = _v; }
 	void AddVelocity(Vec2 _v) { m_vVelocity += _v; }
-	void SetMaxVelocity(float _v) { m_fMaxSpeed = _v; }
+	void SetMaxVelocity(Vec2 _v) { m_vMaxVelocity = _v; }
 	
 	
 private:

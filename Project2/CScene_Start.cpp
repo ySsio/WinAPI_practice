@@ -160,6 +160,7 @@ void CScene_Start::Enter()
 
 	// Ground Object Ãß°¡
 	CGround* pGround = new CGround;
+	pGround->SetName(L"Ground");
 	pGround->SetPos(Vec2(640.f, 584.f));
 	pGround->SetScale(Vec2(800.f, 100.f));
 	AddObject(pGround, GROUP_TYPE::GROUND);

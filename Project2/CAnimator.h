@@ -17,7 +17,7 @@ public:
 	CAnimation*  FindAnimation(const wstring& _strName);
 	void Play(const wstring& _strName, bool _bRepeat);
 
-	CObject* GetObj() { return m_pOwner; }
+	CObject* GetOwner() { return m_pOwner; }
 
 	void update();
 	void finalupdate();
