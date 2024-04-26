@@ -1,0 +1,38 @@
+[Animation Name]
+IDLE_LEFT
+[Texture Name]
+Player
+[Texture Path]
+texture\jelda.bmp
+[Frame Count]
+3
+[Frame Index]
+0
+[Left Top]
+0, 65
+[Slice Size]
+60, 65
+[Offset]
+0, 0
+[Duration]
+0.080000
+[Frame Index]
+1
+[Left Top]
+60, 65
+[Slice Size]
+60, 65
+[Offset]
+0, 0
+[Duration]
+0.080000
+[Frame Index]
+2
+[Left Top]
+120, 65
+[Slice Size]
+60, 65
+[Offset]
+0, 0
+[Duration]
+0.080000
