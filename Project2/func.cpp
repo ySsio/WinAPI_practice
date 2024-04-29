@@ -54,6 +54,11 @@ void FScanf(char* _pOutBuff, FILE* _pFile)
 			_pOutBuff[i++] = '\0';
 			break;
 		}
+		//if (c == '\r')
+		//{
+		//	continue;
+		//}
+
 
 		_pOutBuff[i++] = c;
 	}
