@@ -20,6 +20,9 @@
 #include "CRigidBody.h"
 #include "CGravity.h"
 
+#include "CResMgr.h"
+#include "CSound.h"
+
 CPlayer::CPlayer()
 	: m_iDir(1)
 	, m_iPrevDir(1)
@@ -161,6 +164,7 @@ void CPlayer::update_state()
 	// JUMP - ¶¥¿¡ ÀÖÀ» ¶§
 	if (KEY_TAP(KEY::SPACE))
 	{
+		CResMgr::GetInst()->FindSound(L"JUMP")->Play();
 		m_eCurState = PLAYER_STATE::JUMP;
 	}
 

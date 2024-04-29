@@ -23,6 +23,9 @@
 
 #include "CGround.h"
 
+#include "CResMgr.h"
+#include "CSound.h"
+
 
 CScene_Start::CScene_Start()
 	: m_bUseForce(false)
@@ -127,6 +130,22 @@ void CScene_Start::CreateForce()
 
 void CScene_Start::Enter()
 {
+	CResMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\RoadBgm.wav");
+	CResMgr::GetInst()->LoadSound(L"JUMP", L"sound\\Effect1.wav");
+	CResMgr::GetInst()->LoadSound(L"GROUND", L"sound\\wood.wav");
+	CSound* pNewSound = CResMgr::GetInst()->FindSound(L"BGM_01");
+
+	//pNewSound->Play();
+
+	pNewSound->SetPosition(50.f);
+	pNewSound->PlayToBGM(true);
+	pNewSound->SetVolume(60.f);
+
+
+
+
+
+
 	// 전 씬에서 살릴거 받아오기
 	CSceneMgr::GetInst()->LoadObject();
 	//CSceneMgr::GetInst()->ClearObject();

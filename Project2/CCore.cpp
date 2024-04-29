@@ -12,6 +12,7 @@
 #include "CTexture.h"
 #include "CResMgr.h"
 #include "SelectGDI.h"
+#include "CSound.h"
 
 #include "resource.h"
 
@@ -90,11 +91,11 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	// Manager ÃÊ±âÈ­
 	CPathMgr::GetInst()->init();
 	CTimeMgr::GetInst()->init();
+	CSoundMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
 	CCamera::GetInst()->init();
 	CSceneMgr::GetInst()->init();
 	CCollisionMgr::GetInst()->init();
-
 
 	return S_OK;
 }
