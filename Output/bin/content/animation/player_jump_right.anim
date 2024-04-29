@@ -1,0 +1,19 @@
+[Animation_Name]
+JUMP_RIGHT
+[Texture_Name]
+Player
+[Texture_Path]
+texture\jelda.bmp
+[Frame_Count]
+1
+
+[Frame_Index]
+0
+[Left_Top]
+120, 455
+[Slice_Size]
+60, 65
+[Offset]
+0, 0
+[Duration]
+0.080000

@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "global.h"
 #include "CKeyMgr.h"
 #include "CCore.h"
 
@@ -35,6 +35,9 @@ int g_arrVK[(int)KEY::LAST] =
 	VK_SPACE,
 	VK_RETURN,		// enter
 	VK_ESCAPE,		// esc
+
+	VK_LBUTTON,		// 좌클릭
+	VK_RBUTTON,		// 우클릭
 
 	//LAST						
 };
@@ -83,6 +86,12 @@ void CKeyMgr::update()
 
 		return;
 	}
+
+	// Mouse 위치계산
+	POINT ptPos = {};
+	GetCursorPos(&ptPos);	// 모니터 화면 전체 기준 좌표
+	ScreenToClient(CCore::GetInst()->GetMainHwnd(), &ptPos);
+	m_vCurMousePos = Vec2((float)ptPos.x, (float)ptPos.y);
 		
 
 	// 윈도우 포커싱 상태
@@ -120,4 +129,5 @@ void CKeyMgr::update()
 		}
 		
 	}
+
 }

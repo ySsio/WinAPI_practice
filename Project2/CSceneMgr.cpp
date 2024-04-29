@@ -1,6 +1,9 @@
-#include "pch.h"
+#include "global.h"
+#include "CScene.h"
 #include "CSceneMgr.h"
 #include "CScene_Start.h"
+#include "CScene_Tool.h"
+#include "CEventMgr.h"
 
 CSceneMgr::CSceneMgr()
 	: m_arrScene{}
@@ -32,7 +35,8 @@ void CSceneMgr::init()
 	m_arrScene[(UINT)SCENE_TYPE::START] = new CScene_Start;
 	m_arrScene[(UINT)SCENE_TYPE::START]->SetName(L"Start Scene");
 
-	//m_arrScene[(UINT)SCENE_TYPE::TOOL] = new CScene_Tool;
+	m_arrScene[(UINT)SCENE_TYPE::TOOL] = new CScene_Tool;
+	m_arrScene[(UINT)SCENE_TYPE::START]->SetName(L"Tool Scene");
 	//m_arrScene[(UINT)SCENE_TYPE::STAGE_01] = new CScene_Stage01;
 	//m_arrScene[(UINT)SCENE_TYPE::STAGE_02] = new CScene_Stage02;
 
@@ -44,9 +48,39 @@ void CSceneMgr::init()
 void CSceneMgr::update()
 {
 	m_pCurScene->update();
+	m_pCurScene->finalupdate();
 }
 
 void CSceneMgr::render(HDC _dc)
 {
 	m_pCurScene->render(_dc);
 }
+
+void CSceneMgr::SaveObject(CObject* _pObj, GROUP_TYPE _etype)
+{
+	m_arrObjSaved.insert(make_pair(_pObj, _etype));
+}
+
+void CSceneMgr::LoadObject()
+{
+	map<CObject*, GROUP_TYPE>::iterator iter = m_arrObjSaved.begin();
+	for (; iter != m_arrObjSaved.end(); ++iter)
+	{
+		m_pCurScene->AddObject(iter->first, iter->second);
+	}
+}
+
+void CSceneMgr::ClearObject()
+{
+	// 실제로 메모리 해제하면 현재 로드한 씬에서도 사용 못하니까
+	// 메모리 해제는 안하고 m_arrObjSaved만 비우는 거임.
+	m_arrObjSaved.clear();
+}
+
+void CSceneMgr::ChangeScene(SCENE_TYPE _eNext)
+{
+	m_pCurScene->Exit();
+	m_pCurScene = m_arrScene[(UINT)_eNext];
+	m_pCurScene->Enter();
+}
+

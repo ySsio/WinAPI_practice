@@ -1,0 +1,10 @@
+﻿  CPathMgr.cpp
+D:\cpp_Exercise\Project2\Project2\struct.h(20,14): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'CPathMgr.cpp'을(를) 컴파일하는 중)
+  
+D:\cpp_Exercise\Project2\Project2\CPathMgr.cpp(29,11): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다.
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+  All 250 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  코드를 생성했습니다.
+  Project2.vcxproj -> D:\cpp_Exercise\Project2\Output\bin\Project2.exe

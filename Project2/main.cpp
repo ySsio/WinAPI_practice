@@ -1,7 +1,7 @@
 ﻿// Project2.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
-#include "pch.h"
+#include "global.h"
 #include "framework.h"
 #include "Project2.h"
 #include "CCore.h"
@@ -21,6 +21,7 @@ ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK    TileCountProc(HWND, UINT, WPARAM, LPARAM);
 
 
 // @ Windows SAL (주석 언어) : 지역 변수 앞에 변수의 의미/용도를 적는 것. 
@@ -36,6 +37,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // @ 실행된 프로세
                      _In_ int       nCmdShow)           
                                                         
 {
+    // @ 메모리 leak (누수) 체크
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    
+    // @ 중단점 걸어주는 기능 : 위에서 메모리 누수 체크된 곳을 input으로 넣어서 어디서 난건지 확인
+    //_CrtSetBreakAlloc(295); 
+
+
+
     UNREFERENCED_PARAMETER(hPrevInstance);      // @ define으로 정의된 매크로. 그냥 안에 있는 값이 그대로 나오는 매크로이고, 결국 아무 의미없는 코드. 컴파일러가 제거함
     UNREFERENCED_PARAMETER(lpCmdLine);          // @ 이 두 변수가 참조되지 않는다는 것을 알려주기 위해 작성한 듯. 주석 대신 잘 표시되게 쓴 것 같다.
 
@@ -150,7 +159,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_PROJECT2));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);   // @ 커서 모양 지정
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+2);         // @ 윈도우 색 지정
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_PROJECT2);   // @ nullptr로 세팅하면 메뉴바 사용 안 함.
+    wcex.lpszMenuName   = nullptr;                          // @ nullptr로 세팅하면 메뉴바 사용 안 함.
     wcex.lpszClassName  = szWindowClass;                    // @ key 값?
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -213,6 +222,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
             case IDM_ABOUT:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+                break;
+            case ID_MENU_TILE:
+                DialogBox(hInst, MAKEINTRESOURCE(IDD_TILECOUNT), hWnd, TileCountProc);
                 break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);

@@ -1,5 +1,3 @@
-﻿  CMissile.cpp
-D:\cpp_Exercise\Project2\Project2\struct.h(20,14): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 'CMissile.cpp'을(를) 컴파일하는 중)
-  
-  Project2.vcxproj -> D:\cpp_Exercise\Project2\x64\Debug\Project2.exe
+﻿  unity_T2060ZJW6WTWVNV9.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  Project2.vcxproj -> D:\cpp_Exercise\Project2\Output\bin_debug\Project2.exe

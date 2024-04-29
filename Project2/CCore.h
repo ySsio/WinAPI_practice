@@ -65,6 +65,7 @@
 //
 //};
 
+class CTexture;
 
 // 구현 2.
 class CCore
@@ -72,26 +73,42 @@ class CCore
 	SINGLETON(CCore);
 
 private:
-	HWND	m_hWnd;			// 메인 윈도우 핸들
-	POINT	m_ptResolution; // 메인 윈도우 해상도
-	HDC		m_hDC;			// 메인 윈도우에 그릴 DC
+	HWND		m_hWnd;			// 메인 윈도우 핸들
+	POINT		m_ptResolution; // 메인 윈도우 해상도
+	HDC			m_hDC;			// 메인 윈도우에 그릴 DC
+
 
 	// 이중 버퍼링 - 사본용 DC
-	HBITMAP m_hBit;
-	HDC		m_memDC;		// 사본 비트맵에 그릴 DC
+	//HBITMAP	m_hBit;
+	//HDC		m_memDC;		// 사본 비트맵에 그릴 DC
+	CTexture*	m_pMemTex;		// 백버퍼 텍스쳐
 
-public :
+	// 자주 사용하는 GDI Object (Graphic Device Interface object)
+	HBRUSH		m_arrBrush[(UINT)BRUSH_TYPE::END];
+	HPEN		m_arrPen[(UINT)PEN_TYPE::END];
+
+	// 메뉴
+	HMENU		m_hMenu;
+
+public:
 	int init(HWND _hWnd, POINT _ptResolution);
 	void progress();
 
-private :
-	void update();
-	void render();
+private:
+	void Clear();
+	void CreateBrushPen();
+
+public:
+	void DockMenu();
+	void SeparateMenu();
+	void ChangeWindowSize(POINT _vResolution, bool _bMenu);
 
 public:
 	HWND GetMainHwnd() { return m_hWnd; }
+	HDC GetMainDC() { return m_hDC; }
 	POINT GetResolution() { return m_ptResolution; }
-
+	HBRUSH GetBrush(BRUSH_TYPE _eType) { return m_arrBrush[(UINT)_eType]; }
+	HPEN GetPen(PEN_TYPE _eType) { return m_arrPen[(UINT)_eType]; }
 };
 
 // 매니저 같은 애들을 싱글톤 패턴으로 자주 구현할 예정임. => 매크로 함수로 만들어 두자.

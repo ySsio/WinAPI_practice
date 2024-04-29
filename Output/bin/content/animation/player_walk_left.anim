@@ -1,0 +1,118 @@
+[Animation_Name]
+WALK_LEFT
+[Texture_Name]
+Player
+[Texture_Path]
+texture\jelda.bmp
+[Frame_Count]
+10
+
+[Frame_Index]
+0
+[Left_Top]
+0, 325
+[Slice_Size]
+60, 65
+[Offset]
+0, 0
+[Duration]
+0.080000
+
+[Frame_Index]
+1
+[Left_Top]
+60, 325
+[Slice_Size]
+60, 65
+[Offset]
+0, 0
+[Duration]
+0.080000
+
+[Frame_Index]
+2
+[Left_Top]
+120, 325
+[Slice_Size]
+60, 65
+[Offset]
+0, 0
+[Duration]
+0.080000
+
+[Frame_Index]
+3
+[Left_Top]
+180, 325
+[Slice_Size]
+60, 65
+[Offset]
+0, 0
+[Duration]
+0.080000
+
+[Frame_Index]
+4
+[Left_Top]
+240, 325
+[Slice_Size]
+60, 65
+[Offset]
+0, 0
+[Duration]
+0.080000
+
+[Frame_Index]
+5
+[Left_Top]
+300, 325
+[Slice_Size]
+60, 65
+[Offset]
+0, 0
+[Duration]
+0.080000
+
+[Frame_Index]
+6
+[Left_Top]
+360, 325
+[Slice_Size]
+60, 65
+[Offset]
+0, 0
+[Duration]
+0.080000
+
+[Frame_Index]
+7
+[Left_Top]
+420, 325
+[Slice_Size]
+60, 65
+[Offset]
+0, 0
+[Duration]
+0.080000
+
+[Frame_Index]
+8
+[Left_Top]
+480, 325
+[Slice_Size]
+60, 65
+[Offset]
+0, 0
+[Duration]
+0.080000
+
+[Frame_Index]
+9
+[Left_Top]
+540, 325
+[Slice_Size]
+60, 65
+[Offset]
+0, 0
+[Duration]
+0.080000

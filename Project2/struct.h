@@ -8,16 +8,109 @@ struct Vec2
 
 
 public:
+	Vec2 operator - ()
+	{
+		return Vec2(-x, -y);
+	}
+
 	Vec2& operator = (POINT _pt)
 	{
 		x = (float)_pt.x;
 		y = (float)_pt.y;
 	}
 
+	Vec2 operator + (Vec2 _vOther)
+	{
+		return Vec2( x + _vOther.x, y + _vOther.y );
+	}
+	Vec2 operator - (Vec2 _vOther)
+	{
+		return Vec2(x - _vOther.x, y - _vOther.y);
+	}
+	Vec2 operator * (Vec2 _vOther)
+	{
+		return Vec2(x * _vOther.x, y * _vOther.y);
+	}
+	Vec2 operator / (Vec2 _vOther)
+	{
+		assert(_vOther.x != 0.f && _vOther.y != 0.f);
+		return Vec2(x / _vOther.x, y / _vOther.y);
+	}
+
+	Vec2 operator * (int _iVal)
+	{
+		return Vec2(x * _iVal, y * _iVal);
+	}
+
+	Vec2 operator * (float _fVal)
+	{
+		return Vec2(x * _fVal, y * _fVal);
+	}
+
+	Vec2 operator * (double _dVal)
+	{
+		return Vec2(x * _dVal, y * _dVal);
+	}
+
+	Vec2 operator * (UINT _iVal)
+	{
+		return Vec2(x * _iVal, y * _iVal);
+	}
+
+	Vec2 operator / (int _iVal)
+	{
+		assert(_iVal != 0);
+		return Vec2(x / _iVal, y / _iVal);
+	}
+
+	Vec2 operator / (float _fVal)
+	{
+		assert(_fVal != 0.f);
+		return Vec2(x / _fVal, y / _fVal);
+	}
+
+	Vec2& operator+= (Vec2 _vOther)
+	{
+		x += _vOther.x;
+		y += _vOther.y;
+		return *this;
+	}
+
+	Vec2& operator-= (Vec2 _vOther)
+	{
+		x -= _vOther.x;
+		y -= _vOther.y;
+		return *this;
+	}
+
+	Vec2& operator*= (float _f)
+	{
+		x *= _f;
+		y *= _f;
+		return *this;
+	}
+
+	
+
+	void Rotate(float _rad)
+	{
+		float tempx = x;
+		float tempy = y;
+		float costheta = (float)cos(_rad);
+		float sintheta = (float)sin(_rad);
+		x = costheta * tempx - sintheta * tempy;
+		y = sintheta * tempx + costheta * tempy;
+	}
+	
 public:
+	bool IsZero()
+	{
+		return x == 0.f && y == 0.f;
+	}
+
 	float Length()
 	{
-		return sqrt(x * x + y * y);
+		return (float)sqrt(x * x + y * y);
 	}
 
 	Vec2& Normalize()
@@ -40,6 +133,11 @@ public :
 	Vec2 (float _x, float _y)
 		: x(_x)
 		, y(_y)
+	{}
+
+	Vec2(double _x,double _y)
+		: x((float)_x)
+		, y((float)_y)
 	{}
 
 	Vec2(int _x, int _y)
