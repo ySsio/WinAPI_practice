@@ -1,106 +1,116 @@
-[Animation Name]
+[Animation_Name]
 WALK_RIGHT
-[Texture Name]
+[Texture_Name]
 Player
-[Texture Path]
+[Texture_Path]
 texture\jelda.bmp
-[Frame Count]
+[Frame_Count]
 10
-[Frame Index]
+
+[Frame_Index]
 0
-[Left Top]
+[Left_Top]
 0, 455
-[Slice Size]
+[Slice_Size]
 60, 65
 [Offset]
 0, 0
 [Duration]
 0.080000
-[Frame Index]
+
+[Frame_Index]
 1
-[Left Top]
+[Left_Top]
 60, 455
-[Slice Size]
+[Slice_Size]
 60, 65
 [Offset]
 0, 0
 [Duration]
 0.080000
-[Frame Index]
+
+[Frame_Index]
 2
-[Left Top]
+[Left_Top]
 120, 455
-[Slice Size]
+[Slice_Size]
 60, 65
 [Offset]
 0, 0
 [Duration]
 0.080000
-[Frame Index]
+
+[Frame_Index]
 3
-[Left Top]
+[Left_Top]
 180, 455
-[Slice Size]
+[Slice_Size]
 60, 65
 [Offset]
 0, 0
 [Duration]
 0.080000
-[Frame Index]
+
+[Frame_Index]
 4
-[Left Top]
+[Left_Top]
 240, 455
-[Slice Size]
+[Slice_Size]
 60, 65
 [Offset]
 0, 0
 [Duration]
 0.080000
-[Frame Index]
+
+[Frame_Index]
 5
-[Left Top]
+[Left_Top]
 300, 455
-[Slice Size]
+[Slice_Size]
 60, 65
 [Offset]
 0, 0
 [Duration]
 0.080000
-[Frame Index]
+
+[Frame_Index]
 6
-[Left Top]
+[Left_Top]
 360, 455
-[Slice Size]
+[Slice_Size]
 60, 65
 [Offset]
 0, 0
 [Duration]
 0.080000
-[Frame Index]
+
+[Frame_Index]
 7
-[Left Top]
+[Left_Top]
 420, 455
-[Slice Size]
+[Slice_Size]
 60, 65
 [Offset]
 0, 0
 [Duration]
 0.080000
-[Frame Index]
+
+[Frame_Index]
 8
-[Left Top]
+[Left_Top]
 480, 455
-[Slice Size]
+[Slice_Size]
 60, 65
 [Offset]
 0, 0
 [Duration]
 0.080000
-[Frame Index]
+
+[Frame_Index]
 9
-[Left Top]
+[Left_Top]
 540, 455
-[Slice Size]
+[Slice_Size]
 60, 65
 [Offset]
 0, 0

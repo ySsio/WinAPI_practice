@@ -95,7 +95,7 @@ void CAnimation::Save(const wstring& _strRelativePath)
 
 	// m_strName
 	// Animation의 이름을 저장한다. (문자열 저장) - 데이터 직렬화
-	fprintf(pFile, "[Animation Name]\n");
+	fprintf(pFile, "[Animation_Name]\n");
 	//SaveWString(m_strName, pFile);
 	string strName = string(m_strName.begin(), m_strName.end());
 	fprintf(pFile, strName.c_str());
@@ -106,12 +106,12 @@ void CAnimation::Save(const wstring& _strRelativePath)
 	//SaveWString(m_pTex->GetKey(), pFile);
 	// 추가로, 찾고자 하는 텍스처가 없을 경우 로드를 해야하기 때문에 사용하는 텍스처의 상대경로도 저장해둠
 	//SaveWString(m_pTex->GetRelativePath(), pFile);
-	fprintf(pFile, "[Texture Name]\n");
+	fprintf(pFile, "[Texture_Name]\n");
 	strName = string(m_pTex->GetKey().begin(), m_pTex->GetKey().end());
 	fprintf(pFile, strName.c_str());
 	fprintf(pFile, "\n");
 
-	fprintf(pFile, "[Texture Path]\n");
+	fprintf(pFile, "[Texture_Path]\n");
 	strName = string(m_pTex->GetRelativePath().begin(), m_pTex->GetRelativePath().end());
 	fprintf(pFile, strName.c_str());
 	fprintf(pFile, "\n");
@@ -120,19 +120,21 @@ void CAnimation::Save(const wstring& _strRelativePath)
 	// 모든 프레임 정보를 저장. 벡터이므로 먼저 몇 프레임인지를 맨 앞에 저장해야 함.
 	//size_t iFrameCount = m_vecFrm.size();
 	//fwrite(&iFrameCount, sizeof(size_t), 1, pFile);
-	fprintf(pFile, "[Frame Count]\n");
+	fprintf(pFile, "[Frame_Count]\n");
 	fprintf(pFile, "%d\n", (int)m_vecFrm.size());
 
 	
 	for (size_t i = 0; i < m_vecFrm.size(); ++i)
 	{
-		fprintf(pFile, "[Frame Index]\n");
+		fprintf(pFile, "\n");
+
+		fprintf(pFile, "[Frame_Index]\n");
 		fprintf(pFile, "%d\n", (int)i);
 
-		fprintf(pFile, "[Left Top]\n");
+		fprintf(pFile, "[Left_Top]\n");
 		fprintf(pFile, "%d, %d\n", (int)m_vecFrm[i].vLT.x, (int)m_vecFrm[i].vLT.y);
 
-		fprintf(pFile, "[Slice Size]\n");
+		fprintf(pFile, "[Slice_Size]\n");
 		fprintf(pFile, "%d, %d\n", (int)m_vecFrm[i].vSlice.x, (int)m_vecFrm[i].vSlice.y);
 
 		fprintf(pFile, "[Offset]\n");
@@ -140,8 +142,6 @@ void CAnimation::Save(const wstring& _strRelativePath)
 
 		fprintf(pFile, "[Duration]\n");
 		fprintf(pFile, "%f\n", m_vecFrm[i].fDuration);
-
-		fprintf(pFile, "\n\n");
 	}
 
 	// 모든 프레임 정보 배열이므로 한번에 쭉 저장
@@ -163,26 +163,90 @@ void CAnimation::Load(const wstring& _strRelativePath)
 	_wfopen_s(&pFile, strFilePath.c_str(), L"rb");
 	assert(pFile);
 
-	// m_strName
-	// 문자열 로드 (맨 앞에 글자 수 읽고, 그 글자 수 만큼 읽어서 로드)
-	LoadWString(m_strName, pFile);
+	// 한 줄씩 읽어올 버퍼
+	char szBuff[256] = {};
+	//fscanf_s(pFile, "%s", szBuff, 256); // 공백문자 / 개행문자 만날때 까지 읽음
+	// fscanf_s는 공백문자 만나면 끊기므로 getc()로 한 글자씩 읽어서 개행문자 만날 떄 끊어줄 거임
+	// 개행문자 만날때만 끊기도록 함수 만들었음.
+	//FScanf(szBuff, pFile);
 
-	// m_pTex
-	wstring strTexKey, strTexPath;
-	LoadWString(strTexKey, pFile);
-	LoadWString(strTexPath, pFile);
-	// LoadTexture에서 먼저 key 값으로 find를 한 다음 있으면 그걸 리턴하고 없으면 텍스처를 등록하고 리턴해줌
+	// wstring으로 바꾸기 위한 임시 저장 (1byte 가변)
+	string str = "";
+
+
+	//// m_strName
+	//// 문자열 로드 (맨 앞에 글자 수 읽고, 그 글자 수 만큼 읽어서 로드)
+	//LoadWString(m_strName, pFile);
+	FScanf(szBuff, pFile);	// [Animation_Name]
+	FScanf(szBuff, pFile);
+	str = szBuff;
+
+	m_strName = wstring(str.begin(), str.end());
+
+	//// m_pTex
+	//wstring strTexKey, strTexPath;
+	//LoadWString(strTexKey, pFile);
+	//LoadWString(strTexPath, pFile);
+	//// LoadTexture에서 먼저 key 값으로 find를 한 다음 있으면 그걸 리턴하고 없으면 텍스처를 등록하고 리턴해줌
+	//m_pTex = CResMgr::GetInst()->LoadTexture(strTexKey, strTexPath);
+	FScanf(szBuff, pFile);	// [Texture_Name]
+	FScanf(szBuff, pFile);
+	str = szBuff;
+
+	wstring strTexKey = wstring(str.begin(), str.end());
+
+
+	FScanf(szBuff, pFile);	// [Texture_Path]
+	FScanf(szBuff, pFile);
+	str = szBuff;
+
+	wstring strTexPath = wstring(str.begin(), str.end());
+
 	m_pTex = CResMgr::GetInst()->LoadTexture(strTexKey, strTexPath);
-	
-	// m_vecFrm
-	// 맨 앞에서 총 몇 프레임인지부터 읽음
-	size_t iFrameCount = 0;
-	fread(&iFrameCount, sizeof(size_t), 1, pFile);
 
-	// 모든 프레임 정보 배열이므로 한번에 쭉 저장
-	// 벡터 공간을 미리 확보해 두고 메모리를 한 번에 덮어 씀
-	m_vecFrm.resize(iFrameCount); // resize : count를 미리 확보. vs reserve : capacity를 미리 확보
-	fread(m_vecFrm.data(), sizeof(tAnimFrm), iFrameCount, pFile);
+
+	//// m_vecFrm
+	//// 맨 앞에서 총 몇 프레임인지부터 읽음
+	//size_t iFrameCount = 0;
+	//fread(&iFrameCount, sizeof(size_t), 1, pFile);
+
+	FScanf(szBuff, pFile);	// [Frame_Count]
+	int iFrameCount = 0;
+	fscanf_s(pFile, "%d\n", &iFrameCount);	// 문자열을 정수 포맷으로 변환해서 읽음
+
+	//m_vecFrm.reserve(iFrameCount);
+	for (int i = 0; i < iFrameCount; ++i)
+	{
+		fscanf_s(pFile, "\n");
+
+		tAnimFrm newFrm = {};
+
+		int iData = 0;
+		FScanf(szBuff, pFile);	// [Frame_Index]
+		fscanf_s(pFile, "%d\n", &iData);
+
+		int x = 0; int y = 0;
+
+		FScanf(szBuff, pFile);	// [Left Top]
+		fscanf_s(pFile, "%d, %d\n", &x, &y);
+		newFrm.vLT = Vec2{ x,y };
+
+		FScanf(szBuff, pFile);	// [Slice Size]
+		fscanf_s(pFile, "%d, %d\n", &x, &y);
+		newFrm.vSlice = Vec2{ x,y };
+
+		FScanf(szBuff, pFile);	// [Offset]
+		fscanf_s(pFile, "%d, %d\n", &x, &y);
+		newFrm.vOffset = Vec2{ x,y };
+
+		float fData = 0.f;
+
+		FScanf(szBuff, pFile);	// [Duration]
+		fscanf_s(pFile, "%f\n", &fData);
+		newFrm.fDuration = fData;
+
+		m_vecFrm.push_back(newFrm);
+	}
 
 
 	fclose(pFile);

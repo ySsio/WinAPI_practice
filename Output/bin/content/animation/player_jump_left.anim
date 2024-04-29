@@ -1,16 +1,17 @@
-[Animation Name]
+[Animation_Name]
 JUMP_LEFT
-[Texture Name]
+[Texture_Name]
 Player
-[Texture Path]
+[Texture_Path]
 texture\jelda.bmp
-[Frame Count]
+[Frame_Count]
 1
-[Frame Index]
+
+[Frame_Index]
 0
-[Left Top]
+[Left_Top]
 120, 325
-[Slice Size]
+[Slice_Size]
 60, 65
 [Offset]
 0, 0

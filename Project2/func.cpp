@@ -43,6 +43,22 @@ void ChangeAIState(AI* _pAI, MON_STATE _eNextState)
 	
 }
 
+void FScanf(char* _pOutBuff, FILE* _pFile)
+{
+	int i = 0;
+	while (true)
+	{
+		char c = (char)getc(_pFile); // 문자 하나를 읽음
+		if (c == '\n')
+		{
+			_pOutBuff[i++] = '\0';
+			break;
+		}
+
+		_pOutBuff[i++] = c;
+	}
+}
+
 void SaveWString(const wstring& _str, FILE* _pFile)
 {
 	// 데이터 직렬화 serialization ? 내가 파일로 저장하고자 하는 데이터 중 포인터가 있음

@@ -42,28 +42,28 @@ CPlayer::CPlayer()
 	CreateAnimator();
 
 	// Animation 肺靛
-	//GetAnimator()->LoadAnimation(L"animation\\player_idle_left.anim");
-	//GetAnimator()->LoadAnimation(L"animation\\player_idle_right.anim");
-	//GetAnimator()->LoadAnimation(L"animation\\player_walk_left.anim");
-	//GetAnimator()->LoadAnimation(L"animation\\player_walk_right.anim");
-	//GetAnimator()->LoadAnimation(L"animation\\player_jump_left.anim");
-	//GetAnimator()->LoadAnimation(L"animation\\player_jump_right.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_idle_left.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_idle_right.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_walk_left.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_walk_right.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_jump_left.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_jump_right.anim");
 
-	// Animation 积己
-	GetAnimator()->CreateAnimation(L"IDLE_LEFT", pTex, Vec2(0, 65), Vec2(60, 65), Vec2(60, 0), 0.08f, 3);
-	GetAnimator()->CreateAnimation(L"IDLE_RIGHT", pTex, Vec2(0, 195), Vec2(60, 65), Vec2(60, 0), 0.08f, 3);
-	GetAnimator()->CreateAnimation(L"WALK_LEFT", pTex, Vec2(0, 325), Vec2(60, 65), Vec2(60, 0), 0.08f, 10);
-	GetAnimator()->CreateAnimation(L"WALK_RIGHT", pTex, Vec2(0, 455), Vec2(60, 65), Vec2(60, 0), 0.08f, 10);
-	GetAnimator()->CreateAnimation(L"JUMP_LEFT", pTex, Vec2(120, 325), Vec2(60, 65), Vec2(60, 0), 0.08f, 1);
-	GetAnimator()->CreateAnimation(L"JUMP_RIGHT", pTex, Vec2(120, 455), Vec2(60, 65), Vec2(60, 0), 0.08f, 1);
-	
-	// Animation 历厘
-	GetAnimator()->FindAnimation(L"IDLE_LEFT")->Save(L"animation\\player_idle_left.anim");
-	GetAnimator()->FindAnimation(L"IDLE_RIGHT")->Save(L"animation\\player_idle_right.anim");
-	GetAnimator()->FindAnimation(L"WALK_LEFT")->Save(L"animation\\player_walk_left.anim");
-	GetAnimator()->FindAnimation(L"WALK_RIGHT")->Save(L"animation\\player_walk_right.anim");
-	GetAnimator()->FindAnimation(L"JUMP_LEFT")->Save(L"animation\\player_jump_left.anim");
-	GetAnimator()->FindAnimation(L"JUMP_RIGHT")->Save(L"animation\\player_jump_right.anim");
+	//// Animation 积己
+	//GetAnimator()->CreateAnimation(L"IDLE_LEFT", pTex, Vec2(0, 65), Vec2(60, 65), Vec2(60, 0), 0.08f, 3);
+	//GetAnimator()->CreateAnimation(L"IDLE_RIGHT", pTex, Vec2(0, 195), Vec2(60, 65), Vec2(60, 0), 0.08f, 3);
+	//GetAnimator()->CreateAnimation(L"WALK_LEFT", pTex, Vec2(0, 325), Vec2(60, 65), Vec2(60, 0), 0.08f, 10);
+	//GetAnimator()->CreateAnimation(L"WALK_RIGHT", pTex, Vec2(0, 455), Vec2(60, 65), Vec2(60, 0), 0.08f, 10);
+	//GetAnimator()->CreateAnimation(L"JUMP_LEFT", pTex, Vec2(120, 325), Vec2(60, 65), Vec2(60, 0), 0.08f, 1);
+	//GetAnimator()->CreateAnimation(L"JUMP_RIGHT", pTex, Vec2(120, 455), Vec2(60, 65), Vec2(60, 0), 0.08f, 1);
+	//
+	//// Animation 历厘
+	//GetAnimator()->FindAnimation(L"IDLE_LEFT")->Save(L"animation\\player_idle_left.anim");
+	//GetAnimator()->FindAnimation(L"IDLE_RIGHT")->Save(L"animation\\player_idle_right.anim");
+	//GetAnimator()->FindAnimation(L"WALK_LEFT")->Save(L"animation\\player_walk_left.anim");
+	//GetAnimator()->FindAnimation(L"WALK_RIGHT")->Save(L"animation\\player_walk_right.anim");
+	//GetAnimator()->FindAnimation(L"JUMP_LEFT")->Save(L"animation\\player_jump_left.anim");
+	//GetAnimator()->FindAnimation(L"JUMP_RIGHT")->Save(L"animation\\player_jump_right.anim");
 
 	GetAnimator()->Play(L"IDLE_RIGHT", true);
 

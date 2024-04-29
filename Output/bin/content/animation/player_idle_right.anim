@@ -1,36 +1,39 @@
-[Animation Name]
+[Animation_Name]
 IDLE_RIGHT
-[Texture Name]
+[Texture_Name]
 Player
-[Texture Path]
+[Texture_Path]
 texture\jelda.bmp
-[Frame Count]
+[Frame_Count]
 3
-[Frame Index]
+
+[Frame_Index]
 0
-[Left Top]
+[Left_Top]
 0, 195
-[Slice Size]
+[Slice_Size]
 60, 65
 [Offset]
 0, 0
 [Duration]
 0.080000
-[Frame Index]
+
+[Frame_Index]
 1
-[Left Top]
+[Left_Top]
 60, 195
-[Slice Size]
+[Slice_Size]
 60, 65
 [Offset]
 0, 0
 [Duration]
 0.080000
-[Frame Index]
+
+[Frame_Index]
 2
-[Left Top]
+[Left_Top]
 120, 195
-[Slice Size]
+[Slice_Size]
 60, 65
 [Offset]
 0, 0
